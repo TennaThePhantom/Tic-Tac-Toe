@@ -34,21 +34,40 @@ def Winner(boardSpot, Letter): # how to win the game
         boardSpot[4] == Letter and boardSpot[5] == Letter and boardSpot[6] == Letter
     ) or (
         boardSpot[7] == Letter and boardSpot[8] == Letter and boardSpot[9] == Letter
-    ) or (boardSpot[1] == Letter and boardSpot[4] == Letter and boardSpot[7] == Letter) or(
+    ) or (
+        boardSpot[1] == Letter and boardSpot[4] == Letter and boardSpot[7] == Letter) or(
         boardSpot[2] == Letter and boardSpot[5] == Letter and boardSpot[8] == Letter) or (
-            boardSpot[3] == Letter and boardSpot[6] == Letter and boardSpot[9] == Letter) or (
-                boardSpot[1] == Letter and boardSpot[5] == Letter and boardSpot[9] == Letter) or (
-                    boardSpot[3] == Letter and boardSpot[5] == Letter and boardSpot[7] == Letter)
+        boardSpot[3] == Letter and boardSpot[6] == Letter and boardSpot[9] == Letter) or (
+        boardSpot[1] == Letter and boardSpot[5] == Letter and boardSpot[9] == Letter) or (
+        boardSpot[3] == Letter and boardSpot[5] == Letter and boardSpot[7] == Letter)
 
-def IstheBoardFull(board):
-    return ""
+def IstheBoardFull(board): # if there is more than 1 empty space on the space it is not full
+    if board.count(' ') > 1:
+        return True
+    else:
+        return False
 
 
 def randomMove():
     return ""
 
-def playerMove():
-    return ""
+def playerMove(): # for the player to move on the board
+    did_the_player_move = False
+    while did_the_player_move == False:
+        try:
+            pick_spot_on_board = int(input("Please pick a position between 1 through 9 to place a X: "))
+            if pick_spot_on_board in range(1,9 + 1):
+                if IsTheBoxOpen(pick_spot_on_board):
+                    did_the_player_move = True
+                    LetterInBox("X", pick_spot_on_board)
+                else:
+                    print("Space is taken")
+            else:
+                print("Please type a number within the range!")
+        except:
+            print("Next time type a number! ")
+        
+
 
 def player2Move():
     return ""
@@ -82,14 +101,29 @@ if Two_player == True and Ai == False:
     print(Tic_Tac_Toe_Board())
 
 
-
 if Two_player == False and Ai == True:
     player1 = input("Enter your name ").upper()
     Ai_name = random.choice(List_of_ai_names)
     print(Ai_name)
     print(Tic_Tac_Toe_Board())
     while Two_player == False and Ai == True:
-        while not (IstheBoardFull(board)):
- 
-            if IstheBoardFull(board):
+        while not (IstheBoardFull(board)): # is the full board yes or no if no continue 
+            if not(Winner(board, 'O')): # the board is not full but you lost to the ai 
+                playerMove()
+                print(Tic_Tac_Toe_Board())
+            else:
+                print("Sorry you have lost to " + Ai_name)
+                break
+            if not(Winner(board, 'X')): # the board is not full but you won against the ai
+                AiMove()
+                print(Tic_Tac_Toe_Board())
+            else:
+                print("Sorry " + Ai_name + " the player has won Good Job player!")
+                break
+
+
+
+
+
+        if IstheBoardFull(board):
                 print("Tie Game ")
