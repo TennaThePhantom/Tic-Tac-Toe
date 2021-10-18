@@ -30,16 +30,14 @@ def IsTheBoxOpen(Position): # can you place a letter
     return board[Position] == " "
 
 def Winner(boardSpot, Letter): # how to win the game
-    return (boardSpot[1] == Letter and boardSpot[2] == Letter and boardSpot[3] == Letter) or (
-        boardSpot[4] == Letter and boardSpot[5] == Letter and boardSpot[6] == Letter
-    ) or (
-        boardSpot[7] == Letter and boardSpot[8] == Letter and boardSpot[9] == Letter
-    ) or (
-        boardSpot[1] == Letter and boardSpot[4] == Letter and boardSpot[7] == Letter) or(
-        boardSpot[2] == Letter and boardSpot[5] == Letter and boardSpot[8] == Letter) or (
-        boardSpot[3] == Letter and boardSpot[6] == Letter and boardSpot[9] == Letter) or (
-        boardSpot[1] == Letter and boardSpot[5] == Letter and boardSpot[9] == Letter) or (
-        boardSpot[3] == Letter and boardSpot[5] == Letter and boardSpot[7] == Letter)
+    return (boardSpot[1] == Letter and boardSpot[2] == Letter and boardSpot[3] == Letter) or ( # first row
+        boardSpot[4] == Letter and boardSpot[5] == Letter and boardSpot[6] == Letter) or ( # second row
+        boardSpot[7] == Letter and boardSpot[8] == Letter and boardSpot[9] == Letter) or ( # third row
+        boardSpot[1] == Letter and boardSpot[4] == Letter and boardSpot[7] == Letter) or ( # down first colum
+        boardSpot[2] == Letter and boardSpot[5] == Letter and boardSpot[8] == Letter) or ( # down second colum
+        boardSpot[3] == Letter and boardSpot[6] == Letter and boardSpot[9] == Letter) or ( # down third colum
+        boardSpot[1] == Letter and boardSpot[5] == Letter and boardSpot[9] == Letter) or ( # diagonal
+        boardSpot[3] == Letter and boardSpot[5] == Letter and boardSpot[7] == Letter) # diagonal
 
 def IstheBoardFull(board): # if there is more than 1 empty space on the space it is not full
     if board.count(' ') > 1:
@@ -70,7 +68,21 @@ def playerMove(): # for the player to move on the board
 
 
 def player2Move():
-    return ""
+    did_the_player_move = False
+    while did_the_player_move == False:
+        try:
+            pick_spot_on_board = int(input("Please pick a position between 1 through 9 to place a O: "))
+            if pick_spot_on_board in range(1,9 + 1):
+                if IsTheBoxOpen(pick_spot_on_board):
+                    did_the_player_move = True
+                    LetterInBox("O", pick_spot_on_board)
+                else:
+                    print("Space is taken")
+            else:
+                print("Please type a number within the range!")
+        except:
+            print("Next time type a number! ")
+        
 
 def AiMove():
     return ""
@@ -114,9 +126,15 @@ if Two_player == False and Ai == True:
             else:
                 print("Sorry you have lost to " + Ai_name)
                 break
+
             if not(Winner(board, 'X')): # the board is not full but you won against the ai
-                AiMove()
-                print(Tic_Tac_Toe_Board())
+                computerMove = AiMove()
+                if computerMove == 0:
+                    print("Tie Game!")
+                else:
+                    LetterInBox("O", board)
+                    print(Ai_name + " has place his letter your turn!")
+                    print(Tic_Tac_Toe_Board())
             else:
                 print("Sorry " + Ai_name + " the player has won Good Job player!")
                 break
