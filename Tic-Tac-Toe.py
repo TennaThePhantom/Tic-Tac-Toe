@@ -41,13 +41,16 @@ def Winner(boardSpot, Letter): # how to win the game
 
 def IstheBoardFull(board): # if there is more than 1 empty space on the space it is not full
     if board.count(' ') > 1:
-        return True
-    else:
         return False
+    else:
+        return True
 
 
-def randomMove():
-    return ""
+def randomMove(Board_spots): # picks random spot
+    length = len(Board_spots)
+    random_number = random.randrange(0, length)
+    return Board_spots[random_number]
+
 
 def playerMove(): # for the player to move on the board
     did_the_player_move = False
@@ -85,8 +88,36 @@ def player2Move():
         
 
 def AiMove():
-    return ""
+    any_move_Possible = [The_spot_on_board for The_spot_on_board, letter in enumerate(board) if letter == ' ' and The_spot_on_board != 0]
+    move = 0
 
+    for letter in ['O', 'X']: # checks if x or o can win
+        for spot in any_move_Possible: # looks at all emepty spaces on board
+            boardCopy = board[:] # copy original board
+            boardCopy[spot] = letter # places the letter at the emepty position it finds
+            if Winner(boardCopy, letter): # can you place the letter and win it blocks player or goes there to win game
+                move = spot # does the move
+                return move
+    openCorners =  []
+    for spot in any_move_Possible:
+        if spot in [1,3,7,9]: # checks corners on board
+            openCorners.append[spot]
+            
+    if len(openCorners) > 0: # can I place a letter on corner
+        move = randomMove(openCorners) # places letter
+        return move
+    if 5 in any_move_Possible: # middle of board
+        move = 5
+        return move
+
+    EdgesOpen = []
+    for spot in any_move_Possible:
+        if spot in [2,4,6,8]: # checks edges on board
+            EdgesOpen.append(spot)
+    if len(EdgesOpen) > 0: # can I place letter on edges
+        move = randomMove(EdgesOpen) # places letter
+    
+    return move
 
 print("Welcome to Tic Tac Toe!")
 Tic_tac_toe_has_Started = True
@@ -116,7 +147,7 @@ if Two_player == True and Ai == False:
 if Two_player == False and Ai == True:
     player1 = input("Enter your name ").upper()
     Ai_name = random.choice(List_of_ai_names)
-    print(Ai_name)
+    print(player1 + " You are facing " + Ai_name)
     print(Tic_Tac_Toe_Board())
     while Two_player == False and Ai == True:
         while not (IstheBoardFull(board)): # is the full board yes or no if no continue 
@@ -132,16 +163,11 @@ if Two_player == False and Ai == True:
                 if computerMove == 0:
                     print("Tie Game!")
                 else:
-                    LetterInBox("O", board)
+                    LetterInBox("O", computerMove)
                     print(Ai_name + " has place his letter your turn!")
                     print(Tic_Tac_Toe_Board())
             else:
-                print("Sorry " + Ai_name + " the player has won Good Job player!")
+                print("Sorry " + Ai_name + " the player has won. Good Job player!")
                 break
-
-
-
-
-
         if IstheBoardFull(board):
-                print("Tie Game ")
+            print("Tie Game ")
