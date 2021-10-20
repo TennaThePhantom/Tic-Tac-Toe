@@ -24,7 +24,7 @@ def Tic_Tac_Toe_Board():
     print("       |           | ")
 
 def LetterInBox(Letter, Position ): # to place the letter on the board
-    board[Letter] = Position
+    board[Position] = Letter
 
 def IsTheBoxOpen(Position): # can you place a letter  
     return board[Position] == " "
@@ -98,24 +98,26 @@ def AiMove():
             if Winner(boardCopy, letter): # can you place the letter and win it blocks player or goes there to win game
                 move = spot # does the move
                 return move
-    openCorners =  []
+    open_Corners =  []
     for spot in any_move_Possible:
         if spot in [1,3,7,9]: # checks corners on board
-            openCorners.append[spot]
+            open_Corners.append(spot)
             
-    if len(openCorners) > 0: # can I place a letter on corner
-        move = randomMove(openCorners) # places letter
+    if len(open_Corners) > 0: # can I place a letter on corner
+        move = randomMove(open_Corners) # places letter
         return move
+
+
     if 5 in any_move_Possible: # middle of board
         move = 5
         return move
 
-    EdgesOpen = []
+    Edges_Open = []
     for spot in any_move_Possible:
         if spot in [2,4,6,8]: # checks edges on board
-            EdgesOpen.append(spot)
-    if len(EdgesOpen) > 0: # can I place letter on edges
-        move = randomMove(EdgesOpen) # places letter
+            Edges_Open.append(spot)
+    if len(Edges_Open) > 0: # can I place letter on edges
+        move = randomMove(Edges_Open) # places letter
     
     return move
 
@@ -163,11 +165,12 @@ if Two_player == False and Ai == True:
                 if computerMove == 0:
                     print("Tie Game!")
                 else:
-                    LetterInBox("O", computerMove)
+                    LetterInBox('O',computerMove)
                     print(Ai_name + " has place his letter your turn!")
                     print(Tic_Tac_Toe_Board())
             else:
                 print("Sorry " + Ai_name + " the player has won. Good Job player!")
                 break
-        if IstheBoardFull(board):
-            print("Tie Game ")
+            if IstheBoardFull(board):
+                print("Tie Game ")
+        break
