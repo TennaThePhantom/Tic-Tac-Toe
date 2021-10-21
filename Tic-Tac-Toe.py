@@ -26,7 +26,7 @@ def Tic_Tac_Toe_Board():
 def LetterInBox(Letter, Position ): # to place the letter on the board
     board[Position] = Letter
 
-def IsTheBoxOpen(Position): # can you place a letter  
+def IsTheBoxOpen(Position): # can you place a lettr  
     return board[Position] == " "
 
 def Winner(boardSpot, Letter): # how to win the game
