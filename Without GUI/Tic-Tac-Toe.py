@@ -26,7 +26,7 @@ def Tic_Tac_Toe_Board():
 def LetterInBox(Letter, Position ): # to place the letter on the board
     board[Position] = Letter
 
-def IsTheBoxOpen(Position): # can you place a lettr  
+def IsTheBoxOpen(Position): # can you place a letter  
     return board[Position] == " "
 
 def Winner(boardSpot, Letter): # how to win the game
@@ -142,9 +142,57 @@ while Tic_tac_toe_has_Started == True:
 if Two_player == True and Ai == False:
     player1 = input("Player 1 enter your name ").upper()
     player2 = input("player 2 enter your name ").upper()
-    print("Hello " + player1 + " and " + player2)
     print(Tic_Tac_Toe_Board())
+    print("Hello " + player1 + " and " + player2)
+    who_goes_first = random.randint(1,2)
+    if who_goes_first == 1:
+        player1_goes_first = True
+        print(player1 + " goes first ")
+    else:
+        player1_goes_first = False
+        print(player2 + " goes first")
+    while player1_goes_first == True:
+        while not(IstheBoardFull(board)):
+            if not(Winner(board, 'O')):
+                playerMove()
+                print(Tic_Tac_Toe_Board())
+                print(player1 + " has went your turn " + player2)
+            else:
+                print("Sorry" + player1 + ". You have lost to " + player2)
+                break
 
+            if not(Winner(board, 'X')):
+                if IstheBoardFull(board):
+                    print("Tie Game")
+                else:
+                    player2Move()
+                    print(Tic_Tac_Toe_Board())
+                    print(player2 + " has went your turn " + player1)
+            else:
+                print("Sorry " + player2 + ". You have lost to " + player1)
+                break
+        break
+
+    while player1_goes_first == False:
+        while not(IstheBoardFull(board)):
+            if not(Winner(board, 'O')):
+                player2Move()
+                print(Tic_Tac_Toe_Board())
+                print(player2 + " has went your turn " + player1)
+            else:
+                print("Sorry" + player1 + ". You have lost to " + player2)
+                break
+            if not(Winner(board, 'X')):
+                if IstheBoardFull(board):
+                    print("Tie Game")
+                else:
+                    playerMove()
+                    print(player1 + " has went your turn " + player2)
+                    print(Tic_Tac_Toe_Board())
+            else:
+                print("Sorry " + player2 + ". You have lost to " + player1)
+                break
+        break
 
 if Two_player == False and Ai == True:
     player1 = input("Enter your name ").upper()
@@ -171,6 +219,4 @@ if Two_player == False and Ai == True:
             else:
                 print("Sorry " + Ai_name + " the player has won. Good Job player!")
                 break
-            if IstheBoardFull(board):
-                print("Tie Game ")
-            break
+        break
