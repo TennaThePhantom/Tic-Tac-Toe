@@ -18,7 +18,7 @@ DARK_BLUE = (0, 0, 204)
 # define font
 font = pygame.font.SysFont(None, 40)
 
-#define variables
+# 
 Mouse_clicked = False
 player = 1
 position = (0,0)
@@ -26,16 +26,16 @@ Board = []
 game_over = False
 winner = 0
 
-#setup a rectangle for "Play Again" Option
+# sets a rectangle for "Play Again" Option
 again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
 
-#create empty 3 x 3 list to represent the grid
+#creates 3 X 3 board
 for spots in range (3):
 	row = [0] * 3
 	Board.append(row)
 
 
-
+# makes the board
 def draw_board():
 	BackGround = (255, 255, 255)
 	grid = (0, 0, 0)
@@ -44,6 +44,7 @@ def draw_board():
 		pygame.draw.line(Board_Screen, grid, (0, 150 * Grid_Lines), (Board_Width,150 * Grid_Lines), line_width)
 		pygame.draw.line(Board_Screen, grid, (150 * Grid_Lines, 0), (150 * Grid_Lines, Board_Height), line_width)
 
+# makes X and O
 def draw_Letter():
 	x_position = 0
 	for spots in Board:
@@ -64,14 +65,14 @@ def check_game_over():
 
 	x_position = 0
 	for spots in Board:
-		#check columns
+		# checks column for 3 in a row
 		if sum(spots) == 3:
 			winner = 1
 			game_over = True
 		if sum(spots) == -3:
 			winner = 2
 			game_over = True
-		#check rows
+		# checks 3 in a row 
 		if Board[0][x_position] + Board [1][x_position] + Board [2][x_position] == 3:
 			winner = 1
 			game_over = True
@@ -80,7 +81,7 @@ def check_game_over():
 			game_over = True
 		x_position += 1
 
-	#check cross
+	# checks for 3 in a row diagonal 
 	if Board[0][0] + Board[1][1] + Board [2][2] == 3 or Board[2][0] + Board[1][1] + Board [0][2] == 3:
 		winner = 1
 		game_over = True
@@ -95,13 +96,13 @@ def check_game_over():
 			for letter in row:
 				if letter == 0:
 					tie = False
-		#if it is a tie, then call game over and set winner to 0 (no one)
+		# if game is tie called tie game and winner = 0 since no one won
 		if tie == True:
 			game_over = True
 			winner = 0
 
 
-
+# draws the game over
 def draw_game_over(winner):
 
 	if winner != 0:
@@ -129,12 +130,12 @@ while Start_Tic_Tac_Toe:
 
 	# all the main things for GUI to work
 	for window in pygame.event.get():
-		#handle game exit
+		# game exit
 		if window.type == pygame.QUIT:
 			Start_Tic_Tac_Toe = False
-		#Starts new game
+		# Starts new game
 		if game_over == False:
-			#check for mouseclick
+			#check for mouseclicks
 			if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
 				Mouse_clicked = True
 			if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
@@ -147,7 +148,7 @@ while Start_Tic_Tac_Toe:
 					player *= -1
 					check_game_over()
 
-	# if game someone has won the game
+	# if someone has won the game
 	if game_over == True:
 		draw_game_over(winner)
 		# check for if we clicked on Play Again
@@ -163,12 +164,12 @@ while Start_Tic_Tac_Toe:
 				position = (0,0)
 				Board = []
 				winner = 0
-				#create empty 3 x 3 list to represent the grid
+				#create empty 3 x 3 board again if you want to play again
 				for spots in range (3):
 					row = [0] * 3
 					Board.append(row)
 
-	#update display
+	# update display
 	pygame.display.update()
 
 pygame.quit()
