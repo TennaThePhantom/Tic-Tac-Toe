@@ -1,66 +1,79 @@
 import pygame
-from pygame.locals import *
+import pygame.freetype
+from pygame.sprite import Sprite
+from pygame.rect import Rect
+
+DARK_PURPLE = (102, 0, 102)
+LIGHT_BLUE = (0, 255, 255)
+
+
+def Make_a_place_on_screen_for_text(text, Text_size, Text_Color, Bg_rgb):
+    """ Returns surface with text on screen"""
+    font = pygame.freetype.SysFont("Courier", Text_size, bold=True)
+    surface, _ = font.render(text=text, fgcolor=Text_Color, bgcolor=Bg_rgb)
+    return surface.convert_alpha()
+
+
+class Recative_Text(Sprite):
+    """Makes the text be able to react depending on user mouse"""
+    def __init__(self, Text_Center, text, Text_size, Bg_rgb, Text_color):
+        self.mouse_over = False  # Is the mouse over the text?
+
+        # Creates the regular text
+        default_Text = Make_a_place_on_screen_for_text(
+            text=text, Text_size=Text_size, Text_Color=Text_color, Bg_rgb=Bg_rgb
+        )
+
+        # creates the reactive text
+        highlighted_Text = Make_a_place_on_screen_for_text(
+            text=text, Text_size=Text_size * 1.2, Text_Color=Text_color, Bg_rgb=Bg_rgb
+        )
+
+        # both the reactive and Regular text are now one
+        self.High_lights_text = [default_Text, highlighted_Text]
+        self.Reactive = [
+            default_Text.get_rect(center=Text_Center),
+            highlighted_Text.get_rect(center=Text_Center),
+        ]
+
+        # calls the init method of the parent sprite class
+        super().__init__()
+
+    #  is the mouse over text if yes does reactive if no goes to regular text
+    @property
+    def default(self):
+        return self.High_lights_text[1] if self.mouse_over else self.High_lights_text[0]
+
+    @property
+    def TextReactive(self):
+        return self.Reactive[1] if self.mouse_over else self.Reactive[0]
+
+    def update(self, mouse_pos):
+        if self.TextReactive.collidepoint(mouse_pos):
+            self.mouse_over = True
+        else:
+            self.mouse_over = False
+
+    def Place_Text(self, surface):
+        """ Places the text onto menu """
+        surface.blit(self.default, self.TextReactive)
+
 
 pygame.init()
-
-# sizes 
-Start_Menu_Height = 675
-Start_Menu_Width = 800
-Message_X_Location = 400
-Message_Y_Location = 50
-
-The_Options_X = 400
-The_Options_Y = 370
-
-
-# colors
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-
-# Menu customization 
-Menu_Size = pygame.display.set_mode((Start_Menu_Width, Start_Menu_Height))
-Menu_Title = pygame.display.set_caption("Tic-Tac-Toe Menu")
-Menu_Background = Menu_Size.fill(BLACK)
-
-
-# text for screen
-Message_font = pygame.font.SysFont('Verdana', 30)
-Text_font = pygame.font.SysFont('Verdana', 50)
-Welcome_Message = Message_font.render('Welcome To Tic-Tac-Toe Main Menu',True, RED, BLACK)
-Start_Game = Text_font.render('Start Game', True, RED, BLACK)
-credits_Text = Text_font.render('Credits', True, RED, BLACK)
-Help_Text = Text_font.render('Help', True, RED, BLACK)
-
-Message = Welcome_Message.get_rect()
-Message.center = (Message_X_Location, Message_Y_Location)
-option1 = Start_Game.get_rect()
-option1.center = (The_Options_X, The_Options_Y)
-
-option2 = Help_Text.get_rect()
-option2.center = (The_Options_X, The_Options_Y + 90)
-
-option3 = credits_Text.get_rect()
-option3.center = (The_Options_X, The_Options_Y + 180)
-
-
-def display_Text():
-    Menu_Size.blit(Welcome_Message, Message)
-    Menu_Size.blit(Start_Game, option1)
-    Menu_Size.blit(Help_Text, option2)
-    Menu_Size.blit(credits_Text,option3)
-
-
-
-
-
-Open_Menu = True
-
-while Open_Menu == True:
-    display_Text()
-    for Menu in pygame.event.get():
-        if Menu.type == pygame.QUIT:
-            Open_Menu = False
-    
-    pygame.display.update()
-
-pygame.quit
+Menu_text = pygame.display.set_mode((800, 600))
+# creates a UI Text 
+Text_for_menu = Recative_Text(
+    Text_Center=(400, 400),
+    Text_size=30,
+    Bg_rgb=DARK_PURPLE,
+    Text_color=LIGHT_BLUE,
+    text="Hello World",
+)
+# main loop
+while True:
+    for widnow in pygame.event.get():
+        pass
+    Menu_text.fill(DARK_PURPLE)
+    Text_for_menu.update(pygame.mouse.get_pos())
+    Text_for_menu.Place_Text(Menu_text)
+    pygame.display.flip()
