@@ -4,13 +4,14 @@ from pygame.sprite import Sprite
 from pygame.rect import Rect
 from enum import Enum
 
+
 DARK_PURPLE = (102, 0, 102)
 LIGHT_BLUE = (0, 255, 255)
 pygame.display.set_caption("Tic-Tac-Toe Menu")
 
 def Make_a_place_on_screen_for_text(text, Text_size, Text_Color, Bg_rgb):
     """ display's text on screen"""
-    font = pygame.freetype.SysFont("Verdana", Text_size, bold=False)
+    font = pygame.freetype.SysFont("Verdana", Text_size, bold=True)
     surface, _ = font.render(text=text, fgcolor=Text_Color, bgcolor=Bg_rgb)
     return surface.convert_alpha()
 
@@ -42,7 +43,7 @@ class Recative_Text(Sprite):
         # calls the init method of the parent sprite class
         super().__init__()
 
-    #  is the mouse over text if yes does reactive if no goes to regular text
+    """ is the mouse over text if yes does reactive if no goes to regular text """
     @property
     def default(self):
         return self.High_lights_text[1] if self.mouse_over else self.High_lights_text[0]
@@ -52,6 +53,7 @@ class Recative_Text(Sprite):
         return self.Reactive[1] if self.mouse_over else self.Reactive[0]
 
     def update(self, mouse_postition, mouse_over):
+
         if self.TextReactive.collidepoint(mouse_postition):
             self.mouse_over = True
             if mouse_over:
@@ -59,28 +61,48 @@ class Recative_Text(Sprite):
         else:
             self.mouse_over = False
 
-    def Place_Text(self, surface):
         """ Places the text onto menu """
+    def Place_Text(self, surface):
         surface.blit(self.default, self.TextReactive)
     
 
 class Game(Enum):
     QUIT = -1
+    TITLE = 0
+    NEWGAME = 1
 
-def Start_The_Menu_loop():
+
+# the main loop
+def menu_loop():
 
     pygame.init()
 
-    Menu_text = pygame.display.set_mode((800, 700))
-    # creates the UI Text 
-    Start_Game_Text = Recative_Text(
-        Text_Center = (400, 300),
-        Text_size = 45,
-        Bg_rgb = DARK_PURPLE,
-        Text_color = LIGHT_BLUE,
-        text ="Start Game",
-    )
+    Menu_Screen = pygame.display.set_mode((800, 700))
+    Game_State = Game.TITLE
 
+    Start_menu = True
+    while Start_menu == True:
+        if Game_State == Game.TITLE:
+            Game_State = Title_screen(Menu_Screen)
+        
+        if Game_State == Game.NEWGAME:
+            Game_State = start_menu(Menu_Screen)
+        
+        if Game_State == Game.QUIT:
+            pygame.quit()
+            return
+
+
+"""Text for menu screen"""
+def Title_screen(Menu_Screen):
+    Start_Game_Text = Recative_Text(
+    Text_Center = (400, 300),
+    Text_size = 45,
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text ="Start Game",
+    Action = Game.NEWGAME, 
+    )
     Help_Text = Recative_Text(
         Text_Center = (400, 400),
         Text_size = 45,
@@ -94,9 +116,7 @@ def Start_The_Menu_loop():
         Bg_rgb = DARK_PURPLE,
         Text_color = LIGHT_BLUE,
         text = "Credits",
-        Action = None
     )
-
     quit_Text = Recative_Text(
         Text_Center = (400, 600),
         Text_size = 45,
@@ -106,32 +126,48 @@ def Start_The_Menu_loop():
         Action = Game.QUIT,
     )
 
-    start_the_menu = True
-    """The Main loop for the start menu"""
-    while start_the_menu == True:
+    texts_for_menu = [Start_Game_Text, Help_Text, credits_Text ,quit_Text]
+    Menu = True
+    while Menu == True:
         mouse_over_text = False
         for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                start_the_menu = False
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
-        Menu_text.fill(DARK_PURPLE)
-
-        Start_Game_Text.update(pygame.mouse.get_pos(), mouse_over_text)
-        Start_Game_Text.Place_Text(Menu_text)
-
-        Help_Text.update(pygame.mouse.get_pos(), mouse_over_text)
-        Help_Text.Place_Text(Menu_text)
+        Menu_Screen.fill(DARK_PURPLE)
         
-        credits_Text.update(pygame.mouse.get_pos(), mouse_over_text)
-        credits_Text.Place_Text(Menu_text)
-        
-        quit_action = quit_Text.update(pygame.mouse.get_pos(), mouse_over_text)
-        if quit_action is not None:
-            return
-        quit_Text.Place_Text(Menu_text)
+        for texts in texts_for_menu:
+            quit_action = texts.update(pygame.mouse.get_pos(), mouse_over_text)
+            if quit_action is not None:
+                return quit_action
+            texts.Place_Text(Menu_Screen)
+
         pygame.display.flip()
 
+"""When you hit start game goes to next screen"""
+def start_menu(Menu_Screen):
+    menu_return = True
+    return_back_to_screen = Recative_Text(
+        Text_Center = (190, 670),
+        Text_size = 25, 
+        Bg_rgb = DARK_PURPLE,
+        Text_color = LIGHT_BLUE,
+        text = "Return to main menu",
+        Action = Game.TITLE,
+    )
+    while menu_return == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+            Menu_Screen.fill(DARK_PURPLE)  
+            
+            return_action = return_back_to_screen.update(pygame.mouse.get_pos(), mouse_over_text)
+            if return_action is not None:
+                return return_action
+            return_back_to_screen.Place_Text(Menu_Screen)
+            
+            pygame.display.flip()
 
 
-Start_The_Menu_loop()
+
+menu_loop()
