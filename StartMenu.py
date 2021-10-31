@@ -1,4 +1,5 @@
 import pygame
+from pygame import display
 import pygame.freetype
 from pygame.sprite import Sprite
 from pygame.rect import Rect
@@ -7,6 +8,8 @@ from enum import Enum
 
 DARK_PURPLE = (102, 0, 102)
 LIGHT_BLUE = (0, 255, 255)
+Menu_Screen = pygame.display.set_mode((800, 700))
+
 pygame.display.set_caption("Tic-Tac-Toe Menu")
 
 def Make_a_place_on_screen_for_text(text, Text_size, Text_Color, Bg_rgb):
@@ -14,6 +17,7 @@ def Make_a_place_on_screen_for_text(text, Text_size, Text_Color, Bg_rgb):
     font = pygame.freetype.SysFont("Verdana", Text_size, bold=True)
     surface, _ = font.render(text=text, fgcolor=Text_Color, bgcolor=Bg_rgb)
     return surface.convert_alpha()
+
 
 
 class Recative_Text(Sprite):
@@ -37,7 +41,7 @@ class Recative_Text(Sprite):
             default_Text.get_rect(center=Text_Center),
             highlighted_Text.get_rect(center=Text_Center),
         ]
-        # for quit text 
+        # for text to do some type of command or action
         self.Action = Action
 
         # calls the init method of the parent sprite class
@@ -68,8 +72,8 @@ class Recative_Text(Sprite):
 
 class Game(Enum):
     QUIT = -1
-    TITLE = 0
-    NEWGAME = 1
+    Main_Menu = 0
+    Start_game_next_screen = 1
 
 
 # the main loop
@@ -77,15 +81,14 @@ def menu_loop():
 
     pygame.init()
 
-    Menu_Screen = pygame.display.set_mode((800, 700))
-    Game_State = Game.TITLE
+    Game_State = Game.Main_Menu
 
     Start_menu = True
     while Start_menu == True:
-        if Game_State == Game.TITLE:
+        if Game_State == Game.Main_Menu:
             Game_State = Title_screen(Menu_Screen)
         
-        if Game_State == Game.NEWGAME:
+        if Game_State == Game.Start_game_next_screen:
             Game_State = start_menu(Menu_Screen)
         
         if Game_State == Game.QUIT:
@@ -95,13 +98,20 @@ def menu_loop():
 
 """Text for menu screen"""
 def Title_screen(Menu_Screen):
+    message_x = 400
+    message_y = 100
+    message_font = pygame.font.SysFont("Verdana", 70)
+    welcome_message = message_font.render("Tic-Tac-Toe", True, LIGHT_BLUE, DARK_PURPLE)
+    message = welcome_message.get_rect()
+    message.center = (message_x, message_y)
+
     Start_Game_Text = Recative_Text(
     Text_Center = (400, 300),
     Text_size = 45,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text ="Start Game",
-    Action = Game.NEWGAME, 
+    Action = Game.Start_game_next_screen, 
     )
     Help_Text = Recative_Text(
         Text_Center = (400, 400),
@@ -134,7 +144,7 @@ def Title_screen(Menu_Screen):
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
         Menu_Screen.fill(DARK_PURPLE)
-        
+
         for texts in texts_for_menu:
             quit_action = texts.update(pygame.mouse.get_pos(), mouse_over_text)
             if quit_action is not None:
@@ -152,21 +162,39 @@ def start_menu(Menu_Screen):
         Bg_rgb = DARK_PURPLE,
         Text_color = LIGHT_BLUE,
         text = "Return to main menu",
-        Action = Game.TITLE,
+        Action = Game.Main_Menu,
     )
+    Two_player_text = Recative_Text(
+        Text_Center = (400, 300),
+        Text_size = 50,
+        Bg_rgb = DARK_PURPLE, 
+        Text_color = LIGHT_BLUE, 
+        text = "Two Player",
+    )
+
+    Vs_Ai_text = Recative_Text(
+        Text_Center = (400, 500),
+        Text_size = 50,
+        Bg_rgb = DARK_PURPLE,
+        Text_color = LIGHT_BLUE,
+        text = "Ai",
+    )
+
+    texts = [Two_player_text, Vs_Ai_text, return_back_to_screen]
     while menu_return == True:
         mouse_over_text = False
         for window in pygame.event.get():
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
-            Menu_Screen.fill(DARK_PURPLE)  
+        Menu_Screen.fill(DARK_PURPLE)  
+        
+        for every_text in texts:
+            second_screen = every_text.update(pygame.mouse.get_pos(), mouse_over_text)
+            if second_screen is not None:
+                return second_screen
+            every_text.Place_Text(Menu_Screen)
             
-            return_action = return_back_to_screen.update(pygame.mouse.get_pos(), mouse_over_text)
-            if return_action is not None:
-                return return_action
-            return_back_to_screen.Place_Text(Menu_Screen)
-            
-            pygame.display.flip()
+        pygame.display.flip()
 
 
 
