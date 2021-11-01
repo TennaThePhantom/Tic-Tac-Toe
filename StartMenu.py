@@ -1,8 +1,6 @@
 import pygame
-from pygame import display
 import pygame.freetype
 from pygame.sprite import Sprite
-from pygame.rect import Rect
 from enum import Enum
 
 
@@ -17,6 +15,14 @@ def Make_a_place_on_screen_for_text(text, Text_size, Text_Color, Bg_rgb):
     font = pygame.freetype.SysFont("Verdana", Text_size, bold=True)
     surface, _ = font.render(text=text, fgcolor=Text_Color, bgcolor=Bg_rgb)
     return surface.convert_alpha()
+
+def display_regular_text(Text,Text_size, Text_X, Text_Y,Text_color, Bg_Color):
+    """Non Interactive text"""
+    font = pygame.font.SysFont("Verdana",Text_size, bold=True)
+    text = font.render(Text, True, Text_color, Bg_Color)
+    Text_Box = text.get_rect() # makes box for text
+    Text_Box.center = (Text_X, Text_Y) # X and Y location 
+    Menu_Screen.blit(text, Text_Box) # displays text on screen
 
 
 
@@ -68,12 +74,14 @@ class Recative_Text(Sprite):
         """ Places the text onto menu """
     def Place_Text(self, surface):
         surface.blit(self.default, self.TextReactive)
-    
+
 
 class Game(Enum):
     QUIT = -1
     Main_Menu = 0
     Start_game_next_screen = 1
+    Help_screen = 2
+    Credits_screen = 3
 
 
 # the main loop
@@ -90,20 +98,20 @@ def menu_loop():
         
         if Game_State == Game.Start_game_next_screen:
             Game_State = start_menu(Menu_Screen)
+
+        if Game_State == Game.Help_screen:
+            Game_State = Help_section(Menu_Screen)
         
+        if Game_State == Game.Credits_screen:
+            Game_State = credits_section(Menu_Screen)
+
         if Game_State == Game.QUIT:
             pygame.quit()
             return
 
 
 """Text for menu screen"""
-def Title_screen(Menu_Screen):
-    message_x = 400
-    message_y = 100
-    message_font = pygame.font.SysFont("Verdana", 70)
-    welcome_message = message_font.render("Tic-Tac-Toe", True, LIGHT_BLUE, DARK_PURPLE)
-    message = welcome_message.get_rect()
-    message.center = (message_x, message_y)
+def Title_screen(MenuScreen):
 
     Start_Game_Text = Recative_Text(
     Text_Center = (400, 300),
@@ -119,6 +127,7 @@ def Title_screen(Menu_Screen):
         Bg_rgb = DARK_PURPLE,
         Text_color = LIGHT_BLUE,
         text = "Help",
+        Action = Game.Help_screen
     )
     credits_Text = Recative_Text(
         Text_Center = (400, 500),
@@ -126,6 +135,7 @@ def Title_screen(Menu_Screen):
         Bg_rgb = DARK_PURPLE,
         Text_color = LIGHT_BLUE,
         text = "Credits",
+        Action = Game.Credits_screen
     )
     quit_Text = Recative_Text(
         Text_Center = (400, 600),
@@ -143,13 +153,15 @@ def Title_screen(Menu_Screen):
         for window in pygame.event.get():
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
-        Menu_Screen.fill(DARK_PURPLE)
+        MenuScreen.fill(DARK_PURPLE)
+        display_regular_text("Tic-Tac-Toe", 45, 400, 50, LIGHT_BLUE,DARK_PURPLE)
+    
 
         for texts in texts_for_menu:
-            quit_action = texts.update(pygame.mouse.get_pos(), mouse_over_text)
-            if quit_action is not None:
-                return quit_action
-            texts.Place_Text(Menu_Screen)
+            Menu_Action = texts.update(pygame.mouse.get_pos(), mouse_over_text)
+            if Menu_Action is not None:
+                return Menu_Action
+            texts.Place_Text(MenuScreen)
 
         pygame.display.flip()
 
@@ -186,7 +198,8 @@ def start_menu(Menu_Screen):
         for window in pygame.event.get():
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
-        Menu_Screen.fill(DARK_PURPLE)  
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("How do you want to play?", 40, 400, 50, LIGHT_BLUE, DARK_PURPLE)
         
         for every_text in texts:
             second_screen = every_text.update(pygame.mouse.get_pos(), mouse_over_text)
@@ -195,6 +208,87 @@ def start_menu(Menu_Screen):
             every_text.Place_Text(Menu_Screen)
             
         pygame.display.flip()
+    
+
+
+
+def Help_section(Menu_Screen):
+    How_to_play_3By3 = Recative_Text(
+        Text_Center = (400, 300),
+        Text_size = 50,
+        Bg_rgb = DARK_PURPLE,
+        Text_color = LIGHT_BLUE,
+        text = "3 By 3 Board",
+        Action = None
+    )
+    How_to_play_5By5_or_More = Recative_Text(
+    Text_Center = (400, 500),
+    Text_size = 45,
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "5 By 5 Board or Higher",
+    Action = None
+)
+    return_back_to_screen = Recative_Text(
+    Text_Center = (190, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu,
+)
+
+    Text_for_help_section = [How_to_play_3By3,  How_to_play_5By5_or_More, return_back_to_screen]
+    Help_section_display = True
+    while Help_section_display == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("How to play?", 40, 400, 50, LIGHT_BLUE, DARK_PURPLE )
+
+
+        for Every_text in Text_for_help_section:
+            Help_section_screen = Every_text.update(pygame.mouse.get_pos(), mouse_over_text)
+            if Help_section_screen is not None:
+                return Help_section_screen
+            Every_text.Place_Text(Menu_Screen)
+
+        pygame.display.flip()
+
+
+
+
+def credits_section(Menu_Screen):
+    return_back_to_screen = Recative_Text(
+    Text_Center = (190, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu,
+    )
+    text_to_return = [return_back_to_screen]
+    credits_Display = True
+    while credits_Display == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("Credits", 50, 400, 300, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Made by Tennessee Foster", 45, 400, 350, LIGHT_BLUE, DARK_PURPLE)
+
+        for text in text_to_return:
+            return_back = return_back_to_screen.update(pygame.mouse.get_pos(), mouse_over_text)
+            if return_back is not None:
+                return return_back
+            text.Place_Text(Menu_Screen)
+
+        pygame.display.flip()
+
+
 
 
 
