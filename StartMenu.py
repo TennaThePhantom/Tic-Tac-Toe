@@ -1,4 +1,5 @@
 import pygame
+from pygame import mouse
 import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
@@ -105,6 +106,9 @@ def menu_loop():
 
         if Game_State == Game.Help_screen:
             Game_State = Help_section(Menu_Screen)
+        
+        if Game_State == Game.How_to_play_3by3:
+            Game_State = HowToPlay3X3Board(Menu_Screen)
         
         if Game_State == Game.Credits_screen:
             Game_State = credits_section(Menu_Screen)
@@ -232,7 +236,7 @@ def Help_section(Menu_Screen):
         Bg_rgb = DARK_PURPLE,
         Text_color = LIGHT_BLUE,
         text = "3 By 3 Board",
-        Action = None
+        Action = Game.How_to_play_3by3
     )
     How_to_play_5By5_or_More = Recative_Text(
     Text_Center = (400, 500),
@@ -272,6 +276,49 @@ def Help_section(Menu_Screen):
 
 
 
+def HowToPlay3X3Board(Menu_Screen):
+    return_back_to_screen = Recative_Text(
+    Text_Center = (190, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Help_screen
+    )
+
+    return_back = [return_back_to_screen]
+    display_Text = True
+    while display_Text == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Your goal is to get 3 in a row", 30, 400, 200, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("If you get 3 in a row (Up, Down, Across, or Diagonally) ", 25, 400, 250, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("You win the game ", 25, 400, 280, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("If the person or the computer place a letter in a box", 25, 400, 330, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("You cannot place your letter in that box anymore", 25, 400, 360, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("If all 9 boxes have been fulled up", 25, 400, 410, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("The game ends in a tie", 25, 400, 440, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Nobody wins the game ", 25, 400, 470, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Player 1 is always X ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
+
+
+
+
+
+
+        for text in return_back:
+            go_back_to_help_section = text.update(pygame.mouse.get_pos(), mouse_over_text)
+            if go_back_to_help_section is not None:
+                return go_back_to_help_section
+            text.Place_Text(Menu_Screen)
+
+        
+        pygame.display.flip()
+
 
 def credits_section(Menu_Screen):
     return_back_to_screen = Recative_Text(
@@ -305,12 +352,12 @@ def credits_section(Menu_Screen):
 """Two Player Mode """
 def Two_Player_Mode(Menu_Screen):
     Board_size_3X3 = Recative_Text(
-        Text_Center = (400, 200),
-        Text_size = 35, 
-        Bg_rgb = DARK_PURPLE,
-        Text_color = LIGHT_BLUE,
-        text = "3 By 3 Board",
-        Action = None
+    Text_Center = (400, 200),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "3 By 3 Board",
+    Action = None
     )
     Board_size_5X5 = Recative_Text(
     Text_Center = (400, 280),
