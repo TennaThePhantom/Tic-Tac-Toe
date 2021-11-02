@@ -81,7 +81,11 @@ class Game(Enum):
     Main_Menu = 0
     Start_game_next_screen = 1
     Help_screen = 2
-    Credits_screen = 3
+    Credits_screen = -2
+    Two_Player_mode = 3
+    Ai_mode = -3
+    How_to_play_3by3 = 4
+    How_to_play_5by5_or_more = -4
 
 
 # the main loop
@@ -104,6 +108,13 @@ def menu_loop():
         
         if Game_State == Game.Credits_screen:
             Game_State = credits_section(Menu_Screen)
+
+        if Game_State == Game.Two_Player_mode:
+            Game_State = Two_Player_Mode(Menu_Screen)
+
+        if Game_State == Game.Ai_mode:
+            Game_State = Ai_Mode(Menu_Screen)
+        
 
         if Game_State == Game.QUIT:
             pygame.quit()
@@ -182,6 +193,7 @@ def start_menu(Menu_Screen):
         Bg_rgb = DARK_PURPLE, 
         Text_color = LIGHT_BLUE, 
         text = "Two Player",
+        Action = Game.Two_Player_mode
     )
 
     Vs_Ai_text = Recative_Text(
@@ -190,6 +202,7 @@ def start_menu(Menu_Screen):
         Bg_rgb = DARK_PURPLE,
         Text_color = LIGHT_BLUE,
         text = "Ai",
+        Action = Game.Ai_mode
     )
 
     texts = [Two_player_text, Vs_Ai_text, return_back_to_screen]
@@ -228,7 +241,7 @@ def Help_section(Menu_Screen):
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board or Higher",
     Action = None
-)
+    )
     return_back_to_screen = Recative_Text(
     Text_Center = (190, 670),
     Text_size = 25, 
@@ -236,7 +249,7 @@ def Help_section(Menu_Screen):
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
-)
+    )
 
     Text_for_help_section = [How_to_play_3By3,  How_to_play_5By5_or_More, return_back_to_screen]
     Help_section_display = True
@@ -289,6 +302,167 @@ def credits_section(Menu_Screen):
         pygame.display.flip()
 
 
+"""Two Player Mode """
+def Two_Player_Mode(Menu_Screen):
+    Board_size_3X3 = Recative_Text(
+        Text_Center = (400, 200),
+        Text_size = 35, 
+        Bg_rgb = DARK_PURPLE,
+        Text_color = LIGHT_BLUE,
+        text = "3 By 3 Board",
+        Action = None
+    )
+    Board_size_5X5 = Recative_Text(
+    Text_Center = (400, 280),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "5 By 5 Board",
+    Action = None
+    )
+    Board_size_7X7 = Recative_Text(
+    Text_Center = (400, 360),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "7 By 7 Board",
+    Action = None
+    )
+    Board_size_10X10 = Recative_Text(
+    Text_Center = (400, 440),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "10 By 10 Board",
+    Action = None
+    )
+    Board_size_20X20 = Recative_Text(
+    Text_Center = (400, 520),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "20 By 20 Board",
+    Action = None
+    )
+
+    Board_size_30X30 = Recative_Text(
+    Text_Center = (400, 600),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "30 By 30 Board",
+    Action = None
+    )
+
+    return_back_to_screen = Recative_Text(
+    Text_Center = (190, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Start_game_next_screen,
+    )
+
+    board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
+    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_screen ]
+    choose_board_size = True
+
+    while choose_board_size == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("Choose Your Board", 40, 400, 50, LIGHT_BLUE,DARK_PURPLE)
+
+        for Every_board_size in board_sizes:
+            Boards = Every_board_size.update(pygame.mouse.get_pos(), mouse_over_text)
+            if Boards is not None:
+                return Boards
+            Every_board_size.Place_Text(Menu_Screen)
+
+        pygame.display.flip()
+
+
+def Ai_Mode(Menu_Screen):
+    Board_size_3X3 = Recative_Text(
+        Text_Center = (400, 200),
+        Text_size = 35, 
+        Bg_rgb = DARK_PURPLE,
+        Text_color = LIGHT_BLUE,
+        text = "3 By 3 Board",
+        Action = None
+    )
+    Board_size_5X5 = Recative_Text(
+    Text_Center = (400, 280),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "5 By 5 Board",
+    Action = None
+    )
+    Board_size_7X7 = Recative_Text(
+    Text_Center = (400, 360),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "7 By 7 Board",
+    Action = None
+    )
+    Board_size_10X10 = Recative_Text(
+    Text_Center = (400, 440),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "10 By 10 Board",
+    Action = None
+    )
+    Board_size_20X20 = Recative_Text(
+    Text_Center = (400, 520),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "20 By 20 Board",
+    Action = None
+    )
+
+    Board_size_30X30 = Recative_Text(
+    Text_Center = (400, 600),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "30 By 30 Board",
+    Action = None
+    )
+
+    return_back_to_screen = Recative_Text(
+    Text_Center = (190, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Start_game_next_screen,
+    )
+
+    board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
+    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_screen ]
+    choose_board_size = True
+
+    while choose_board_size == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("Choose Your Board", 40, 400, 50, LIGHT_BLUE,DARK_PURPLE)
+
+        for Every_board_size in board_sizes:
+            Boards = Every_board_size.update(pygame.mouse.get_pos(), mouse_over_text)
+            if Boards is not None:
+                return Boards
+            Every_board_size.Place_Text(Menu_Screen)
+
+        pygame.display.flip()
 
 
 
