@@ -1,5 +1,4 @@
 import pygame
-from pygame import mouse
 import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
@@ -109,6 +108,9 @@ def menu_loop():
         
         if Game_State == Game.How_to_play_3by3:
             Game_State = HowToPlay3X3Board(Menu_Screen)
+        
+        if Game_State ==  Game.How_to_play_5by5_or_more:
+            Game_State = HowToPlay5X5BoardOrHigher(Menu_Screen)
         
         if Game_State == Game.Credits_screen:
             Game_State = credits_section(Menu_Screen)
@@ -244,7 +246,7 @@ def Help_section(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board or Higher",
-    Action = None
+    Action = Game.How_to_play_5by5_or_more
     )
     return_back_to_screen = Recative_Text(
     Text_Center = (190, 670),
@@ -294,6 +296,8 @@ def HowToPlay3X3Board(Menu_Screen):
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
         Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("How to play 3 by 3 board", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Player 1 is always X ", 25, 400, 100, LIGHT_BLUE, DARK_PURPLE)
         display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
         display_regular_text("Your goal is to get 3 in a row", 30, 400, 200, LIGHT_BLUE, DARK_PURPLE)
         display_regular_text("If you get 3 in a row (Up, Down, Across, or Diagonally) ", 25, 400, 250, LIGHT_BLUE, DARK_PURPLE)
@@ -303,10 +307,48 @@ def HowToPlay3X3Board(Menu_Screen):
         display_regular_text("If all 9 boxes have been fulled up", 25, 400, 410, LIGHT_BLUE, DARK_PURPLE)
         display_regular_text("The game ends in a tie", 25, 400, 440, LIGHT_BLUE, DARK_PURPLE)
         display_regular_text("Nobody wins the game ", 25, 400, 470, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Player 1 is always X ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Have fun playing Tic-Tac-Toe ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
+
+        for text in return_back:
+            go_back_to_help_section = text.update(pygame.mouse.get_pos(), mouse_over_text)
+            if go_back_to_help_section is not None:
+                return go_back_to_help_section
+            text.Place_Text(Menu_Screen)
+
+        pygame.display.flip()
 
 
+def HowToPlay5X5BoardOrHigher(Menu_Screen):
+    return_back_to_screen = Recative_Text(
+    Text_Center = (190, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Help_screen
+    )
 
+    return_back = [return_back_to_screen]
+    display_Text = True
+    while display_Text == True:
+        mouse_over_text = False
+        for window in pygame.event.get():
+            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
+                mouse_over_text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        display_regular_text("How to play 5 by 5 board or higher", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Player 1 is Always X", 30, 400, 100, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Make sure you click the right box", 30, 400, 190, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Bigger board smaller boxes", 30, 400, 230, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("If you get 5 in a row (Up, Down, Across, or Diagonally) ", 25, 400, 280, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("You win the game", 25, 400, 315, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("If the person or the computer place a letter in a box", 25, 400, 350, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("You cannot place your letter in that box anymore", 25, 400, 390, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("If all boxes have been fulled up", 25, 400, 430, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("The game ends in a tie", 25, 400, 460, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Nobody wins the game ", 25, 400, 495, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Have fun playing Tic-Tac-Toe", 25, 400, 550, LIGHT_BLUE, DARK_PURPLE)
 
 
 
@@ -318,6 +360,7 @@ def HowToPlay3X3Board(Menu_Screen):
 
         
         pygame.display.flip()
+
 
 
 def credits_section(Menu_Screen):
