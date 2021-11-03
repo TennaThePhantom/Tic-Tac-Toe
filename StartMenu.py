@@ -284,11 +284,19 @@ def HowToPlay3X3Board(Menu_Screen):
     Text_size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "Return to main menu",
+    text = "Return to help screen",
     Action = Game.Help_screen
     )
+    return_back_to_help_screen = Recative_Text(
+    Text_Center = (615, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu
+)
 
-    return_back = [return_back_to_screen]
+    return_back = [return_back_to_screen, return_back_to_help_screen]
     display_Text = True
     while display_Text == True:
         mouse_over_text = False
@@ -309,11 +317,11 @@ def HowToPlay3X3Board(Menu_Screen):
         display_regular_text("Nobody wins the game ", 25, 400, 470, LIGHT_BLUE, DARK_PURPLE)
         display_regular_text("Have fun playing Tic-Tac-Toe ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
 
-        for text in return_back:
-            go_back_to_help_section = text.update(pygame.mouse.get_pos(), mouse_over_text)
-            if go_back_to_help_section is not None:
-                return go_back_to_help_section
-            text.Place_Text(Menu_Screen)
+        for texts in return_back:
+            go_back = texts.update(pygame.mouse.get_pos(), mouse_over_text)
+            if go_back is not None:
+                return go_back
+            texts.Place_Text(Menu_Screen)
 
         pygame.display.flip()
 
