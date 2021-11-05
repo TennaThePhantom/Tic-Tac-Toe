@@ -255,6 +255,7 @@ def Help_section(Menu_Screen):
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
+
     )
 
     Text_for_help_section = [How_to_play_3By3,  How_to_play_5By5_or_More, return_back_to_screen]
@@ -452,17 +453,25 @@ def Two_Player_Mode(Menu_Screen):
     Action = None
     )
 
-    return_back_to_screen = Recative_Text(
+    return_back_to_game_mode = Recative_Text(
     Text_Center = (190, 670),
     Text_size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "Return to main menu",
+    text = "Return to game menu",
     Action = Game.Start_game_next_screen,
+    )
+    return_back_to_screen = Recative_Text(
+    Text_Center = (615, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu,
     )
 
     board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
-    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_screen ]
+    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_game_mode, return_back_to_screen ]
     choose_board_size = True
 
     while choose_board_size == True:
@@ -533,17 +542,25 @@ def Ai_Mode(Menu_Screen):
     Action = None
     )
 
-    return_back_to_screen = Recative_Text(
+    return_back_to_screen_game_mode = Recative_Text(
     Text_Center = (190, 670),
     Text_size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "Return to main menu",
+    text = "Return to game mode",
     Action = Game.Start_game_next_screen,
+    )
+    return_back_to_screen = Recative_Text(
+    Text_Center = (615, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu,
     )
 
     board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
-    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_screen ]
+    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_screen_game_mode, return_back_to_screen ]
     choose_board_size = True
 
     while choose_board_size == True:
