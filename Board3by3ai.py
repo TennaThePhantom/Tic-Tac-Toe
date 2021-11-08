@@ -1,6 +1,7 @@
 #import modules
 import pygame
 from pygame.locals import *
+import copy
 
 pygame.init()
 
@@ -21,6 +22,7 @@ font = pygame.font.SysFont(None, 40)
 # 
 Mouse_clicked = False
 player = 1
+computer = 1
 position = (0,0)
 Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 game_over = False
@@ -30,6 +32,19 @@ winner = 0
 again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
 
 #creates 3 X 3 board
+
+def ai_move(computer, player1):
+    computer = 1
+    for row in range(3):
+        for colum in range(3):
+            board_copy = copy.deepcopy(Board)
+            if [row][colum] == -3 or 3:
+                board_copy[row, colum] = computer
+                if check_game_over():
+                    draw_Letter()
+                return board_copy
+
+
 
 
 # makes the board
@@ -103,7 +118,7 @@ def check_game_over():
 def draw_game_over(winner):
 
 	if winner != 0:
-		end_text = "Player " + str(winner) + " wins!"
+		end_text = "Ai " + str(winner) + " wins!"
 	elif winner == 0:
 		end_text = "You have tied!"
 

@@ -328,16 +328,24 @@ def HowToPlay3X3Board(Menu_Screen):
 
 
 def HowToPlay5X5BoardOrHigher(Menu_Screen):
-    return_back_to_screen = Recative_Text(
+    return_back_to_screen_help_screen = Recative_Text(
     Text_Center = (190, 670),
     Text_size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "Return to main menu",
+    text = "Return to help screen",
     Action = Game.Help_screen
     )
 
-    return_back = [return_back_to_screen]
+    return_back_to_screen = Recative_Text(
+    Text_Center = (615, 670),
+    Text_size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu
+    )
+    return_back = [return_back_to_screen_help_screen, return_back_to_screen]
     display_Text = True
     while display_Text == True:
         mouse_over_text = False
