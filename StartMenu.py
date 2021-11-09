@@ -127,6 +127,7 @@ def menu_loop():
             pygame.quit()
             return
 
+
         if Game_State == Game.Board3by3:
             Game_State = pygame.display.set_mode((Board_Width, Board_Height))
             start_3by3_Board()
