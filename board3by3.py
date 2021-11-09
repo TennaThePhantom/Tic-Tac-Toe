@@ -7,6 +7,7 @@ pygame.init()
 Board_Height = 450
 Board_Width = 450
 line_width = 10
+
 Board_Screen = pygame.display.set_mode((Board_Width, Board_Height))
 pygame.display.set_caption('Tic Tac Toe')
 
@@ -117,7 +118,7 @@ def draw_game_over(winner):
 	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 80, Board_Height // 2 + 10))
 
 """Starts the game"""
-def start_game():
+def start_3by3_Board():
 	"""access the variables outside the functions"""
 	global winner
 	global game_over
@@ -172,8 +173,6 @@ def start_game():
 					# creates empty 3 x 3 board again if you want to play again
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 		# update display
-		pygame.display.update()
+		pygame.display.flip()
 	
 	pygame.quit()
-
-start_game()

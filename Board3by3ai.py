@@ -24,26 +24,16 @@ Mouse_clicked = False
 player = 1
 computer = 1
 position = (0,0)
-Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+Board = [[0, 0, 0],
+		[0, 0, 0], 
+		[0, 0, 0]]
 game_over = False
 winner = 0
 
 # sets a rectangle for "Play Again" Option
 again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
 
-#creates 3 X 3 board
-
-def ai_move(computer, player1):
-    computer = 1
-    for row in range(3):
-        for colum in range(3):
-            board_copy = copy.deepcopy(Board)
-            if [row][colum] == -3 or 3:
-                board_copy[row, colum] = computer
-                if check_game_over():
-                    draw_Letter()
-                return board_copy
-
+#creates 3 X 3 boar
 
 
 
@@ -147,7 +137,7 @@ def start_game():
 		# draw board and ready for first click on board
 		draw_board()
 		draw_Letter()
-	
+
 		# all the main things for GUI to work
 		for window in pygame.event.get():
 			# game exit
@@ -166,6 +156,7 @@ def start_game():
 					if Board[the_X_position][The_Y_position] == 0:
 						Board[the_X_position][The_Y_position] = player
 						player *= -1
+						print(Board)
 						check_game_over()
 	
 		# if someone has won the game
@@ -190,5 +181,4 @@ def start_game():
 		pygame.display.update()
 	
 	pygame.quit()
-
 start_game()

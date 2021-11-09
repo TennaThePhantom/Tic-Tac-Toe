@@ -2,10 +2,12 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
+from board3by3 import *
 
 
 DARK_PURPLE = (102, 0, 102)
 LIGHT_BLUE = (0, 255, 255)
+
 Menu_Screen = pygame.display.set_mode((800, 700))
 
 pygame.display.set_caption("Tic-Tac-Toe Menu")
@@ -86,7 +88,7 @@ class Game(Enum):
     Ai_mode = -3
     How_to_play_3by3 = 4
     How_to_play_5by5_or_more = -4
-
+    Board3by3 = 5
 
 # the main loop
 def menu_loop():
@@ -120,11 +122,15 @@ def menu_loop():
 
         if Game_State == Game.Ai_mode:
             Game_State = Ai_Mode(Menu_Screen)
-        
 
         if Game_State == Game.QUIT:
             pygame.quit()
             return
+
+        if Game_State == Game.Board3by3:
+            Game_State = pygame.display.set_mode((Board_Width, Board_Height))
+            start_3by3_Board()
+
 
 
 """Text for menu screen"""
@@ -417,7 +423,7 @@ def Two_Player_Mode(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "3 By 3 Board",
-    Action = None
+    Action = Game.Board3by3
     )
     Board_size_5X5 = Recative_Text(
     Text_Center = (400, 280),
