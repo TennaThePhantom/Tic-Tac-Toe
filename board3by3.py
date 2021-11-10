@@ -4,6 +4,7 @@ from pygame.locals import *
 
 pygame.init()
 
+
 Board_Height = 450
 Board_Width = 450
 line_width = 10
@@ -30,7 +31,6 @@ winner = 0
 # sets a rectangle for "Play Again" Option
 again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
 
-#creates 3 X 3 board
 
 
 # makes the board
@@ -39,7 +39,7 @@ def draw_board():
 	grid = (0, 0, 0)
 	Board_Screen.fill(BackGround)
 	for Grid_Lines in range(1,3):
-		pygame.draw.line(Board_Screen, grid, (0, 150 * Grid_Lines), (Board_Width,150 * Grid_Lines), line_width)
+		pygame.draw.line(Board_Screen, grid , (0, 150 * Grid_Lines), (Board_Width,150 * Grid_Lines), line_width)
 		pygame.draw.line(Board_Screen, grid, (150 * Grid_Lines, 0), (150 * Grid_Lines, Board_Height), line_width)
 
 # makes X and O
@@ -152,7 +152,9 @@ def start_3by3_Board():
 					if Board[the_X_position][The_Y_position] == 0:
 						Board[the_X_position][The_Y_position] = player
 						player *= -1
+						print(Board)
 						check_game_over()
+
 	
 		# if someone has won the game
 		if game_over == True:
@@ -173,6 +175,9 @@ def start_3by3_Board():
 					# creates empty 3 x 3 board again if you want to play again
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 		# update display
-		pygame.display.flip()
+		pygame.display.update()
 	
 	pygame.quit()
+
+
+start_3by3_Board()

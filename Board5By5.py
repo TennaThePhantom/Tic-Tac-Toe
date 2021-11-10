@@ -1,203 +1,123 @@
-# Add import Copy and rand
-import copy
-import random
-
 import pygame
+from pygame import mouse 
+from pygame.locals import *
 
 pygame.init()
 
-sw = 800
-sh = 600
 
-board = pygame.image.load('imgs/board.jpg')
-x_img = pygame.image.load('imgs/x.png')
-o_img = pygame.image.load('imgs/o.png')
-
-win = pygame.display.set_mode((sw, sh))
-
-clock = pygame.time.Clock()
-
-boardVals = [[0,0,0], [0,0,0], [0,0,0]]
-
-piecesOnBoard = []
-
-moveCount = 0
-
-gameOver = False
-
-isTwoPlayer = True
-
-class Piece(object):
-    def __init__(self, x, y, isX):
-        self.x = x
-        self.y = y
-        self.isX = isX
-        self.xTrue = self.x - (self.x % 200)
-        self.yTrue = self.y - (self.y % 200)
-        if isX:
-            self.image = x_img
-        else:
-            self.image = o_img
-
-    def draw(self, win):
-
-        win.blit(self.image, (self.xTrue, self.yTrue))
+Board_Height = 600
+Board_width = 600
+lines_width = 15
 
 
-def redrawGameWindow():
-    win.blit(board, (0,0))
-    pygame.draw.rect(win, (0,0,0), [600, 0, 200, 600])
-    font = pygame.font.SysFont('arial', 50)
-    smallFont = pygame.font.SysFont('arial', 25)
-    if moveCount % 2 == 0:
-        turn = 'X'
-    else:
-        turn = 'O'
-    turnText = font.render(turn + "'s Turn", 1, (255, 255, 255))
-    win.blit(turnText, (sw - turnText.get_width() -10, 10))
+Board_Screen = pygame.display.set_mode((Board_width, Board_Height))
+pygame.display.set_caption('Tic Tac Toe 5 by 5 Board')
 
-    if gameOver:
-        gameOverText = smallFont.render("Game Over", 1, (255, 255, 255))
-        win.blit(gameOverText, (sw - gameOverText.get_width() - 35, 20 + turnText.get_height()))
+# colors to use
+ROSE = (204, 0, 204)
+ORANGE = (255, 153, 51)
+DARK_BLUE = (0, 0, 204)
+WHITE = (255, 255, 255)
+# font type
+font = pygame.font.SysFont(None, 100)
 
-    for piece in piecesOnBoard:
-        piece.draw(win)
-
-
-    pygame.display.update()
-
-def isGameOver(boardVals):
-    zeroFound = False
-    for i in boardVals:
-        for j in i:
-            if j == 0:
-                zeroFound = True
-    if not zeroFound:
-        return True
-
-    # Horizonal Win
-    for i in boardVals:
-        if i[0] == i[1] and i[0] == i[2] and i[0] != 0:
-            return True
-
-    # Vertical Win
-    if boardVals[0][0] == boardVals[1][0] and boardVals[0][0] == boardVals[2][0]:
-        if boardVals[0][0] != 0:
-            return True
-    if boardVals[0][1] == boardVals[1][1] and boardVals[0][1] == boardVals[2][1]:
-        if boardVals[0][1] != 0:
-            return True
-    if boardVals[0][2] == boardVals[1][2] and boardVals[0][2] == boardVals[2][2]:
-        if boardVals[0][2] != 0:
-            return True
-
-    #Diagonal Check
-    if boardVals[0][0] == boardVals[1][1] and boardVals[0][0] == boardVals[2][2]:
-        if boardVals[0][0] != 0:
-            return True
-
-    if boardVals[0][2] == boardVals[1][1] and boardVals[0][2] == boardVals[2][0]:
-        if boardVals[0][2] != 0: # Change boardVals[0][0] to boardVals[0][2]
-            return True
-
-    # Add return false
-    return False
-
-def computerMove(val):
-    # 1 = x
-    # -1 = o
-    for i in range(3):
-        for j in range(3):
-
-            bCopy = copy.deepcopy(boardVals)
-            if bCopy[i][j] == 0:
-                bCopy[i][j] = val
-                if isGameOver(bCopy):
-                    piecesOnBoard.append(Piece(j*200, i * 200, False)) if val == -1 else piecesOnBoard.append(Piece(j*200, i * 200, True))
-                    return bCopy
-
-    opVal = val * -1
-    for i in range(3):
-        for j in range(3):
-            bCopy = copy.deepcopy(boardVals)
-            if bCopy[i][j] == 0:
-                bCopy[i][j] = opVal
-                if isGameOver(bCopy):
-                    piecesOnBoard.append(Piece(j*200, i*200, False)) if val == -1 else piecesOnBoard.append(Piece(j*200, i*200, True))
-                    bCopy[i][j] = val
-                    return bCopy
-
-    move = selRanMove()
-    if move != None:
-        x, y = move
-        bCopy = copy.deepcopy(boardVals)
-        bCopy[y][x] = val
-        piecesOnBoard.append(Piece(x*200, y * 200, False))  # if val == -1 else piecesOnBoard.append(Piece(j*200, i * 200, True))
-        return bCopy
-    return boardVals
+# variables for game
+Mouse_clicked = False
+player = 1
+position = (0,0)
+Board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+game_over = False
+winner = 0
 
 
-def selRanMove():
-    validMoves = []
-    for i in range(3):
-        for j in range(3):
-            if boardVals[i][j] == 0:
-                validMoves.append((j,i))
-    if len(validMoves) > 0:
-        return random.choice(validMoves)
-    else:
-        return None
-
-run = True
-while run:
-    clock.tick(10)
-
-    if not gameOver:
-        mouseX, mouseY = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
-        if isTwoPlayer:
-            if click != (0,0,0):
-                if moveCount % 2 == 0:
-                    if boardVals[mouseY//200][mouseX//200] == 0:
-                        piecesOnBoard.append(Piece(mouseX, mouseY, True))
-                        boardVals[mouseY//200][mouseX//200] = 1
-                        moveCount += 1
-                else:
-                    if boardVals[mouseY // 200][mouseX // 200] == 0:
-                        piecesOnBoard.append(Piece(mouseX, mouseY, False))
-                        boardVals[mouseY // 200][mouseX // 200] = -1
-                        moveCount += 1
-
-            gameOver = isGameOver(boardVals)
-        else:
-            if moveCount % 2 == 0:
-                if click != (0, 0, 0):
-                    if boardVals[mouseY // 200][mouseX // 200] == 0:
-                        piecesOnBoard.append(Piece(mouseX, mouseY, True))
-                        boardVals[mouseY // 200][mouseX // 200] = 1
-                        moveCount += 1
-                        print(boardVals)
-            else:
-                boardVals = computerMove(-1)
-                moveCount += 1
-                gameOver = isGameOver(boardVals)
-                print(boardVals)
+# to play again 
+again_rect = Rect(Board_width // 2 - 80, Board_Height // 2, 160, 50)
 
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_SPACE]:
-        boardVals = [[0,0,0], [0,0,0], [0,0,0]]
-        piecesOnBoard.clear()
-        moveCount = 0
-        gameOver = False
-    if keys[pygame.K_1]:
-        isTwoPlayer = False
-    if keys[pygame.K_2]:
-        isTwoPlayer = True
+def draw_board():
+    background = (255, 255, 255)
+    grid = (0, 0, 0)
+    Board_Screen.fill(background)
+    for Grid_Lines in range(1, 5): 
+        """I got 120 from doing 600 / 5 since I'm having 5 rows and column"""
+        pygame.draw.line(Board_Screen, grid, (0, 120 * Grid_Lines), (Board_width, 120 * Grid_Lines), lines_width)
+        pygame.draw.line(Board_Screen, grid, (120 * Grid_Lines, 0), (120 * Grid_Lines, Board_Height), lines_width)
 
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
 
-    redrawGameWindow()
+
+def draw_letter():
+    x_position = 0
+    for spots in Board:
+        y_position = 0
+        for y in spots:
+            if y == 1:
+                pygame.draw.line(Board_Screen, ROSE, (x_position * 120 + 15, y_position * 120 + 15), (x_position * 120 + 105, y_position * 120 + 105), lines_width)
+                pygame.draw.line(Board_Screen, ROSE, (x_position * 120 + 15, y_position * 120 + 105), (x_position * 120 + 105, y_position * 120 + 15), lines_width)
+                """The first number 15 is where the line starts and
+                the second number 105 is when the lines ends
+                both combine have to equal whatever your board is divide 
+                by the amount of rows you have"""
+            if y == -1:
+                """what's half of 120. 60 to place the circle in the middle of the box
+                and the another number is the size of the circle
+                you have to play around with that to get the size circle you want"""
+                pygame.draw.circle(Board_Screen, ORANGE, (x_position * 120 + 60, y_position * 120 + 60), 52 , lines_width)
+            y_position += 1
+        x_position += 1
+
+
+
+def Is_the_game_over():
+    global game_over
+    global winner
+
+    x_position = 0
+
+    for spots in Board:
+        if sum(spots) == 5:
+            winner = 1
+            game_over = True
+        if sum(spots) == -5:
+            winner = 2
+            game_over = True
+        
+        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] == 3:
+
+def Start_5_by_5_Board():
+    """Opens the window and close window"""
+    global winner
+    global game_over
+    global position
+    global Board
+    global player
+    global Mouse_clicked
+    Start_Tic_Tac_Toe = True
+    while Start_Tic_Tac_Toe == True:
+        draw_board()
+        draw_letter()
+        for window in pygame.event.get():
+            if window.type == pygame.QUIT:
+                Start_Tic_Tac_Toe = False
+            if game_over == False:
+
+                if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
+                    Mouse_clicked = True
+                if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
+                    Mouse_clicked = False
+                    position = pygame.mouse.get_pos()
+                    The_X_position = position[0] // 120
+                    The_Y_position = position[1] // 120
+                    if Board[The_X_position][The_Y_position] == 0:
+                        Board[The_X_position][The_Y_position] = player
+                        player *= -1
+                        print(Board)
+
+
+        
+        
+        pygame.display.update()
+        
+
+
+Start_5_by_5_Board()

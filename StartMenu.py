@@ -4,11 +4,12 @@ from pygame.sprite import Sprite
 from enum import Enum
 from board3by3 import *
 
-
 DARK_PURPLE = (102, 0, 102)
 LIGHT_BLUE = (0, 255, 255)
 
 Menu_Screen = pygame.display.set_mode((800, 700))
+pygame.display.update()
+
 
 pygame.display.set_caption("Tic-Tac-Toe Menu")
 
@@ -93,6 +94,7 @@ class Game(Enum):
 # the main loop
 def menu_loop():
 
+
     pygame.init()
 
     Game_State = Game.Main_Menu
@@ -127,10 +129,10 @@ def menu_loop():
             pygame.quit()
             return
 
-
         if Game_State == Game.Board3by3:
             Game_State = pygame.display.set_mode((Board_Width, Board_Height))
             start_3by3_Board()
+            Start_menu = False
 
 
 
