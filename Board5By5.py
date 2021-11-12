@@ -6,11 +6,11 @@ pygame.init()
 
 
 Board_Height = 600
-Board_width = 600
+Board_Width = 600
 lines_width = 15
 
 
-Board_Screen = pygame.display.set_mode((Board_width, Board_Height))
+Board_Screen = pygame.display.set_mode((Board_Width, Board_Height))
 pygame.display.set_caption('Tic Tac Toe 5 by 5 Board')
 
 # colors to use
@@ -31,7 +31,7 @@ winner = 0
 
 
 # to play again 
-again_rect = Rect(Board_width // 2 - 80, Board_Height // 2, 160, 50)
+again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
 
 
 def draw_board():
@@ -40,7 +40,7 @@ def draw_board():
     Board_Screen.fill(background)
     for Grid_Lines in range(1, 5): 
         """I got 120 from doing 600 / 5 since I'm having 5 rows and column"""
-        pygame.draw.line(Board_Screen, grid, (0, 120 * Grid_Lines), (Board_width, 120 * Grid_Lines), lines_width)
+        pygame.draw.line(Board_Screen, grid, (0, 120 * Grid_Lines), (Board_Width, 120 * Grid_Lines), lines_width)
         pygame.draw.line(Board_Screen, grid, (120 * Grid_Lines, 0), (120 * Grid_Lines, Board_Height), lines_width)
 
 
@@ -90,7 +90,38 @@ def Is_the_game_over():
             game_over = True
         x_position += 1
     
-    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[2][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[0][2] == 3:
+    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[2][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[0][2] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[2][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[0][2] == -5:
+        winner = 2
+        game_over = True
+    
+
+    if game_over == False:
+        tie = True
+        for row in Board:
+            for letter in row:
+                if letter == 0:
+                    tie = False
+        if tie == True:
+            game_over = True
+            winner = 0
+
+def draw_game_over(winner):
+	if winner != 0:
+		end_text = "Player " + str(winner) + " wins!"
+	elif winner == 0:
+		end_text = "You have tied!"
+
+	end_img = font.render(end_text, True, DARK_BLUE)
+	pygame.draw.rect(Board_Screen, ORANGE, (Board_Width // 2 - 150, Board_Height // 2 - 60, 200, 50))
+	Board_Screen.blit(end_img, (Board_Width // 2 - 150, Board_Height // 2 - 50))
+
+	Play_Again = 'Play Again?'
+	Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
+	pygame.draw.rect(Board_Screen, ORANGE, again_rect)
+	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 80, Board_Height // 2 + 10))
 
 def Start_5_by_5_Board():
     """Opens the window and close window"""
@@ -120,10 +151,24 @@ def Start_5_by_5_Board():
                         Board[The_X_position][The_Y_position] = player
                         player *= -1
                         print(Board)
+                        Is_the_game_over()
+
+        if game_over == True:
+            draw_game_over(winner)
+            if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
+                Mouse_clicked = True
+            if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
+                Mouse_clicked = False
+                position = pygame.mouse.get_pos()
+                if again_rect.collidepoint(position):
+                    game_over = False
+                    player = 1
+                    position = (0, 0)
+                    Board = []
+                    winner = 0
+                    Board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
 
-        
-        
         pygame.display.update()
         
 
