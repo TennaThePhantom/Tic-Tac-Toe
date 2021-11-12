@@ -82,7 +82,15 @@ def Is_the_game_over():
             winner = 2
             game_over = True
         
-        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] == 3:
+        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == 5:
+            winner = 1
+            game_over = True
+        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == 5:
+            winner = 2
+            game_over = True
+        x_position += 1
+    
+    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[2][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[0][2] == 3:
 
 def Start_5_by_5_Board():
     """Opens the window and close window"""
