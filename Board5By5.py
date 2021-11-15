@@ -1,15 +1,12 @@
 import pygame
-from pygame import mouse 
 from pygame.locals import *
 
 pygame.init()
 
-
+# the board
 Board_Height = 600
 Board_Width = 600
 lines_width = 15
-
-
 Board_Screen = pygame.display.set_mode((Board_Width, Board_Height))
 pygame.display.set_caption('Tic Tac Toe 5 by 5 Board')
 
@@ -31,7 +28,7 @@ winner = 0
 
 
 # to play again 
-again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
+again_rect = Rect(Board_Width // 2 - 160, Board_Height // 2, 400, 70)
 
 
 def draw_board():
@@ -85,15 +82,15 @@ def Is_the_game_over():
         if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == 5:
             winner = 1
             game_over = True
-        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == 5:
+        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == -5:
             winner = 2
             game_over = True
         x_position += 1
     
-    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[2][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[0][2] == 5:
+    if Board[0][0] + Board[1][1] + Board [2][2] + Board[1][3] + Board [4][4] == 5 or Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == 5:
         winner = 1
         game_over = True
-    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[2][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[0][2] == -5:
+    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == -5 or Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == -5:
         winner = 2
         game_over = True
     
@@ -121,7 +118,7 @@ def draw_game_over(winner):
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, again_rect)
-	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 80, Board_Height // 2 + 10))
+	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 180, Board_Height // 2 + 20))
 
 def Start_5_by_5_Board():
     """Opens the window and close window"""
