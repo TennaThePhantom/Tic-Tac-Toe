@@ -61,7 +61,7 @@ def check_game_over():
 	global game_over
 	global winner
 
-	x_position = 0
+	Y_position = 0
 	for spots in Board:
 		# checks column for 3 in a row
 		if sum(spots) == 3:
@@ -71,13 +71,13 @@ def check_game_over():
 			winner = 2
 			game_over = True
 		# checks 3 in a row 
-		if Board[0][x_position] + Board [1][x_position] + Board [2][x_position] == 3:
+		if Board[0][Y_position] + Board [1][Y_position] + Board [2][Y_position] == 3:
 			winner = 1
 			game_over = True
-		if Board[0][x_position] + Board [1][x_position] + Board [2][x_position] == -3:
+		if Board[0][Y_position] + Board [1][Y_position] + Board [2][Y_position] == -3:
 			winner = 2
 			game_over = True
-		x_position += 1
+		Y_position += 1
 
 	# checks for 3 in a row diagonal 
 	if Board[0][0] + Board[1][1] + Board [2][2] == 3 or Board[2][0] + Board[1][1] + Board [0][2] == 3:
@@ -94,7 +94,6 @@ def check_game_over():
 			for letter in row:
 				if letter == 0:
 					tie = False
-		# if game is tie called tie game and winner = 0 since no one won
 		if tie == True:
 			game_over = True
 			winner = 0
@@ -109,8 +108,8 @@ def draw_game_over(winner):
 		end_text = "You have tied!"
 
 	end_img = font.render(end_text, True, DARK_BLUE)
-	pygame.draw.rect(Board_Screen, ORANGE, (Board_Width // 2 - 150, Board_Height // 2 - 60, 200, 50))
-	Board_Screen.blit(end_img, (Board_Width // 2 - 150, Board_Height // 2 - 50))
+	pygame.draw.rect(Board_Screen, ORANGE, (Board_Width // 2 - 100, Board_Height // 2 - 60, 205, 50))
+	Board_Screen.blit(end_img, (Board_Width // 2 - 100, Board_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
@@ -180,4 +179,3 @@ def start_3by3_Board():
 	pygame.quit()
 
 
-start_3by3_Board()

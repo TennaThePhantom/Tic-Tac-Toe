@@ -28,7 +28,7 @@ winner = 0
 
 
 # to play again 
-again_rect = Rect(Board_Width // 2 - 160, Board_Height // 2, 400, 70)
+again_rect = Rect(Board_Width // 2 - 200, Board_Height // 2 + 20, 450, 70)
 
 
 def draw_board():
@@ -64,29 +64,28 @@ def draw_letter():
         x_position += 1
 
 
-
+"""Checks the board if player 1 or 2 have won or is it a tie game(is the board full)"""
 def Is_the_game_over():
     global game_over
     global winner
 
-    x_position = 0
-
+    y_position = 0
     for spots in Board:
-        if sum(spots) == 5:
+        if sum(spots) == 5: # when you place a letter it's + 1
             winner = 1
             game_over = True
-        if sum(spots) == -5:
+        if sum(spots) == -5: # when you add a letter it's - 1 you need to go 
             winner = 2
             game_over = True
-        
-        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == 5:
+        # 5 in a row to win 
+        if Board[0][y_position] + Board[1][y_position] + Board[2][y_position] +  Board[3][y_position] + Board[4][y_position] == 5: 
             winner = 1
             game_over = True
-        if Board[0][x_position] + Board[1][x_position] + Board[2][x_position] +  Board[3][x_position] + Board[4][x_position]  == -5:
+        if Board[0][y_position] + Board[1][y_position] + Board[2][y_position] +  Board[3][y_position] + Board[4][y_position] == -5:
             winner = 2
             game_over = True
-        x_position += 1
-    
+        y_position += 1
+    # checks diagonal need 5 to win diagonal 
     if Board[0][0] + Board[1][1] + Board [2][2] + Board[1][3] + Board [4][4] == 5 or Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == 5:
         winner = 1
         game_over = True
@@ -94,7 +93,7 @@ def Is_the_game_over():
         winner = 2
         game_over = True
     
-
+    #is the board full
     if game_over == False:
         tie = True
         for row in Board:
@@ -105,6 +104,7 @@ def Is_the_game_over():
             game_over = True
             winner = 0
 
+"""Makes the text when game is over or tie game"""
 def draw_game_over(winner):
 	if winner != 0:
 		end_text = "Player " + str(winner) + " wins!"
@@ -112,8 +112,8 @@ def draw_game_over(winner):
 		end_text = "You have tied!"
 
 	end_img = font.render(end_text, True, DARK_BLUE)
-	pygame.draw.rect(Board_Screen, ORANGE, (Board_Width // 2 - 150, Board_Height // 2 - 60, 200, 50))
-	Board_Screen.blit(end_img, (Board_Width // 2 - 150, Board_Height // 2 - 50))
+	pygame.draw.rect(Board_Screen, ORANGE, (Board_Width // 2 - 230, Board_Height // 2 - 60, 500, 90))
+	Board_Screen.blit(end_img, (Board_Width // 2 - 220, Board_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
@@ -121,26 +121,29 @@ def draw_game_over(winner):
 	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 180, Board_Height // 2 + 20))
 
 def Start_5_by_5_Board():
-    """Opens the window and close window"""
+    # variables needed for the game
     global winner
     global game_over
     global position
     global Board
     global player
     global Mouse_clicked
+
     Start_Tic_Tac_Toe = True
     while Start_Tic_Tac_Toe == True:
-        draw_board()
+        draw_board() 
         draw_letter()
+        """Opens the window and close window"""
         for window in pygame.event.get():
             if window.type == pygame.QUIT:
                 Start_Tic_Tac_Toe = False
             if game_over == False:
-
+                """Closes the game when we press the X button"""
                 if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
                     Mouse_clicked = True
                 if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
                     Mouse_clicked = False
+                    """for player 1 and player2 mouse clicks to be rezgtaurd on the board"""
                     position = pygame.mouse.get_pos()
                     The_X_position = position[0] // 120
                     The_Y_position = position[1] // 120
@@ -149,7 +152,7 @@ def Start_5_by_5_Board():
                         player *= -1
                         print(Board)
                         Is_the_game_over()
-
+        """Is the game over"""
         if game_over == True:
             draw_game_over(winner)
             if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
@@ -157,6 +160,7 @@ def Start_5_by_5_Board():
             if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
                 Mouse_clicked = False
                 position = pygame.mouse.get_pos()
+                """if player press play again resets everything"""
                 if again_rect.collidepoint(position):
                     game_over = False
                     player = 1
