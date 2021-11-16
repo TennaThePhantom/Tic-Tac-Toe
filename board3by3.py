@@ -181,7 +181,7 @@ def start_3by3_Board():
 					position = (0,0)
 					Board = []
 					winner = 0
-					# creates empty 3 x 3 board again if you want to play again
+					# creates empty 3 x 3 board again
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 		# update display
 		pygame.display.update()
