@@ -25,7 +25,7 @@ Board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0,
 game_over = False
 winner = 0
 
-again_rect = Rect(Board_Width // 2 - 200, Board_Height // 2 + 20, 450, 70)
+Play_Again_Box = Rect(Board_Width // 2 - 200, Board_Height // 2 + 20, 450, 70)
 
 
 def draw_board():
@@ -101,7 +101,7 @@ def draw_game_over(winner):
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
-	pygame.draw.rect(Board_Screen, ORANGE, again_rect)
+	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
 	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 180, Board_Height // 2 + 20))
 
 def Start_5_by_5_Board():
@@ -139,7 +139,7 @@ def Start_5_by_5_Board():
             if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
                 Mouse_clicked = False
                 position = pygame.mouse.get_pos()
-                if again_rect.collidepoint(position):
+                if Play_Again_Box.collidepoint(position):
                     game_over = False
                     player = 1
                     position = (0, 0)

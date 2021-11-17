@@ -31,7 +31,7 @@ game_over = False
 winner = 0
 
 # draws a rectangle around play again 
-again_rect = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
+Play_Again_Box = Rect(Board_Width // 2 - 80, Board_Height // 2, 160, 50)
 
 
 
@@ -125,7 +125,7 @@ def draw_game_over(winner):
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
-	pygame.draw.rect(Board_Screen, ORANGE, again_rect)
+	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
 	Board_Screen.blit(Play_Again_IMG, (Board_Width // 2 - 80, Board_Height // 2 + 10))
 
 """Starts the game"""
@@ -175,7 +175,7 @@ def start_3by3_Board():
 				Mouse_clicked = False
 				position = pygame.mouse.get_pos()
 				"""if player press play again resets everything"""
-				if again_rect.collidepoint(position):
+				if Play_Again_Box.collidepoint(position):
 					game_over = False
 					player = 1
 					position = (0,0)

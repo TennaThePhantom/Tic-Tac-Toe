@@ -40,7 +40,7 @@ def Emepty_Board(Board):
         Board.append(rows)
     print(Board)
 
-Play_Again_Text = Rect( board7b7_Width // 2 - 300, board7by7_Height // 2 + 30, 600, 70)
+Play_Again_Box = Rect( board7b7_Width // 2 - 300, board7by7_Height // 2 + 30, 600, 70)
 
 
 def draw_board():
@@ -114,7 +114,7 @@ def draw_game_over(winner):
     
     Play_Again = 'Play Again?'
     Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
-    pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Text)
+    pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
     Board_Screen.blit(Play_Again_IMG, (board7b7_Width // 2 - 180, board7by7_Height // 2 + 20))
 
 
@@ -162,7 +162,7 @@ def Start_7_by_7_Board():
             if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
                 Mouse_clicked = False
                 position = pygame.mouse.get_pos()
-                if Play_Again_Text.collidepoint(position):
+                if Play_Again_Box.collidepoint(position):
                     game_over = False
                     player = 1
                     position = (0, 0)
