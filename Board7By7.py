@@ -68,34 +68,28 @@ def draw_letter():
 def Is_the_game_over():
     global game_over
     global winner
-
-    y_position = 0
-    for spots in Board:
-        if sum(spots) == 5:
+    
+    box = 0
+    for Every_colum in Board:
+        if sum(Every_colum) == 5:
             winner = 1
             game_over = True
-        if sum(spots) == -5:
+        if sum(Every_colum) == -5:
             winner = 2
             game_over = True
-        if Board[0][y_position] + Board[1][y_position] + Board[2][y_position] +  Board[3][y_position] + Board[4][y_position] == 5: 
+        if Board[0][box] + Board[1][box] + Board[2][box] + Board[3][box] + Board[4][box] + Board[5][box] + Board[6][box] == 5:
             winner = 1
             game_over = True
-        if Board[0][y_position] + Board[1][y_position] + Board[2][y_position] +  Board[3][y_position] + Board[4][y_position] == -5:
-                winner = 2
-                game_over = True
-        y_position += 1
-    
-    if (Board[0][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[4][4]) == 5:
-        winner = 1
-        game_over = True
-    if (Board[0][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[4][4]) == -5:
-        winner = 2
-        game_over = True
-    
+        if Board[0][box] + Board[1][box] + Board[2][box] + Board[3][box] + Board[4][box] + Board[5][box] + Board[6][box] == -5:
+            winner = 1
+            game_over = True
+        box += 1
+
+        
     if game_over == False:
         tie = True
-        for row in Board:
-            for letter in row:
+        for every_row in Board:
+            for letter in every_row:
                 if letter == 0:
                     tie = False
         if tie == True:
@@ -116,11 +110,6 @@ def draw_game_over(winner):
     Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
     Board_Screen.blit(Play_Again_IMG, (board7b7_Width // 2 - 180, board7by7_Height // 2 + 20))
-
-
-
-
-
 
 
 

@@ -72,7 +72,7 @@ def Is_the_game_over():
             winner = 2
             game_over = True
         y_position += 1
-    if Board[0][0] + Board[1][1] + Board [2][2] + Board[1][3] + Board [4][4] == 5 or Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == 5:
+    if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == 5 or Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == 5:
         winner = 1
         game_over = True
     if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] + Board [4][4] == -5 or Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == -5:
