@@ -68,25 +68,34 @@ def draw_letter():
 def Is_the_game_over():
     global game_over
     global winner
-    """How to win colum it basically checks the previous number over and over again until it gets the same number 1 or -1. Five times
-    the reason why if number == 0, when you start the game all the boards have 0. 
-    As soon you press a letter on a board you automically win
-    """
     win = 5
     last_number = 0
     count_same_number = 0
-    for colum in Board:
+
+    for colum in Board:  
         for number in colum:
-            if number == 7 in colum:
-                count_same_number = 0
             if number == 0:
                 count_same_number = 0
             elif number == last_number:
                 count_same_number += 1
             else:
                 count_same_number = 1
-                last_number = number
-            if count_same_number == win:
+            last_number = number
+            if count_same_number == win and sum(colum) == 5 or count_same_number == win and sum(colum) == -5:
+                if number > 0:
+                    winner = 1
+                    game_over = True
+                else:
+                    winner = 2
+                    game_over = True
+            if count_same_number == win and sum(colum) == 4 or count_same_number == win and sum(colum) == -4:
+                if number > 0:
+                    winner = 1
+                    game_over = True
+                else:
+                    winner = 2
+                    game_over = True
+            if count_same_number == win and sum(colum) == 3 or count_same_number == win and sum(colum) == -3:
                 if number > 0:
                     winner = 1
                     game_over = True
