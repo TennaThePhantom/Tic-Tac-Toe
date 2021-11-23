@@ -1,3 +1,4 @@
+from types import TracebackType
 import pygame
 from pygame.locals import *
 
@@ -68,40 +69,33 @@ def draw_letter():
 def Is_the_game_over():
     global game_over
     global winner
-    win = 5
-    last_number = 0
-    count_same_number = 0
+    letter = 0
+    for colum_number in Board:
+        if Board == [1,1,1,1,1,0,0] and sum(colum_number) == 5:
+            winner = 1
+            game_over = True
 
-    for colum in Board:  
-        for number in colum:
-            if number == 0:
-                count_same_number = 0
-            elif number == last_number:
-                count_same_number += 1
-            else:
-                count_same_number = 1
-            last_number = number
-            if count_same_number == win and sum(colum) == 5 or count_same_number == win and sum(colum) == -5:
-                if number > 0:
-                    winner = 1
-                    game_over = True
-                else:
-                    winner = 2
-                    game_over = True
-            if count_same_number == win and sum(colum) == 4 or count_same_number == win and sum(colum) == -4:
-                if number > 0:
-                    winner = 1
-                    game_over = True
-                else:
-                    winner = 2
-                    game_over = True
-            if count_same_number == win and sum(colum) == 3 or count_same_number == win and sum(colum) == -3:
-                if number > 0:
-                    winner = 1
-                    game_over = True
-                else:
-                    winner = 2
-                    game_over = True
+        #if Board[0][letter] + Board[1][letter] +  Board[2][letter] + Board[3][letter] + Board[4][letter] == 5 or -5:
+        #    winner = 1
+        #    game_over = True
+        #if Board[1][letter] + Board[2][letter] +  Board[3][letter] + Board[4][letter] + Board[5][letter] == 5:
+        #    winner = 1
+        #    game_over = True
+        #if Board[2][letter] + Board[3][letter] +  Board[4][letter] + Board[5][letter] + Board[6][letter] == 5:
+        #    winner = 1
+        #    game_over = True
+        #if Board[0][letter] + Board[1][letter] +  Board[2][letter] + Board[3][letter] +  Board[4][letter] == -5:
+        #    winner = 1
+        #    game_over = True
+        #if Board[1][letter] + Board[2][letter] +  Board[3][letter] + Board[4][letter] +  Board[5][letter] == -5:
+        #    winner = 1
+        #    game_over = True
+        #if Board[2][letter] + Board[3][letter] +  Board[4][letter] + Board[5][letter] +  Board[6][letter] == -5:
+        #    winner = 1
+        #letter += 1
+
+                
+        
         
     if game_over == False:
         tie = True
