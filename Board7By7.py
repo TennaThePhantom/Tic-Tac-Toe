@@ -62,8 +62,7 @@ def draw_letter():
         y_position = 0
         for y in spots:
             if y == 1:
-                pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position *
-                                 100 + 15), (x_position * 100 + 85, y_position * 100 + 85), lines_width)
+                pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position * 100 + 15), (x_position * 100 + 85, y_position * 100 + 85), lines_width)
                 pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position *
                                  100 + 85), (x_position * 100 + 85, y_position * 100 + 15), lines_width)
             if y == -1:
@@ -80,10 +79,8 @@ def draw_game_over(winner):
         end_text = "You have tied!"
 
     end_img = font.render(end_text, True, DARK_BLUE)
-    pygame.draw.rect(Board_Screen, ORANGE, (board7b7_Width //
-                     2 - 220, board7by7_Height // 2 - 50, 600, 90))
-    Board_Screen.blit(end_img, (board7by7_Height // 2 -
-                      220, board7by7_Height // 2 - 50))
+    pygame.draw.rect(Board_Screen, ORANGE, (board7b7_Width // 2 - 220, board7by7_Height // 2 - 50, 600, 90))
+    Board_Screen.blit(end_img, (board7by7_Height // 2 - 220, board7by7_Height // 2 - 50))
 
     Play_Again = 'Play Again?'
     Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
@@ -98,12 +95,151 @@ def Is_the_game_over_7by7():
     global winner
     global player
     number = 0
-    can_you_win_for_real = None
-    can_you_win_for_real_negative = None
-    """How to win in colum"""
-    colum_1 = 0
+    """How to win in colums"""
+    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == 5:
+        winner = 1
+        game_over = True
 
+    if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == 5:
+        winner = 1
+        game_over = True
+    
+    if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == 5:
+        winner = 1
+        game_over = True
+    
+    if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == 5:
+        winner = 1
+        game_over = True
+    
+    if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == 5:
+        winner = 1
+        game_over = True
+
+    if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == 5:
+        winner = 1
+        game_over = True
+
+    if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == 5:
+        winner = 1
+        game_over = True
+    
+    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == -5:
+        winner = 2
+        game_over = True
+    
+    if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == -5:
+        winner = 2
+        game_over = True
+    
+    if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == -5:
+        winner = 2
+        game_over = True
+    
+    if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == -5:
+        winner = 2
+        game_over = True
+
+
+    
     for row in Board: 
+        
         "how to win in rows"
         if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == 5:
             winner = 1
