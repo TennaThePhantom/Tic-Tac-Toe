@@ -1,8 +1,5 @@
-from types import TracebackType
 import pygame
 from pygame.locals import *
-
-
 
 
 pygame.init()
@@ -23,7 +20,7 @@ font = pygame.font.SysFont(None, 150)
 
 Mouse_clicked = False
 player = 1
-position = (0,0)
+position = (0, 0)
 Board = []
 game_over = False
 winner = 0
@@ -33,15 +30,19 @@ for boxes in range(7):
     Board.append(rows)
 
 """ Creates the [0, 0, 0, 0, 0, 0, 0] Instead of having me to hardcode it
-have to be print(Board) first 
+have to be print(Board) first
 doesn't work if you called emepty_board instead"""
+
+
 def Emepty_Board(Board):
     for boxes in range(7):
         rows = [0] * 7
         Board.append(rows)
     print(Board)
 
-Play_Again_Box = Rect( board7b7_Width // 2 - 300, board7by7_Height // 2 + 30, 600, 70)
+
+Play_Again_Box = Rect(board7b7_Width // 2 - 300,
+                      board7by7_Height // 2 + 30, 600, 70)
 
 
 def draw_board():
@@ -49,8 +50,11 @@ def draw_board():
     grid = (0, 0, 0)
     Board_Screen.fill(background)
     for Grid_lines in range(1, 7):
-        pygame.draw.line(Board_Screen, grid, (0, 100 * Grid_lines), (board7b7_Width, 100 * Grid_lines), lines_width)
-        pygame.draw.line(Board_Screen, grid, (100 * Grid_lines, 0), (100 * Grid_lines, board7by7_Height), lines_width)
+        pygame.draw.line(Board_Screen, grid, (0, 100 * Grid_lines),
+                         (board7b7_Width, 100 * Grid_lines), lines_width)
+        pygame.draw.line(Board_Screen, grid, (100 * Grid_lines, 0),
+                         (100 * Grid_lines, board7by7_Height), lines_width)
+
 
 def draw_letter():
     x_position = 0
@@ -58,54 +62,17 @@ def draw_letter():
         y_position = 0
         for y in spots:
             if y == 1:
-                pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position * 100 + 15), (x_position * 100 + 85, y_position * 100 + 85), lines_width)
-                pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position * 100 + 85), (x_position * 100 + 85, y_position * 100 + 15), lines_width)
+                pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position *
+                                 100 + 15), (x_position * 100 + 85, y_position * 100 + 85), lines_width)
+                pygame.draw.line(Board_Screen, ROSE, (x_position * 100 + 15, y_position *
+                                 100 + 85), (x_position * 100 + 85, y_position * 100 + 15), lines_width)
             if y == -1:
-                pygame.draw.circle(Board_Screen, ORANGE, (x_position * 100 + 50, y_position * 100 + 50), 40, lines_width)
+                pygame.draw.circle(
+                    Board_Screen, ORANGE, (x_position * 100 + 50, y_position * 100 + 50), 40, lines_width)
             y_position += 1
         x_position += 1
 
 
-def Is_the_game_over():
-    global game_over
-    global winner
-    letter = 0
-    for colum_number in Board:
-        if Board == [1,1,1,1,1,0,0] and sum(colum_number) == 5:
-            winner = 1
-            game_over = True
-
-        #if Board[0][letter] + Board[1][letter] +  Board[2][letter] + Board[3][letter] + Board[4][letter] == 5 or -5:
-        #    winner = 1
-        #    game_over = True
-        #if Board[1][letter] + Board[2][letter] +  Board[3][letter] + Board[4][letter] + Board[5][letter] == 5:
-        #    winner = 1
-        #    game_over = True
-        #if Board[2][letter] + Board[3][letter] +  Board[4][letter] + Board[5][letter] + Board[6][letter] == 5:
-        #    winner = 1
-        #    game_over = True
-        #if Board[0][letter] + Board[1][letter] +  Board[2][letter] + Board[3][letter] +  Board[4][letter] == -5:
-        #    winner = 1
-        #    game_over = True
-        #if Board[1][letter] + Board[2][letter] +  Board[3][letter] + Board[4][letter] +  Board[5][letter] == -5:
-        #    winner = 1
-        #    game_over = True
-        #if Board[2][letter] + Board[3][letter] +  Board[4][letter] + Board[5][letter] +  Board[6][letter] == -5:
-        #    winner = 1
-        #letter += 1
-
-                
-        
-        
-    if game_over == False:
-        tie = True
-        for every_row in Board:
-            for letter in every_row:
-                if letter == 0:
-                    tie = False
-        if tie == True:
-            game_over = True
-            winner = 0
 def draw_game_over(winner):
     if winner != 0:
         end_text = "Player " + str(winner) + " wins!"
@@ -113,15 +80,196 @@ def draw_game_over(winner):
         end_text = "You have tied!"
 
     end_img = font.render(end_text, True, DARK_BLUE)
-    pygame.draw.rect(Board_Screen, ORANGE, (board7b7_Width // 2 - 220, board7by7_Height // 2 - 50, 600, 90))
-    Board_Screen.blit(end_img, (board7by7_Height // 2 - 220, board7by7_Height // 2 - 50))
-    
+    pygame.draw.rect(Board_Screen, ORANGE, (board7b7_Width //
+                     2 - 220, board7by7_Height // 2 - 50, 600, 90))
+    Board_Screen.blit(end_img, (board7by7_Height // 2 -
+                      220, board7by7_Height // 2 - 50))
+
     Play_Again = 'Play Again?'
     Play_Again_IMG = font.render(Play_Again, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-    Board_Screen.blit(Play_Again_IMG, (board7b7_Width // 2 - 180, board7by7_Height // 2 + 20))
+    Board_Screen.blit(Play_Again_IMG, (board7b7_Width //
+                      2 - 180, board7by7_Height // 2 + 20))
 
 
+def Is_the_game_over_7by7():
+
+    global game_over
+    global winner
+    global player
+    number = 0
+    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == -5:
+        winner = 2
+        game_over = True  
+
+
+    if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[2][1] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][1] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == -5:
+        winner = 2
+        game_over = True  
+
+
+    if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == -5:
+        winner = 2
+        game_over = True 
+    
+    if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == -5:
+        winner = 2
+        game_over = True  
+
+
+    if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == -5:
+        winner = 2
+        game_over = True  
+
+
+    if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] == -5:
+        winner = 2
+        game_over = True  
+    if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == -5:
+        winner = 2
+        game_over = True  
+
+    
+    """How to win in colum"""
+    for row in Board:
+        "how to win in rows"
+        if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == 5:
+            winner = 1
+            game_over = True
+        if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == -5:
+            winner = 2
+            game_over = True
+
+        if Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] == 5:
+            winner = 1
+            game_over = True
+        if Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] == -5:
+            winner = 2
+            game_over = True
+        if Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] + Board[6][number] == 5:
+            winner = 1
+            game_over = True
+        if Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] + Board[6][number] == -5:
+            winner = 2
+            game_over = True
+        number += 1
+    
+    
+    if game_over == False:
+        tie = True
+        for every_row in Board:
+            for number in every_row:
+                if number == 0:
+                    tie = False
+        if tie == True:
+            game_over = True
+            winner = 0
 
 
 
@@ -151,7 +299,7 @@ def Start_7_by_7_Board():
                         Board[The_X_position][The_Y_position] = player
                         player *= -1
                         print(Board)
-                        Is_the_game_over()
+                        Is_the_game_over_7by7()
 
         if game_over == True:
             draw_game_over(winner)
@@ -174,11 +322,10 @@ def Start_7_by_7_Board():
         pygame.display.update()
 
 
-
-
 Start_7_by_7_Board()
-                    
 
+
+                    
 
 
 
