@@ -1,4 +1,5 @@
 import pygame
+from pygame.display import get_active
 from pygame.locals import *
 
 
@@ -225,7 +226,6 @@ def Is_the_game_over_7by7():
     if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == -5:
         winner = 2
         game_over = True
-
     if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == -5:
         winner = 2
         game_over = True
@@ -235,11 +235,52 @@ def Is_the_game_over_7by7():
     if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == -5:
         winner = 2
         game_over = True
+    """How to win diagonal"""
+    if Board[0][0] + Board[1][1] + Board[2][2] + Board[3][3] + Board[4][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][1] + Board[2][2] + Board[3][3] + Board[4][4] + Board[5][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][2] + Board[3][3] + Board[4][4] + Board[5][5] + Board[6][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][1] + Board[1][2] + Board[2][3] + Board[3][4] + Board[4][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][2] + Board[2][3] + Board[3][4] + Board[4][5] + Board[5][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[0][3] + Board[1][4] + Board[2][5] + Board[3][6] + Board[4][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][0] + Board[2][1] + Board[3][2] + Board[4][3] + Board[5][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][1] + Board[3][2] + Board[4][3] + Board[5][4] + Board[6][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][0] + Board[3][1] + Board[4][2] + Board[5][3] + Board[6][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][0] + Board[5][1] + Board[4][2] + Board[3][3] + Board[2][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][1] + Board[4][2] + Board[3][3] + Board[2][4] + Board[1][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][2] + Board[3][3] + Board[2][4] + Board[1][5] + Board[0][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][0] + Board[4][1] + Board[3][2] + Board[2][3] + Board[1][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][1] + Board[3][2] + Board[2][3] + Board[1][4] + Board[0][5] == 5:
+        winner = 1
+        game_over = True
 
 
-    
     for row in Board: 
-        
         "how to win in rows"
         if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == 5:
             winner = 1
@@ -266,8 +307,8 @@ def Is_the_game_over_7by7():
     if game_over == False:
         tie = True
         for every_row in Board:
-            for number in every_row:
-                if number == 0:
+            for Zero in every_row:
+                if Zero == 0:
                     tie = False
         if tie == True:
             game_over = True
