@@ -97,65 +97,13 @@ def Is_the_game_over_7by7():
     global game_over
     global winner
     global player
-    colum = range(0,6)
     number = 0
+    can_you_win_for_real = None
+    can_you_win_for_real_negative = None
     """How to win in colum"""
-    for row in Board:
-        if sum(row) == 3:
-            if Board[0][0] and Board[0][1] == -1 or Board[0][6] and Board[0][5] == -1:
-                winner = 1
-                game_over = True
-            if Board[1][0] and Board[1][1] == -1 or Board[1][6] and Board[1][5] == -1:
-                winner = 1
-                game_over = True
-            if Board[2][0] and Board[2][1] == -1 or Board[2][6] and Board[2][5] == -1:
-                winner = 1
-                game_over = True
-            if Board[3][0] and Board[3][1] == -1 or Board[3][6] and Board[3][5] == -1:
-                winner = 1
-                game_over = True
-            if Board[4][0] and Board[4][1] == -1 or Board[4][6] and Board[4][5] == -1:
-                winner = 1
-                game_over = True
-            if Board[5][0] and Board[5][1] == -1 or Board[5][6] and Board[5][5] == -1:
-                winner = 1
-                game_over = True
-            if Board[6][0] and Board[6][1] == -1 or Board[6][6] and Board[6][5] == -1:
-                winner = 1
-                game_over = True
+    colum_1 = 0
 
-        if sum(row) == -3:
-            if Board[0][0] and Board[0][1] == 1 or Board[0][6] and Board[0][5] == 1:
-                winner = 2
-                game_over = True
-            if Board[1][0] and Board[1][1] == 1 or Board[1][6] and Board[1][5] == 1:
-                winner = 2
-                game_over = True
-            if Board[2][0] and Board[2][1] == 1 or Board[2][6] and Board[2][5] == 1:
-                winner = 2
-                game_over = True
-            if Board[3][0] and Board[3][1] == 1 or Board[3][6] and Board[3][5] == 1:
-                winner = 2
-                game_over = True
-            if Board[4][0] and Board[4][1] == 1 or Board[4][6] and Board[4][5] == 1:
-                winner = 2
-                game_over = True
-            if Board[5][0] and Board[5][1] == 1 or Board[5][6] and Board[5][5] == 1:
-                winner = 2
-                game_over = True
-            if Board[6][0] and Board[6][1] == 1 or Board[6][6] and Board[6][5] == 1:
-                winner = 2
-                game_over = True
-        
-        if sum(row) == 4:
-            if Board[0][0] == -1 and Board[0][1] == 0 or Board[0][6] == -1 and Board[0][5] == 0:
-                winner = 1
-                game_over = True
-        if sum(row) == 6:
-            if Board[0][0] == 1 and Board[0][1] == 0:
-                winner = 1
-                game_over = True
-
+    for row in Board: 
         "how to win in rows"
         if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == 5:
             winner = 1
