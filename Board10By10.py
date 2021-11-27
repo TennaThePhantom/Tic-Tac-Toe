@@ -277,6 +277,8 @@ def Player_1_colum_win():
         winner = 1
         game_over = True
 
+
+
 def Player_2_colum_win():
     global winner
     global game_over
@@ -473,14 +475,56 @@ def Player_2_colum_win():
         winner = 2
         game_over = True
 
+
 def Did_you_win():
 
     global game_over
     global winner
+    Letter = 0
+    """How to wim in colum"""
     Player_1_colum_win()
     Player_2_colum_win()
 
-    
+    for row in Board:
+        if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == 5:
+            winner = 1
+            game_over = True
+        if Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] == 5:
+            winner = 1
+            game_over = True
+        if Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] == 5:
+            winner = 1
+            game_over = True
+        if Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] + Board[7][Letter] == 5:
+            winner = 1
+            game_over = True
+        if Board[4][Letter] + Board[5][Letter] + Board[6][Letter] + Board[7][Letter] + Board[8][Letter] == 5:
+            winner = 1
+            game_over = True
+        if Board[5][Letter] + Board[6][Letter] + Board[7][Letter] + Board[8][Letter] + Board[9][Letter] == 5:
+            winner = 1
+            game_over = True
+
+        if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == -5:
+            winner = 2
+            game_over = True
+        if Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] == -5:
+            winner = 2
+            game_over = True
+        if Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] == -5:
+            winner = 2
+            game_over = True
+        if Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] + Board[7][Letter] == -5:
+            winner = 2
+            game_over = True
+        if Board[4][Letter] + Board[5][Letter] + Board[6][Letter] + Board[7][Letter] + Board[8][Letter] == -5:
+            winner = 2
+            game_over = True
+        if Board[5][Letter] + Board[6][Letter] + Board[7][Letter] + Board[8][Letter] + Board[9][Letter] == -5:
+            winner = 2
+            game_over = True
+        Letter += 1
+
     """Tie Game"""
     if game_over == False:
         tie = True
