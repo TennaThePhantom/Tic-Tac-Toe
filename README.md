@@ -1,1 +1,1 @@
-# Tic-Tac-Toe
+How to start the game
