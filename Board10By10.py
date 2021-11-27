@@ -94,16 +94,16 @@ def Did_you_win():
     if Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] == 5:
         winner = 1
         game_over = True
-    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][6] == 5:
+    if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == 5:
         winner = 1
         game_over = True
-    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][7] == 5:
+    if Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] + Board[0][7] == 5:
         winner = 1
         game_over = True
-    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][8] == 5:
+    if Board[0][4] + Board[0][5] + Board[0][6] + Board[0][7] + Board[0][8] == 5:
         winner = 1
         game_over = True
-    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][9] == 5:
+    if Board[0][5] + Board[0][6] + Board[0][7] + Board[0][8] + Board[0][9] == 5:
         winner = 1
         game_over = True
 
