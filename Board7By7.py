@@ -1,5 +1,4 @@
 import pygame
-from pygame.display import get_active
 from pygame.locals import *
 
 
@@ -33,7 +32,6 @@ for boxes in range(7):
 """ Creates the [0, 0, 0, 0, 0, 0, 0] Instead of having me to hardcode it
 have to be print(Board) first
 doesn't work if you called emepty_board instead"""
-
 
 def Emepty_Board(Board):
     for boxes in range(7):
@@ -89,7 +87,7 @@ def Is_the_game_over_7by7():
     global game_over
     global winner
     global player
-    number = 0
+    Letter = 0
     """How to win in colums"""
     if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == 5:
         winner = 1
@@ -343,35 +341,30 @@ def Is_the_game_over_7by7():
         game_over = True
 
 
-
-
-
-
-
     for row in Board: 
         "how to win in rows"
-        if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == 5:
+        if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == 5:
             winner = 1
             game_over = True
-        if Board[0][number] + Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] == -5:
+        if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == -5:
             winner = 2
             game_over = True
 
-        if Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] == 5:
+        if Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] == 5:
             winner = 1
             game_over = True
-        if Board[1][number] + Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] == -5:
+        if Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] == -5:
             winner = 2
             game_over = True
-        if Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] + Board[6][number] == 5:
+        if Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] == 5:
             winner = 1
             game_over = True
-        if Board[2][number] + Board[3][number] + Board[4][number] + Board[5][number] + Board[6][number] == -5:
+        if Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] == -5:
             winner = 2
             game_over = True
-        number += 1
+        Letter += 1
     
-    
+    """Tie Game"""
     if game_over == False:
         tie = True
         for every_row in Board:
@@ -381,7 +374,6 @@ def Is_the_game_over_7by7():
         if tie == True:
             game_over = True
             winner = 0
-
 
 
 def Start_7_by_7_Board():
@@ -414,7 +406,6 @@ def Start_7_by_7_Board():
 
         if game_over == True:
             draw_game_over(winner)
-
             if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
                 Mouse_clicked = True
             if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
@@ -428,8 +419,6 @@ def Start_7_by_7_Board():
                     winner = 0
                     Emepty_Board(Board)
                     
-        
-
         pygame.display.update()
 
 
