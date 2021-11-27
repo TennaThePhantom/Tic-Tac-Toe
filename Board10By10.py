@@ -82,11 +82,9 @@ def draw_game_over(winner):
     Board_Screen.blit(Play_Again_IMG, (board10by10_Width // 2 - 250, board10by10_Height // 2 - 50))
 
 
-def Did_you_win():
-
+def Player_1_colum_win():
     global game_over
     global winner
-    global player
 
     if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == 5:
         winner = 1
@@ -107,7 +105,382 @@ def Did_you_win():
         winner = 1
         game_over = True
 
+    if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] + Board[1][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][4] + Board[1][5] + Board[1][6] + Board[1][7] + Board[1][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[1][5] + Board[1][6] + Board[1][7] + Board[1][8] + Board[1][9] == 5:
+        winner = 1
+        game_over = True
 
+    if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] + Board[2][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][4] + Board[2][5] + Board[2][6] + Board[2][7] + Board[2][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[2][5] + Board[2][6] + Board[2][7] + Board[2][8] + Board[2][9] == 5:
+        winner = 1
+        game_over = True
+    
+    if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] + Board[3][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][4] + Board[3][5] + Board[3][6] + Board[3][7] + Board[3][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[3][5] + Board[3][6] + Board[3][7] + Board[3][8] + Board[3][9] == 5:
+        winner = 1
+        game_over = True
+
+    if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] + Board[4][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][4] + Board[4][5] + Board[4][6] + Board[4][7] + Board[4][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[4][5] + Board[4][6] + Board[4][7] + Board[4][8] + Board[4][9] == 5:
+        winner = 1
+        game_over = True
+
+
+    if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] + Board[5][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][4] + Board[5][5] + Board[5][6] + Board[5][7] + Board[5][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[5][5] + Board[5][6] + Board[5][7] + Board[5][8] + Board[5][9] == 5:
+        winner = 1
+        game_over = True
+
+    if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] + Board[6][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][4] + Board[6][5] + Board[6][6] + Board[6][7] + Board[6][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[6][5] + Board[6][6] + Board[6][7] + Board[6][8] + Board[6][9] == 5:
+        winner = 1
+        game_over = True
+    
+    if Board[7][0] + Board[7][1] + Board[7][2] + Board[7][3] + Board[7][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[7][1] + Board[7][2] + Board[7][3] + Board[7][4] + Board[7][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[7][2] + Board[7][3] + Board[7][4] + Board[7][5] + Board[7][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[7][3] + Board[7][4] + Board[7][5] + Board[7][6] + Board[7][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[7][4] + Board[7][5] + Board[7][6] + Board[7][7] + Board[7][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[7][5] + Board[7][6] + Board[7][7] + Board[7][8] + Board[7][9] == 5:
+        winner = 1
+        game_over = True
+
+    if Board[8][0] + Board[8][1] + Board[8][2] + Board[8][3] + Board[8][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[8][1] + Board[8][2] + Board[8][3] + Board[8][4] + Board[8][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[8][2] + Board[8][3] + Board[8][4] + Board[8][5] + Board[8][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[8][3] + Board[8][4] + Board[8][5] + Board[8][6] + Board[8][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[8][4] + Board[8][5] + Board[8][6] + Board[8][7] + Board[8][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[8][5] + Board[8][6] + Board[8][7] + Board[8][8] + Board[8][9] == 5:
+        winner = 1
+        game_over = True
+
+    if Board[9][0] + Board[9][1] + Board[9][2] + Board[9][3] + Board[9][4] == 5:
+        winner = 1
+        game_over = True
+    if Board[9][1] + Board[9][2] + Board[9][3] + Board[9][4] + Board[9][5] == 5:
+        winner = 1
+        game_over = True
+    if Board[9][2] + Board[9][3] + Board[9][4] + Board[9][5] + Board[9][6] == 5:
+        winner = 1
+        game_over = True
+    if Board[9][3] + Board[9][4] + Board[9][5] + Board[9][6] + Board[9][7] == 5:
+        winner = 1
+        game_over = True
+    if Board[9][4] + Board[9][5] + Board[9][6] + Board[9][7] + Board[9][8] == 5:
+        winner = 1
+        game_over = True
+    if Board[9][5] + Board[9][6] + Board[9][7] + Board[9][8] + Board[9][9] == 5:
+        winner = 1
+        game_over = True
+
+def Player_2_colum_win():
+    global winner
+    global game_over
+
+
+    if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] + Board[0][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][4] + Board[0][5] + Board[0][6] + Board[0][7] + Board[0][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[0][5] + Board[0][6] + Board[0][7] + Board[0][8] + Board[0][9] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] + Board[1][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][4] + Board[1][5] + Board[1][6] + Board[1][7] + Board[1][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[1][5] + Board[1][6] + Board[1][7] + Board[1][8] + Board[1][9] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] + Board[2][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][4] + Board[2][5] + Board[2][6] + Board[2][7] + Board[2][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[2][5] + Board[2][6] + Board[2][7] + Board[2][8] + Board[2][9] == -5:
+        winner = 2
+        game_over = True
+    
+    if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] + Board[3][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][4] + Board[3][5] + Board[3][6] + Board[3][7] + Board[3][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[3][5] + Board[3][6] + Board[3][7] + Board[3][8] + Board[3][9] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] + Board[4][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][4] + Board[4][5] + Board[4][6] + Board[4][7] + Board[4][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[4][5] + Board[4][6] + Board[4][7] + Board[4][8] + Board[4][9] == -5:
+        winner = 2
+        game_over = True
+
+
+    if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] + Board[5][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][4] + Board[5][5] + Board[5][6] + Board[5][7] + Board[5][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[5][5] + Board[5][6] + Board[5][7] + Board[5][8] + Board[5][9] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] + Board[6][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][4] + Board[6][5] + Board[6][6] + Board[6][7] + Board[6][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[6][5] + Board[6][6] + Board[6][7] + Board[6][8] + Board[6][9] == -5:
+        winner = 2
+        game_over = True
+    
+    if Board[7][0] + Board[7][1] + Board[7][2] + Board[7][3] + Board[7][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[7][1] + Board[7][2] + Board[7][3] + Board[7][4] + Board[7][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[7][2] + Board[7][3] + Board[7][4] + Board[7][5] + Board[7][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[7][3] + Board[7][4] + Board[7][5] + Board[7][6] + Board[7][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[7][4] + Board[7][5] + Board[7][6] + Board[7][7] + Board[7][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[7][5] + Board[7][6] + Board[7][7] + Board[7][8] + Board[7][9] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[8][0] + Board[8][1] + Board[8][2] + Board[8][3] + Board[8][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[8][1] + Board[8][2] + Board[8][3] + Board[8][4] + Board[8][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[8][2] + Board[8][3] + Board[8][4] + Board[8][5] + Board[8][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[8][3] + Board[8][4] + Board[8][5] + Board[8][6] + Board[8][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[8][4] + Board[8][5] + Board[8][6] + Board[8][7] + Board[8][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[8][5] + Board[8][6] + Board[8][7] + Board[8][8] + Board[8][9] == -5:
+        winner = 2
+        game_over = True
+
+    if Board[9][0] + Board[9][1] + Board[9][2] + Board[9][3] + Board[9][4] == -5:
+        winner = 2
+        game_over = True
+    if Board[9][1] + Board[9][2] + Board[9][3] + Board[9][4] + Board[9][5] == -5:
+        winner = 2
+        game_over = True
+    if Board[9][2] + Board[9][3] + Board[9][4] + Board[9][5] + Board[9][6] == -5:
+        winner = 2
+        game_over = True
+    if Board[9][3] + Board[9][4] + Board[9][5] + Board[9][6] + Board[9][7] == -5:
+        winner = 2
+        game_over = True
+    if Board[9][4] + Board[9][5] + Board[9][6] + Board[9][7] + Board[9][8] == -5:
+        winner = 2
+        game_over = True
+    if Board[9][5] + Board[9][6] + Board[9][7] + Board[9][8] + Board[9][9] == -5:
+        winner = 2
+        game_over = True
+
+def Did_you_win():
+
+    global game_over
+    global winner
+    Player_1_colum_win()
+    Player_2_colum_win()
+
+    
     """Tie Game"""
     if game_over == False:
         tie = True
