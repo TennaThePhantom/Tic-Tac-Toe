@@ -1,8 +1,10 @@
+from board3by3 import *
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
-from board3by3 import *
+
+pygame.init()
 
 DARK_PURPLE = (102, 0, 102)
 LIGHT_BLUE = (0, 255, 255)
@@ -93,9 +95,7 @@ class Game(Enum):
 
 # the main loop
 def menu_loop():
-
-
-    pygame.init()
+    
 
     Game_State = Game.Main_Menu
 
@@ -129,10 +129,7 @@ def menu_loop():
             pygame.quit()
             return
 
-        if Game_State == Game.Board3by3:
-            Game_State = pygame.display.set_mode((Board_Width, Board_Height))
-            start_3by3_Board()
-            Start_menu = False
+        
 
 
 
@@ -429,7 +426,7 @@ def Two_Player_Mode(Menu_Screen):
     Action = Game.Board3by3
     )
     Board_size_5X5 = Recative_Text(
-    Text_Center = (400, 280),
+    Text_Center = (400, 360),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
@@ -437,7 +434,7 @@ def Two_Player_Mode(Menu_Screen):
     Action = None
     )
     Board_size_7X7 = Recative_Text(
-    Text_Center = (400, 360),
+    Text_Center = (400, 520),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
@@ -445,28 +442,28 @@ def Two_Player_Mode(Menu_Screen):
     Action = None
     )
     Board_size_10X10 = Recative_Text(
-    Text_Center = (400, 440),
+    Text_Center = (400, 600),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "10 By 10 Board",
     Action = None
     )
-    Board_size_20X20 = Recative_Text(
-    Text_Center = (400, 520),
+    Board_size_4X4 = Recative_Text(
+    Text_Center = (400, 280),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "20 By 20 Board",
+    text = "4 By 4 Board",
     Action = None
     )
 
-    Board_size_30X30 = Recative_Text(
-    Text_Center = (400, 600),
+    Board_size_6X6 = Recative_Text(
+    Text_Center = (400, 440),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "30 By 30 Board",
+    text = "6 By 6 Board",
     Action = None
     )
 
@@ -488,7 +485,7 @@ def Two_Player_Mode(Menu_Screen):
     )
 
     board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
-    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_game_mode, return_back_to_screen ]
+    Board_size_10X10, Board_size_4X4, Board_size_6X6, return_back_to_game_mode, return_back_to_screen ]
     choose_board_size = True
 
     while choose_board_size == True:
