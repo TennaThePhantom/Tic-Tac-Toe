@@ -10,7 +10,7 @@ Board_Width = 450
 line_width = 10
 
 Board_Screen = pygame.display.set_mode((Board_Width, Board_Height))
-pygame.display.set_caption('Tic Tac Toe')
+pygame.display.set_caption('Tic Tac Toe 3X3 Board')
 
 # colors for board
 ROSE = (204, 0, 204)
@@ -50,19 +50,19 @@ def draw_Letter():
 	x_position = 0
 	for spots in Board:
 		y_position = 0
-		for y in spots:
-			if y == 1: # player 1
+		for player in spots:
+			if player == 1: # player 1
 				pygame.draw.line(Board_Screen, ROSE, (x_position * 150 + 25, y_position * 150 + 25), (x_position * 150 + 125, y_position * 150 + 125), line_width)
 				pygame.draw.line(Board_Screen, ROSE, (x_position * 150 + 25, y_position * 150 + 125), (x_position * 150 + 125, y_position * 150 + 25), line_width)
 				"""The first number 25 is where the line starts and
-					the second number 15 is when the lines ends
+					the second number 125 is when the lines ends
 					both combine have to equal whatever your board is divide 
 					by the amount of rows you have"""
-			if y == -1: # player 2
+			if player == -1: # player 2
 				pygame.draw.circle(Board_Screen, ORANGE, (x_position * 150 + 75, y_position * 150 + 75), 50, line_width)
 			"""what's half of 150. 75 to place the circle in the middle of the box
-			and the another number is the size of the circle
-			you have to play around with that to get the size circle you want"""
+			and the other number is the size of the circle
+			you have to play around with that to get the circle size you want"""
 			y_position += 1
 		x_position += 1	
 
@@ -72,23 +72,23 @@ def Is_the_game_over():
 	global game_over
 	global winner
 
-	Y_position = 0
+	Letter = 0
 	for spots in Board:
 		# checks column for 3 in a row
-		if sum(spots) == 3: # when you place a letter it's + 1
+		if sum(spots) == 3: # when player 1 place a letter it's + 1
 			winner = 1
 			game_over = True
-		if sum(spots) == -3: # when you place a letter it's - 1
+		if sum(spots) == -3: # when player place a letter it's - 1
 			winner = 2
 			game_over = True
 		# checks 3 in a row 
-		if Board[0][Y_position] + Board [1][Y_position] + Board [2][Y_position] == 3:
+		if Board[0][Letter] + Board [1][Letter] + Board [2][Letter] == 3:
 			winner = 1
 			game_over = True
-		if Board[0][Y_position] + Board [1][Y_position] + Board [2][Y_position] == -3:
+		if Board[0][Letter] + Board [1][Letter] + Board [2][Letter] == -3:
 			winner = 2
 			game_over = True
-		Y_position += 1
+		Letter += 1
 
 	# checks for 3 in a row diagonal 
 	if Board[0][0] + Board[1][1] + Board [2][2] == 3 or Board[2][0] + Board[1][1] + Board [0][2] == 3:
@@ -102,8 +102,8 @@ def Is_the_game_over():
 	if game_over == False:
 		tie = True
 		for row in Board:
-			for letter in row:
-				if letter == 0:
+			for Zero in row:
+				if Zero == 0:
 					tie = False
 		if tie == True:
 			game_over = True
@@ -154,7 +154,7 @@ def start_3by3_Board():
 					Mouse_clicked = True
 				if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
 					Mouse_clicked = False
-					"""for player 1 and player2 mouse clicks to be rezgtaurd on the board"""
+					"""for player 1 and player2 mouse clicks to be register on the board"""
 					position = pygame.mouse.get_pos()
 					the_X_position = position[0] // 150
 					The_Y_position = position[1] // 150
@@ -187,5 +187,7 @@ def start_3by3_Board():
 		pygame.display.update()
 	
 	pygame.quit()
+
+start_3by3_Board()
 
 
