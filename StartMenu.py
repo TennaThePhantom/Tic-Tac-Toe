@@ -3,6 +3,7 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from enum import Enum
+from RegularTextForMenu import *
 
 pygame.init()
 
@@ -311,18 +312,7 @@ def HowToPlay3X3Board(Menu_Screen):
             if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
                 mouse_over_text = True
         Menu_Screen.fill(DARK_PURPLE)
-        display_regular_text("How to play 3 by 3 board", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Player 1 is always X ", 25, 400, 100, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Your goal is to get 3 in a row", 30, 400, 200, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("If you get 3 in a row (Up, Down, Across, or Diagonally) ", 25, 400, 250, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("You win the game ", 25, 400, 280, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("If the person or the computer place a letter in a box", 25, 400, 330, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("You cannot place your letter in that box anymore", 25, 400, 360, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("If all 9 boxes have been fulled up", 25, 400, 410, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("The game ends in a tie", 25, 400, 440, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Nobody wins the game ", 25, 400, 470, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Have fun playing Tic-Tac-Toe ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
+        Help_With_3by3Board_Text()
 
         for texts in return_back:
             go_back = texts.update(pygame.mouse.get_pos(), mouse_over_text)
@@ -514,45 +504,20 @@ def Ai_Mode(Menu_Screen):
         text = "3 By 3 Board",
         Action = None
     )
-    Board_size_5X5 = Recative_Text(
-    Text_Center = (400, 280),
-    Text_size = 35, 
-    Bg_rgb = DARK_PURPLE,
-    Text_color = LIGHT_BLUE,
-    text = "5 By 5 Board",
-    Action = None
-    )
-    Board_size_7X7 = Recative_Text(
+    Board_size_4X4 = Recative_Text(
     Text_Center = (400, 360),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "7 By 7 Board",
+    text = "4 By 4 Board",
     Action = None
     )
-    Board_size_10X10 = Recative_Text(
-    Text_Center = (400, 440),
-    Text_size = 35, 
-    Bg_rgb = DARK_PURPLE,
-    Text_color = LIGHT_BLUE,
-    text = "10 By 10 Board",
-    Action = None
-    )
-    Board_size_20X20 = Recative_Text(
+    Board_size_5X5 = Recative_Text(
     Text_Center = (400, 520),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
-    text = "20 By 20 Board",
-    Action = None
-    )
-
-    Board_size_30X30 = Recative_Text(
-    Text_Center = (400, 600),
-    Text_size = 35, 
-    Bg_rgb = DARK_PURPLE,
-    Text_color = LIGHT_BLUE,
-    text = "30 By 30 Board",
+    text = "5 By 5 Board",
     Action = None
     )
 
@@ -573,8 +538,8 @@ def Ai_Mode(Menu_Screen):
     Action = Game.Main_Menu,
     )
 
-    board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
-    Board_size_10X10, Board_size_20X20, Board_size_30X30, return_back_to_screen_game_mode, return_back_to_screen ]
+    board_sizes = [Board_size_3X3,Board_size_4X4, Board_size_5X5,
+    return_back_to_screen_game_mode, return_back_to_screen ]
     choose_board_size = True
 
     while choose_board_size == True:
