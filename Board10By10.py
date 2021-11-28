@@ -9,7 +9,7 @@ board10by10_Height = 800
 board10by10_Width = 800
 lines_width = 12
 Board_Screen = pygame.display.set_mode((board10by10_Width, board10by10_Height))
-pygame.display.set_caption("Tic Tac Toe 7 by 7 Board")
+pygame.display.set_caption("Tic Tac Toe 10 by 10 Board")
 
 ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
