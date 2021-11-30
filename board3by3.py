@@ -7,7 +7,7 @@ pygame.init()
 # the board
 Board_Height = 450
 Board_Width = 450
-line_width = 10
+line_width = 15
 
 Board_Screen = pygame.display.set_mode((Board_Width, Board_Height))
 pygame.display.set_caption('Tic Tac Toe 3X3 Board')
@@ -81,7 +81,7 @@ def Is_the_game_over():
 		if sum(spots) == -3: # when player place a letter it's - 1
 			winner = 2
 			game_over = True
-		# checks 3 in a row 
+		# checks for 3 in a row 
 		if Board[0][Letter] + Board [1][Letter] + Board [2][Letter] == 3:
 			winner = 1
 			game_over = True
@@ -139,22 +139,23 @@ def start_3by3_Board():
 	global Mouse_clicked
 
 	Start_Tic_Tac_Toe = True
-	while Start_Tic_Tac_Toe:
+	while Start_Tic_Tac_Toe == True:
 	
 		# draw board and ready for first click on board
 		draw_board()
 		draw_Letter()
-		"""Opens the window and close window"""
+		"""Opens the window and close window
+		Closes the game when we press the X button in the window"""
 		for window in pygame.event.get():
 			if window.type == pygame.QUIT:
 				Start_Tic_Tac_Toe = False
+				
+			"""for player 1 and player2 mouse clicks to be register on the board"""
 			if game_over == False:
-				"""Closes the game when we press the X button in the window"""
 				if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
 					Mouse_clicked = True
 				if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
 					Mouse_clicked = False
-					"""for player 1 and player2 mouse clicks to be register on the board"""
 					position = pygame.mouse.get_pos()
 					the_X_position = position[0] // 150
 					The_Y_position = position[1] // 150
@@ -165,7 +166,7 @@ def start_3by3_Board():
 						Is_the_game_over()
 
 	
-		# if someone has won the game
+		# if someone has won the game or tied
 		if game_over == True:
 			draw_game_over(winner)
 			# check for if we clicked on Play Again
@@ -187,6 +188,7 @@ def start_3by3_Board():
 		pygame.display.update()
 	
 	pygame.quit()
+
 
 start_3by3_Board()
 
