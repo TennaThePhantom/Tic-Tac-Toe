@@ -93,49 +93,50 @@ def Is_the_game_over():
 def computerMove(AiTurn):
 	global game_over 
 	global winner
-	for i in range(3):
-		for j in range(3):
+
+	for colum in range(3):
+		for row in range(3):
 			board_copy = copy.deepcopy(Board)
-			if board_copy[i][j] == 0:
-				board_copy[i][j] = AiTurn
+			if board_copy[colum][row] == 0:
+				board_copy[colum][row] = AiTurn
 				if Is_the_game_over() in board_copy:
-					game_over = True
-					winner = 2
-				elif AiTurn == -1:
-					Ai_Board.append(draw_Letter())
-					return board_copy
-	turn = AiTurn * -1
-	for i in range(3):
-		for j in range(3):
-			board_copy = copy.deepcopy(Board)
-			if board_copy[i][j] == 0:
-				board_copy[i][j] = turn
-				if Is_the_game_over() in board_copy:
-					game_over = True
-					winner = 2
-				elif AiTurn == -1:
 					Ai_Board.append(draw_Letter())
 					return board_copy
 
-	move = make_the_ai_move()
+	
+	turn = AiTurn * -1
+	for colum in range(3):
+		for row in range(3):
+			board_copy = copy.deepcopy(Board)
+			if board_copy[colum][row] == 0:
+				board_copy[colum][row] = turn
+				if Is_the_game_over() in board_copy:
+					game_over = True
+					winner = 2
+				else:
+					Ai_Board.append(draw_Letter())
+					board_copy[colum][row] = AiTurn
+					return board_copy
+
+	move = CheckPlayer1Moves()
 	if move != None:
 		x, y = move
 		board_copy = copy.deepcopy(Board)
 		board_copy[y][x] = AiTurn
-		if AiTurn == -1:
+		if AiTurn == 1:
 			Ai_Board.append(draw_Letter())
-			return board_copy
+		return board_copy
 	return Board
 
 
-def make_the_ai_move():
-	VaildMoves = []
-	for i in range(3):
-		for j in range(3):
-			if Board[i][j] == 0:
-				VaildMoves.append((j,i))
-	if len(VaildMoves) > 0:
-		return random.choice(VaildMoves)
+def CheckPlayer1Moves():
+	validMoves = []
+	for colum in range(3):
+		for row in range(3):
+			if Board[colum][row] == 0:
+				validMoves.append((row, colum))
+	if len(validMoves) > 0:
+		return random.choice(Board)
 	else:
 		return None
 
@@ -167,8 +168,8 @@ def start_3by3_Board():
 
 	Start_Tic_Tac_Toe = True
 	while Start_Tic_Tac_Toe == True:
-	
 		draw_board()
+		Is_the_game_over()
 		draw_Letter()
 		for window in pygame.event.get():
 			if window.type == pygame.QUIT:
@@ -185,12 +186,10 @@ def start_3by3_Board():
 					if Board[the_X_position][The_Y_position] == 0:
 						Board[the_X_position][The_Y_position] = player
 						player *= -1
-						Is_the_game_over()
-						if player == -1:
-							Board = computerMove(player)
-							print(Board)
-							player *= -1
-							Is_the_game_over()
+					if player == -1:
+						Board = computerMove(player)
+						print(Board)
+						player *= -1
 
 	
 		if game_over == True:
@@ -204,7 +203,6 @@ def start_3by3_Board():
 					game_over = False
 					player = 1
 					position = (0,0)
-					Board = []
 					winner = 0
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 		pygame.display.update()
