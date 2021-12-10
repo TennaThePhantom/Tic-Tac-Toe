@@ -1,4 +1,3 @@
-from board3by3 import *
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
@@ -576,4 +575,3 @@ def Ai_Mode(Menu_Screen):
 
 
 
-menu_loop()
