@@ -136,28 +136,29 @@ def draw_game_over(winner):
 def computerMove(AiTurn):
 	global game_over 
 	global winner
+	Random_row = random.randint(0, 2)
+	Random_colum = random.randint(0, 2)
 
 	for row in range(3):
 		for colum in range(3):
 			board_copy = copy.deepcopy(Board) 
-			if board_copy[row][colum] == 0: 
-				board_copy[row][colum] = AiTurn
+			if board_copy[Random_row][Random_colum] == 0: 
+				board_copy[Random_row][Random_colum] = AiTurn
 				if Is_the_game_over() in board_copy:
 					Ai_Board.append(draw_Letter())
 					return board_copy
 
-	
 	for row in range(3):
 		for colum in range(3):
 			board_copy = copy.deepcopy(Board)
-			if board_copy[row][colum] == 0:
-				board_copy[row][colum] = AiTurn
+			if board_copy[Random_row][Random_colum] == 0:
+				board_copy[Random_row][Random_colum] = AiTurn
 				if Is_the_game_over() in board_copy:
 					game_over = True
 					winner = 2
 				else:
 					Ai_Board.append(draw_Letter())
-					board_copy[row][colum] = AiTurn
+					board_copy[Random_row][Random_colum] = AiTurn
 					return board_copy
 
 	move = Can_you_move()
@@ -199,6 +200,7 @@ def start_3by3_Board():
 	
 		# draw board and ready for first click on board
 		draw_board()
+		Is_the_game_over()
 		draw_Letter()
 		"""Opens the window and close window
 		Closes the game when we press the X button in the window"""
@@ -219,7 +221,6 @@ def start_3by3_Board():
 						Board[the_X_position][The_Y_position] = player # switch between player 1 and player 2
 						player *= -1 # player 1 and player 2
 						print(Board)
-						Is_the_game_over()
 						if player == -1:
 							Board = computerMove(player)
 							print(Board)
