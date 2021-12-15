@@ -12,7 +12,7 @@ Board_Width = 450
 line_width = 15
 
 Board_Screen = pygame.display.set_mode((Board_Width, Board_Height))
-pygame.display.set_caption('Tic Tac Toe 3X3 Board')
+pygame.display.set_caption('Ai Tic Tac Toe 3X3 Board')
 
 # colors for board
 ROSE = (204, 0, 204)
@@ -136,9 +136,12 @@ def draw_game_over(winner):
 def computerMove(AiTurn):
 	global game_over 
 	global winner
-	Random_row = random.randint(0, 2)
-	Random_colum = random.randint(0, 2)
+	Random_row = random.randint(0, 2) # random move in rows
+	Random_colum = random.randint(0, 2) # random move in column
 
+	"""Makes sure that if player 1 or player 2 wins 
+	need this since after player 1 places doesn't matter if win or not ai will place a letter after
+	if player wins make the winning move first but the ai does it counts ai as the winner that's"""
 	for row in range(3):
 		for colum in range(3):
 			board_copy = copy.deepcopy(Board) 
@@ -148,20 +151,21 @@ def computerMove(AiTurn):
 					Ai_Board.append(draw_Letter())
 					return board_copy
 
-	for row in range(3):
-		for colum in range(3):
-			board_copy = copy.deepcopy(Board)
-			if board_copy[Random_row][Random_colum] == 0:
-				board_copy[Random_row][Random_colum] = AiTurn
-				if Is_the_game_over() in board_copy:
+	"""Makes the Ai be able to move"""
+	for row in range(3): # three rows
+		for colum in range(3): # three colums
+			board_copy = copy.deepcopy(Board) 
+			if board_copy[Random_row][Random_colum] == 0: # chooses any location on board if it's open
+				board_copy[Random_row][Random_colum] = AiTurn # Ai turn to go
+				if Is_the_game_over() in board_copy: # is the game over in the ai board
 					game_over = True
 					winner = 2
-				else:
+				else: # if not continue add a letter until game is tied, player 1 wins or the ai wins 
 					Ai_Board.append(draw_Letter())
 					board_copy[Random_row][Random_colum] = AiTurn
 					return board_copy
 
-	move = Can_you_move()
+	move = Is_the_box_open()
 	if move != None:
 		x, y = move
 		board_copy = copy.deepcopy(Board)
@@ -172,19 +176,19 @@ def computerMove(AiTurn):
 	return Board
 
 
-def Can_you_move():
-	validMoves = []
-	for colum in range(3):
-		for row in range(3):
-			if Board[colum][row] == 0:
-				validMoves.append((row, colum))
+def Is_the_box_open():
+	validMoves = [] # valid moves
+	for row in range(3): #  
+		for colum in range(3):
+			if Board[row][colum] == 0:
+				validMoves.append((colum, row))
 	if len(validMoves) > 0:
 		return random.choice(validMoves)
 	else:
 		return None	
 
 """Starts the game"""
-def start_3by3_Board():
+def start_Ai_3by3_Board():
 	"""access the variables outside the functions
 	if you don't do this it doesn't work the way it should"""
 	global winner
@@ -200,7 +204,6 @@ def start_3by3_Board():
 	
 		# draw board and ready for first click on board
 		draw_board()
-		Is_the_game_over()
 		draw_Letter()
 		"""Opens the window and close window
 		Closes the game when we press the X button in the window"""
@@ -221,10 +224,14 @@ def start_3by3_Board():
 						Board[the_X_position][The_Y_position] = player # switch between player 1 and player 2
 						player *= -1 # player 1 and player 2
 						print(Board)
-						if player == -1:
-							Board = computerMove(player)
-							print(Board)
-							player *= -1
+						Is_the_game_over()
+					if player == 1 and game_over == True:
+						player = 1
+					if player == -1:
+						Board = computerMove(player)
+						Is_the_game_over()
+						print(Board)
+						player *= -1
 
 	
 		# if someone has won the game or tied
@@ -245,12 +252,13 @@ def start_3by3_Board():
 					winner = 0
 					# creates empty 3 x 3 board again
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+					Ai_Board = []
 		# update display
 		pygame.display.update()
 	
 	pygame.quit()
 
 
-start_3by3_Board()
+start_Ai_3by3_Board()
 
 
