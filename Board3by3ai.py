@@ -178,11 +178,11 @@ def computerMove(AiTurn):
 
 def Is_the_box_open():
 	validMoves = [] # valid moves
-	for row in range(3): #  
-		for colum in range(3):
-			if Board[row][colum] == 0:
-				validMoves.append((colum, row))
-	if len(validMoves) > 0:
+	for row in range(3): # 3 rows
+		for colum in range(3): # 3 columns
+			if Board[row][colum] == 0: # any spot with 0
+				validMoves.append((colum, row)) # adds all aviable moves for the ai to move
+	if len(validMoves) > 0: # if any spot is zero you can place a letter
 		return random.choice(validMoves)
 	else:
 		return None	
