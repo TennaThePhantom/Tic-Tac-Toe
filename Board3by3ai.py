@@ -222,16 +222,18 @@ def start_Ai_3by3_Board():
 					The_Y_position = position[1] // 150
 					if Board[the_X_position][The_Y_position] == 0: # place any letter if the spot is open
 						Board[the_X_position][The_Y_position] = player # switch between player 1 and player 2
-						player *= -1 # player 1 and player 2
-						print(Board)
-						Is_the_game_over()
-					if player == 1 and game_over == True:
-						player = 1
-					if player == -1:
-						Board = computerMove(player)
-						Is_the_game_over()
-						print(Board)
-						player *= -1
+						if player == 1:
+							Is_the_game_over()
+							print(Board)
+							if game_over == True:
+								winner = 1
+							else:
+								player *= -1 # player 1 and player 2
+						if player == -1:
+							Board = computerMove(player)
+							Is_the_game_over()
+							print(Board)
+							player *= -1
 
 	
 		# if someone has won the game or tied
