@@ -1,17 +1,19 @@
+# modules needed
 import pygame
 from pygame.locals import *
 import random
 import copy
 
-
 pygame.init()
 
-# The board dimensions and title
+
+# the board dimensions and title
 Board4X4_Width = 500
 Board4X4_Height = 500
 Lines_Width = 15
 Board_Screen = pygame.display.set_mode((Board4X4_Width, Board4X4_Height)) 
-pygame.display.set_caption("Ai Tic Tac Toe 4X4 Board")
+pygame.display.set_caption("Ai Tic-Tac-Toe 4X4 Board")
+
 
 # colors for board
 ROSE = (204, 0, 204)
@@ -19,9 +21,12 @@ ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 
-#font for text 
+
+# font for text 
 Font = pygame.font.SysFont(None,  60)
 
+
+# variabes for game
 Mouse_Clicked = False
 Player = 1
 Position = (0,0)
@@ -30,19 +35,20 @@ Ai_Board = []
 Game_Over = False
 Winner = 0
 
-# The box for play again text
+# the box for play again text
 Play_Again_Box = Rect(Board4X4_Width // 2 - 130, Board4X4_Height // 2, 265, 50)
 
 
 def draw_board():
 	BackGround = WHITE
-	Grid = (0, 0, 0)
+	Grid_Lines = (0, 0, 0) # color for the lines 
 	Board_Screen.fill(BackGround)
 	for Grid_Lines in range(1,4):
-		pygame.draw.line(Board_Screen, Grid , (0, 125 * Grid_Lines), (Board4X4_Width,125 * Grid_Lines), Lines_Width)
-		pygame.draw.line(Board_Screen, Grid, (125 * Grid_Lines, 0), (125 * Grid_Lines, Board4X4_Height), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines , (0, 125 * Grid_Lines), (Board4X4_Width,125 * Grid_Lines), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines, (125 * Grid_Lines, 0), (125 * Grid_Lines, Board4X4_Height), Lines_Width)
 
-# Makes X and O
+
+# makes X and O
 def draw_letter():
 	X_Position = 0
 	for Spots in Board:
@@ -57,9 +63,8 @@ def draw_letter():
 		X_Position += 1	
 
 
-# Check the board if game is over
+# check the board if game is over
 def is_the_game_over():
-
 	# acesss variables outside the function
 	global Game_Over
 	global Winner
@@ -106,7 +111,7 @@ def draw_game_over_text(winner):
 
 	if winner != 0: # if player 1 or player 2 wins 
 		End_Text = "Player " + str(winner) + " wins!"
-	elif winner == 0: # if neither player 1 or player 2 wuns
+	elif winner == 0: # if neither player 1 or player 2 wins
 		End_Text = "You have tied!"
 
 	# draws end game text and player text below
@@ -121,11 +126,11 @@ def draw_game_over_text(winner):
 
 
 def computerMove(AiTurn):
+	# access variabes outside the function
 	global Game_Over 
 	global Winner
 	Random_Row = random.randint(0, 3) # random move in rows
 	Random_Colum = random.randint(0, 3) # random move in column
-
 
 	"""Makes the Ai be able to move"""
 	for Row in range(4): # three rows
@@ -165,7 +170,6 @@ def is_the_box_open():
 		return None	# nothing available 
 
 
-
 """Starts the game"""
 def start_4by4_Board():
 	# access variabes outside the function
@@ -179,7 +183,7 @@ def start_4by4_Board():
 
 	Start_Tic_Tac_Toe = True
 	while Start_Tic_Tac_Toe == True:
-	
+
 		# draw board and ready for first click on board
 		draw_board()
 		draw_letter()
@@ -192,10 +196,10 @@ def start_4by4_Board():
 				if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
 					Mouse_Clicked = False
 					Position = pygame.mouse.get_pos()
-					the_X_position = Position[0] // 125
-					The_Y_position = Position[1] // 125
-					if Board[the_X_position][The_Y_position] == 0:
-						Board[the_X_position][The_Y_position] = Player
+					The_X_Position = Position[0] // 125
+					The_Y_Position = Position[1] // 125
+					if Board[The_X_Position][The_Y_Position] == 0:
+						Board[The_X_Position][The_Y_Position] = Player
 						if Player == 1:
 							is_the_game_over()
 							print(Board)
@@ -220,19 +224,19 @@ def start_4by4_Board():
 				Mouse_Clicked = False
 				Position = pygame.mouse.get_pos()
 				if Play_Again_Box.collidepoint(Position):
+					# resets everything
 					Game_Over = False
 					Player = 1
 					Position = (0,0)
 					Board = []
 					Winner = 0
-					# creates empty 4 x 4 board and clears Ai Board again 
 					Board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 					Ai_Board = []
-		# update display
+
+		# updates display
 		pygame.display.update()
-	
+
 	pygame.quit()
 
 start_4by4_Board()
-
 
