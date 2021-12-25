@@ -24,12 +24,12 @@ WHITE = (255, 255, 255)
 font = pygame.font.SysFont(None,  60)
 
 Mouse_clicked = False
-player = 1
-position = (0,0)
+Player = 1
+Position = (0,0)
 Board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 Ai_Board = []
-game_over = False
-winner = 0
+Game_over = False
+Winner = 0
 
 Play_Again_Box = Rect(Board4X4_Width // 2 - 110, Board4X4_Height // 2, 265, 50)
 
@@ -58,45 +58,45 @@ def draw_Letter():
 
 def Is_the_game_over():
 	# acesss variables outside the function
-	global game_over
-	global winner
+	global Game_over
+	global Winner
 
 	Letter = 0
 	for spots in Board:
 		# checks column for 4 in a row
 		if sum(spots) == 4: # when player 1 place a letter it's + 1
-			winner = 1
-			game_over = True
+			Winner = 1
+			Game_over = True
 		if sum(spots) == -4: # when player place a letter it's - 1
-			winner = 2
-			game_over = True
+			Winner = 2
+			Game_over = True
 		# checks 4 in a row 
 		if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] == 4:
-			winner = 1
-			game_over = True
+			Winner = 1
+			Game_over = True
 		if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] == -4:
-			winner = 2
-			game_over = True
+			Winner = 2
+			Game_over = True
 		Letter += 1
 
 	# checks for 4 in a row diagonal 
 	if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] == 4 or Board[3][0] + Board[2][1] + Board [1][2] + Board[0][3] == 4:
-		winner = 1
-		game_over = True
+		Winner = 1
+		Game_over = True
 	if Board[0][0] + Board[1][1] + Board [2][2] + Board[3][3] == -4 or Board[3][0] + Board[2][1] + Board [1][2] + Board[0][3] == -4:
-		winner = 2
-		game_over = True
+		Winner = 2
+		Game_over = True
 
 	# checks for tie game
-	if game_over == False:
+	if Game_over == False:
 		tie = True
 		for row in Board:
 			for Zero in row:
 				if Zero == 0:
 					tie = False
 		if tie == True:
-			game_over = True
-			winner = 0
+			Game_over = True
+			Winner = 0
 
 
 def draw_game_over(winner):
@@ -122,17 +122,6 @@ def computerMove(AiTurn):
 	Random_row = random.randint(0, 3) # random move in rows
 	Random_colum = random.randint(0, 3) # random move in column
 
-	"""Makes sure that if player 1 or player 2 wins 
-	need this since after player 1 places doesn't matter if win or not ai will place a letter after
-	if player wins make the winning move first but the ai does it counts ai as the winner that's"""
-	for row in range(4):
-		for colum in range(4):
-			board_copy = copy.deepcopy(Board) 
-			if board_copy[Random_row][Random_colum] == 0: 
-				board_copy[Random_row][Random_colum] = AiTurn
-				if Is_the_game_over() in board_copy:
-					Ai_Board.append(draw_Letter())
-					return board_copy
 
 	"""Makes the Ai be able to move"""
 	for row in range(4): # three rows
@@ -179,12 +168,13 @@ def Is_the_box_open():
 """Starts the game"""
 def start_4by4_Board():
 	"""access the variables outside the functions"""
-	global winner
-	global game_over
-	global position
+	global Winner
+	global Game_over
+	global Position
 	global Board
-	global player
+	global Player
 	global Mouse_clicked
+	global Ai_Board
 
 	Start_Tic_Tac_Toe = True
 	while Start_Tic_Tac_Toe == True:
@@ -195,45 +185,46 @@ def start_4by4_Board():
 		for window in pygame.event.get():
 			if window.type == pygame.QUIT:
 				Start_Tic_Tac_Toe = False
-			if game_over == False:
+			if Game_over == False:
 				if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
 					Mouse_clicked = True
 				if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
 					Mouse_clicked = False
-					position = pygame.mouse.get_pos()
-					the_X_position = position[0] // 125
-					The_Y_position = position[1] // 125
+					Position = pygame.mouse.get_pos()
+					the_X_position = Position[0] // 125
+					The_Y_position = Position[1] // 125
 					if Board[the_X_position][The_Y_position] == 0:
-						Board[the_X_position][The_Y_position] = player
-						if player == 1:
+						Board[the_X_position][The_Y_position] = Player
+						if Player == 1:
 							Is_the_game_over()
 							print(Board)
-							if game_over == True:
-								winner = 1
+							if Game_over == True:
+								Winner = 1
 							else:
-								player *= -1
-						if player == -1:
-							Board = computerMove(player)
+								Player *= -1
+						if Player == -1:
+							Board = computerMove(Player)
 							Is_the_game_over()
 							print(Board)
-							player *= -1 
+							Player *= -1 
 		# if someone has won the game
-		if game_over == True:
-			draw_game_over(winner)
+		if Game_over == True:
+			draw_game_over(Winner)
 			# check for if we clicked on Play Again
 			if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
 				Mouse_clicked = True
 			if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
 				Mouse_clicked = False
-				position = pygame.mouse.get_pos()
-				if Play_Again_Box.collidepoint(position):
-					game_over = False
-					player = 1
-					position = (0,0)
+				Position = pygame.mouse.get_pos()
+				if Play_Again_Box.collidepoint(Position):
+					Game_over = False
+					Player = 1
+					Position = (0,0)
 					Board = []
-					winner = 0
+					Winner = 0
 					# creates empty 4 x 4 board again
 					Board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+					Ai_Board = []
 		# update display
 		pygame.display.update()
 	
