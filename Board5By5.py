@@ -15,7 +15,7 @@ DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 
 
-Font = pygame.font.SysFont(None, 100)
+Font = pygame.font.SysFont(None, 75)
 
 
 Mouse_Clicked = False
@@ -25,7 +25,7 @@ Board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0,
 Game_Over = False
 Winner = 0
 
-Play_Again_Box = Rect(Board5X5_Width // 2 - 200, Board5X5_Height // 2 + 20, 450, 70)
+Play_Again_Box = Rect(Board5X5_Width // 2 - 130, Board5X5_Height // 2 + 25, 325, 75)
 
 
 def draw_board():
@@ -98,13 +98,13 @@ def draw_game_over_text(winner):
 		end_text = "You have tied!"
 
 	end_img = Font.render(end_text, True, DARK_BLUE)
-	pygame.draw.rect(Board_Screen, ORANGE, (Board5X5_Width // 2 - 230, Board5X5_Height // 2 - 60, 500, 90))
-	Board_Screen.blit(end_img, (Board5X5_Width // 2 - 220, Board5X5_Height // 2 - 50))
+	pygame.draw.rect(Board_Screen, ORANGE, (Board5X5_Width // 2 - 170, Board5X5_Height // 2 - 60, 390, 65))
+	Board_Screen.blit(end_img, (Board5X5_Width // 2 - 150, Board5X5_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 180, Board5X5_Height // 2 + 20))
+	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 40))
 
 def start_5_by_5_Board():
     global Winner
@@ -151,7 +151,8 @@ def start_5_by_5_Board():
                     Board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
         pygame.display.update()
-        
+
+    pygame.quit()
 
 
 start_5_by_5_Board()
