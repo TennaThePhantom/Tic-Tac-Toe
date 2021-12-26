@@ -1,4 +1,3 @@
-# modules needed
 import pygame
 from pygame.locals import *
 import random
@@ -6,27 +5,19 @@ import copy
 
 pygame.init()
 
-
-# the board dimensions and title
 Board5X5_Width = 600
 Board5X5_Height = 600
 Lines_Width = 15
 Board_Screen = pygame.display.set_mode((Board5X5_Width, Board5X5_Height)) 
-pygame.display.set_caption("Ai Tic-Tac-Toe 4X4 Board")
+pygame.display.set_caption("Ai Tic-Tac-Toe 5X5 Board")
 
-
-# colors for board
 ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 
+Font = pygame.font.SysFont(None,  75)
 
-# font for text 
-Font = pygame.font.SysFont(None,  100)
-
-
-# variabes for game
 Mouse_Clicked = False
 Player = 1
 Position = (0,0)
@@ -35,13 +26,12 @@ Ai_Board = []
 Game_Over = False
 Winner = 0
 
-# the box for play again text
-Play_Again_Box = Rect(Board5X5_Width // 2 - 200, Board5X5_Height // 2 + 20, 450, 70)
+Play_Again_Box = Rect(Board5X5_Width // 2 - 130, Board5X5_Height // 2 + 25, 325, 75)
 
 
 def draw_board():
 	BackGround = WHITE
-	Grid_Lines = (0, 0, 0) # color for the lines 
+	Grid_Lines = (0, 0, 0)
 	Board_Screen.fill(BackGround)
 	for Grid_Lines in range(1,5):
 		pygame.draw.line(Board_Screen, Grid_Lines , (0, 120 * Grid_Lines), (Board5X5_Width,120 * Grid_Lines), Lines_Width)
@@ -116,13 +106,13 @@ def draw_game_over_text(winner):
 
 	# draws end game text and player text below
 	End_Img = Font.render(End_Text, True, DARK_BLUE) 
-	pygame.draw.rect(Board_Screen, ORANGE, (Board5X5_Width // 2 - 150, Board5X5_Height // 2 - 60, 300, 50))
+	pygame.draw.rect(Board_Screen, ORANGE, (Board5X5_Width // 2 - 170, Board5X5_Height // 2 - 60, 390, 65))
 	Board_Screen.blit(End_Img, (Board5X5_Width // 2 - 150, Board5X5_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 10))
+	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 40))
 
 
 def computerMove(AiTurn):
