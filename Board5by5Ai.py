@@ -149,7 +149,7 @@ def is_the_box_open():
 	else:
 		return None
 
-def start_4by4_Board():
+def start_ai_5by5_Board():
 	global Winner
 	global Game_Over
 	global Position
@@ -208,5 +208,5 @@ def start_4by4_Board():
 
 	pygame.quit()
 
-start_4by4_Board()
+start_ai_5by5_Board()
 
