@@ -14,9 +14,7 @@ ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 
-
 Font = pygame.font.SysFont(None, 75)
-
 
 Mouse_Clicked = False
 Player = 1
@@ -35,8 +33,6 @@ def draw_board():
     for Grid_Lines in range(1, 5): 
         pygame.draw.line(Board_Screen, Grid_Lines, (0, 120 * Grid_Lines), (Board5X5_Width, 120 * Grid_Lines), Lines_Width)
         pygame.draw.line(Board_Screen, Grid_Lines, (120 * Grid_Lines, 0), (120 * Grid_Lines, Board5X5_Height), Lines_Width)
-
-
 
 
 def draw_letter():
@@ -91,6 +87,7 @@ def is_the_game_over():
             Game_Over = True
             Winner = 0
 
+
 def draw_game_over_text(winner):
 	if winner != 0:
 		end_text = "Player " + str(winner) + " wins!"
@@ -105,6 +102,7 @@ def draw_game_over_text(winner):
 	Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
 	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 40))
+
 
 def start_5_by_5_Board():
     global Winner
