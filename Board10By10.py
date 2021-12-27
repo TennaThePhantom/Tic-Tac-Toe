@@ -7,7 +7,7 @@ pygame.init()
 
 Board10X10_Height = 800
 Board10X10_Width = 800
-Lines_Width = 12
+Lines_Width = 10
 Board_Screen = pygame.display.set_mode((Board10X10_Width, Board10X10_Height))
 pygame.display.set_caption("Tic-Tac-Toe 10X10 Board")
 
@@ -16,7 +16,7 @@ ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 
-Font = pygame.font.SysFont(None, 120)
+Font = pygame.font.SysFont(None, 100)
 
 Mouse_Clicked = False
 Player = 1
@@ -25,13 +25,10 @@ Board = []
 Game_Over = False
 Winner = 0
 
-for boxes in range(10):
-    rows = [0] * 10
-    Board.append(rows)
+for Boxes in range(10):
+    Rows = [0] * 10
+    Board.append(Rows)
 
-""" Creates the [0, 0, 0, 0, 0, 0, 0] Instead of having me to hardcode it
-have to be print(Board) first
-doesn't work if you called emepty_board instead"""
 
 def emepty_board(Board):
     for Boxes in range(10):
@@ -40,7 +37,7 @@ def emepty_board(Board):
     print(Board)
 
 
-Play_Again_Box = Rect(Board10X10_Width // 2 - 300, Board10X10_Height // 2 - 50, 600, 85)
+Play_Again_Box = Rect(Board10X10_Width // 2 - 250, Board10X10_Height // 2 + 10, 480, 85)
 
 
 def draw_board():
@@ -73,13 +70,13 @@ def draw_game_over(winner):
         end_text = "You have tied!"
 
     end_img = Font.render(end_text, True, DARK_BLUE)
-    pygame.draw.rect(Board_Screen, ORANGE, (Board10X10_Width // 2 - 300, Board10X10_Height // 2 - 150, 600, 90))
-    Board_Screen.blit(end_img, (Board10X10_Width // 2 - 300, Board10X10_Height // 2 - 150))
+    pygame.draw.rect(Board_Screen, ORANGE, (Board10X10_Width // 2 - 300, Board10X10_Height // 2 - 110, 570, 90))
+    Board_Screen.blit(end_img, (Board10X10_Width // 2 - 250, Board10X10_Height // 2 - 100))
 
     Play_Again = 'Play Again?'
     Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-    Board_Screen.blit(Play_Again_IMG, (Board10X10_Width // 2 - 250, Board10X10_Height // 2 - 50))
+    Board_Screen.blit(Play_Again_IMG, (Board10X10_Width // 2 - 200, Board10X10_Height // 2 + 20))
 
 
 def player_1_colum_win():
