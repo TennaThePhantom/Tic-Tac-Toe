@@ -9,7 +9,7 @@ Board7X7_Height = 700
 Board7X7_Width = 700
 Lines_Width = 12
 Board_Screen = pygame.display.set_mode((Board7X7_Width, Board7X7_Height))
-pygame.display.set_caption("Tic Tac Toe 7 by 7 Board")
+pygame.display.set_caption("Tic-Tac-Toe 7X7 Board")
 
 ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
@@ -40,7 +40,7 @@ def Emepty_Board(Board):
     print(Board)
 
 
-Play_Again_Box = Rect(Board7X7_Width // 2 - 300, Board7X7_Height // 2 - 50, 600, 85)
+Play_Again_Box = Rect(Board7X7_Width // 2 - 200, Board7X7_Height // 2 - 30, 400, 85)
 
 
 def draw_board():
@@ -73,13 +73,13 @@ def draw_game_over_text(winner):
         end_text = "You have tied!"
 
     end_img = Font.render(end_text, True, DARK_BLUE)
-    pygame.draw.rect(Board_Screen, ORANGE, (Board7X7_Width // 2 - 300, Board7X7_Height // 2 - 150, 600, 90))
-    Board_Screen.blit(end_img, (Board7X7_Width // 2 - 300, Board7X7_Height // 2 - 150))
+    pygame.draw.rect(Board_Screen, ORANGE, (Board7X7_Width // 2 - 225, Board7X7_Height // 2 - 150, 470, 80))
+    Board_Screen.blit(end_img, (Board7X7_Width // 2 - 195, Board7X7_Height // 2 - 140))
 
     Play_Again = 'Play Again?'
     Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-    Board_Screen.blit(Play_Again_IMG, (Board7X7_Width // 2 - 250, Board7X7_Height // 2 - 50))
+    Board_Screen.blit(Play_Again_IMG, (Board7X7_Width // 2 - 175, Board7X7_Height // 2 - 20))
 
 def how_to_win_colum():
     global Game_Over
@@ -343,6 +343,9 @@ def is_the_game_over():
 
     global Game_Over
     global Winner
+
+    how_to_win_colum()
+    how_to_win_diagonal()
     Letter = 0
     for row in Board: 
         if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == 5:
