@@ -16,7 +16,7 @@ ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 
-Font = pygame.font.SysFont(None, 120)
+Font = pygame.font.SysFont(None, 75)
 
 Mouse_Clicked = False
 Player = 1
@@ -39,7 +39,7 @@ def emepty_board(Board):
         Board.append(Rows)
     print(Board)
 
-Play_Again_Box = Rect(Board6X6_Width // 2 - 300, Board6X6_Height // 2 - 50, 600, 85)
+Play_Again_Box = Rect(Board6X6_Width // 2 - 130, Board6X6_Height // 2 + 25, 325, 75)
 
 def draw_board():
     Background = WHITE
@@ -71,13 +71,13 @@ def draw_game_over_text(winner):
         end_text = "You have tied!"
 
     end_img = Font.render(end_text, True, DARK_BLUE)
-    pygame.draw.rect(Board_Screen, ORANGE, (Board6X6_Width // 2 - 300, Board6X6_Height // 2 - 150, 600, 90))
-    Board_Screen.blit(end_img, (Board6X6_Width // 2 - 300, Board6X6_Height // 2 - 150))
+    pygame.draw.rect(Board_Screen, ORANGE, (Board6X6_Width // 2 - 170, Board6X6_Height // 2 - 60, 390, 65))
+    Board_Screen.blit(end_img, (Board6X6_Width // 2 - 150, Board6X6_Height // 2 - 50))
 
     Play_Again = 'Play Again?'
     Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-    Board_Screen.blit(Play_Again_IMG, (Board6X6_Width // 2 - 250, Board6X6_Height // 2 - 50))
+    Board_Screen.blit(Play_Again_IMG, (Board6X6_Width // 2 - 120, Board6X6_Height // 2 + 40))
 
 
 def how_to_win_colum():
