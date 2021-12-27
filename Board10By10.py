@@ -14,6 +14,7 @@ ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
 Font = pygame.font.SysFont(None, 100)
 
@@ -39,7 +40,7 @@ Play_Again_Box = Rect(Board10X10_Width // 2 - 250, Board10X10_Height // 2 + 10, 
 
 def draw_board():
     Background = WHITE
-    Grid = (0, 0, 0)
+    Grid = BLACK
     Board_Screen.fill(Background)
     for Grid_lines in range(1, 10):
         pygame.draw.line(Board_Screen, Grid, (0, 80 * Grid_lines), (Board10X10_Width, 80 * Grid_lines), Lines_Width)
@@ -979,9 +980,9 @@ def start_10X10_Board():
                     The_Y_position = Position[1] // 80
                     if Board[The_X_position][The_Y_position] == 0:
                         Board[The_X_position][The_Y_position] = Player
-                        Player *= -1
-                        print(Board)
                         is_the_game_over()
+                        print(Board)
+                        Player *= -1
         if Game_Over == True:
             draw_game_over_text(Winner)
             if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
