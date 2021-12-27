@@ -4,7 +4,6 @@ from pygame.locals import *
 
 pygame.init()
 
-
 Board10X10_Height = 800
 Board10X10_Width = 800
 Lines_Width = 10
@@ -29,13 +28,11 @@ for Boxes in range(10):
     Rows = [0] * 10
     Board.append(Rows)
 
-
 def emepty_board(Board):
     for Boxes in range(10):
         Rows = [0] * 10
         Board.append(Rows)
     print(Board)
-
 
 Play_Again_Box = Rect(Board10X10_Width // 2 - 250, Board10X10_Height // 2 + 10, 480, 85)
 
@@ -63,15 +60,15 @@ def draw_letter():
         X_Position += 1
 
 
-def draw_game_over(winner):
+def draw_game_over_text(winner):
     if winner != 0:
-        end_text = "Player " + str(winner) + " wins!"
+        End_Text = "Player " + str(winner) + " wins!"
     elif winner == 0:
-        end_text = "You have tied!"
+        End_Text = "You have tied!"
 
-    end_img = Font.render(end_text, True, DARK_BLUE)
+    End_Img = Font.render(End_Text, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, (Board10X10_Width // 2 - 300, Board10X10_Height // 2 - 110, 570, 90))
-    Board_Screen.blit(end_img, (Board10X10_Width // 2 - 250, Board10X10_Height // 2 - 100))
+    Board_Screen.blit(End_Img, (Board10X10_Width // 2 - 250, Board10X10_Height // 2 - 100))
 
     Play_Again = 'Play Again?'
     Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
@@ -101,7 +98,6 @@ def player_1_colum_win():
     if Board[0][5] + Board[0][6] + Board[0][7] + Board[0][8] + Board[0][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == 5:
         Winner = 1
         Game_Over = True
@@ -120,7 +116,6 @@ def player_1_colum_win():
     if Board[1][5] + Board[1][6] + Board[1][7] + Board[1][8] + Board[1][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == 5:
         Winner = 1
         Game_Over = True
@@ -139,7 +134,6 @@ def player_1_colum_win():
     if Board[2][5] + Board[2][6] + Board[2][7] + Board[2][8] + Board[2][9] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == 5:
         Winner = 1
         Game_Over = True
@@ -158,7 +152,6 @@ def player_1_colum_win():
     if Board[3][5] + Board[3][6] + Board[3][7] + Board[3][8] + Board[3][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == 5:
         Winner = 1
         Game_Over = True
@@ -177,8 +170,6 @@ def player_1_colum_win():
     if Board[4][5] + Board[4][6] + Board[4][7] + Board[4][8] + Board[4][9] == 5:
         Winner = 1
         Game_Over = True
-
-
     if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == 5:
         Winner = 1
         Game_Over = True
@@ -197,7 +188,6 @@ def player_1_colum_win():
     if Board[5][5] + Board[5][6] + Board[5][7] + Board[5][8] + Board[5][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == 5:
         Winner = 1
         Game_Over = True
@@ -216,7 +206,6 @@ def player_1_colum_win():
     if Board[6][5] + Board[6][6] + Board[6][7] + Board[6][8] + Board[6][9] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[7][0] + Board[7][1] + Board[7][2] + Board[7][3] + Board[7][4] == 5:
         Winner = 1
         Game_Over = True
@@ -235,7 +224,6 @@ def player_1_colum_win():
     if Board[7][5] + Board[7][6] + Board[7][7] + Board[7][8] + Board[7][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[8][0] + Board[8][1] + Board[8][2] + Board[8][3] + Board[8][4] == 5:
         Winner = 1
         Game_Over = True
@@ -254,7 +242,6 @@ def player_1_colum_win():
     if Board[8][5] + Board[8][6] + Board[8][7] + Board[8][8] + Board[8][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[9][0] + Board[9][1] + Board[9][2] + Board[9][3] + Board[9][4] == 5:
         Winner = 1
         Game_Over = True
@@ -275,11 +262,9 @@ def player_1_colum_win():
         Game_Over = True
 
 
-
 def player_2_colum_win():
     global Winner
     global Game_Over
-
 
     if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == -5:
         Winner = 2
@@ -299,7 +284,6 @@ def player_2_colum_win():
     if Board[0][5] + Board[0][6] + Board[0][7] + Board[0][8] + Board[0][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == -5:
         Winner = 2
         Game_Over = True
@@ -318,7 +302,6 @@ def player_2_colum_win():
     if Board[1][5] + Board[1][6] + Board[1][7] + Board[1][8] + Board[1][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == -5:
         Winner = 2
         Game_Over = True
@@ -337,7 +320,6 @@ def player_2_colum_win():
     if Board[2][5] + Board[2][6] + Board[2][7] + Board[2][8] + Board[2][9] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == -5:
         Winner = 2
         Game_Over = True
@@ -356,7 +338,6 @@ def player_2_colum_win():
     if Board[3][5] + Board[3][6] + Board[3][7] + Board[3][8] + Board[3][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == -5:
         Winner = 2
         Game_Over = True
@@ -375,8 +356,6 @@ def player_2_colum_win():
     if Board[4][5] + Board[4][6] + Board[4][7] + Board[4][8] + Board[4][9] == -5:
         Winner = 2
         Game_Over = True
-
-
     if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == -5:
         Winner = 2
         Game_Over = True
@@ -395,7 +374,6 @@ def player_2_colum_win():
     if Board[5][5] + Board[5][6] + Board[5][7] + Board[5][8] + Board[5][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == -5:
         Winner = 2
         Game_Over = True
@@ -414,7 +392,6 @@ def player_2_colum_win():
     if Board[6][5] + Board[6][6] + Board[6][7] + Board[6][8] + Board[6][9] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[7][0] + Board[7][1] + Board[7][2] + Board[7][3] + Board[7][4] == -5:
         Winner = 2
         Game_Over = True
@@ -433,7 +410,6 @@ def player_2_colum_win():
     if Board[7][5] + Board[7][6] + Board[7][7] + Board[7][8] + Board[7][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[8][0] + Board[8][1] + Board[8][2] + Board[8][3] + Board[8][4] == -5:
         Winner = 2
         Game_Over = True
@@ -452,7 +428,6 @@ def player_2_colum_win():
     if Board[8][5] + Board[8][6] + Board[8][7] + Board[8][8] + Board[8][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[9][0] + Board[9][1] + Board[9][2] + Board[9][3] + Board[9][4] == -5:
         Winner = 2
         Game_Over = True
@@ -471,7 +446,6 @@ def player_2_colum_win():
     if Board[9][5] + Board[9][6] + Board[9][7] + Board[9][8] + Board[9][9] == -5:
         Winner = 2
         Game_Over = True
-
 
 
 def player_1_diagonal_win():
@@ -496,8 +470,6 @@ def player_1_diagonal_win():
     if Board[5][5] + Board[6][6] + Board[7][7] + Board[8][8] + Board[9][9] == 5:
         Winner = 1
         Game_Over = True
-
-
     if Board[0][1] + Board[1][2] + Board[2][3] + Board[3][4] + Board[4][5] == 5:
         Winner = 1
         Game_Over = True
@@ -513,7 +485,6 @@ def player_1_diagonal_win():
     if Board[4][5] + Board[5][6] + Board[6][7] + Board[7][8] + Board[8][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[0][2] + Board[1][3] + Board[2][4] + Board[3][5] + Board[4][6] == 5:
         Winner = 1
         Game_Over = True
@@ -526,7 +497,6 @@ def player_1_diagonal_win():
     if Board[3][5] + Board[4][6] + Board[5][7] + Board[6][8] + Board[7][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[0][3] + Board[1][4] + Board[2][5] + Board[3][6] + Board[4][7] == 5:
         Winner = 1
         Game_Over = True
@@ -536,7 +506,6 @@ def player_1_diagonal_win():
     if Board[2][5] + Board[3][6] + Board[4][7] + Board[5][8] + Board[6][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[0][4] + Board[1][5] + Board[2][6] + Board[3][7] + Board[4][8] == 5:
         Winner = 1
         Game_Over = True
@@ -546,7 +515,6 @@ def player_1_diagonal_win():
     if Board[0][5] + Board[1][6] + Board[2][7] + Board[3][8] + Board[4][9] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[1][0] + Board[2][1] + Board[3][2] + Board[4][3] + Board[5][4] == 5:
         Winner = 1
         Game_Over = True
@@ -562,7 +530,6 @@ def player_1_diagonal_win():
     if Board[5][4] + Board[6][5] + Board[7][6] + Board[8][7] + Board[9][8] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[2][0] + Board[3][1] + Board[4][2] + Board[5][3] + Board[6][4] == 5:
         Winner = 1
         Game_Over = True
@@ -575,7 +542,6 @@ def player_1_diagonal_win():
     if Board[5][3] + Board[6][4] + Board[7][5] + Board[8][6] + Board[9][7] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[3][0] + Board[4][1] + Board[5][2] + Board[6][3] + Board[7][4] == 5:
         Winner = 1
         Game_Over = True
@@ -585,19 +551,15 @@ def player_1_diagonal_win():
     if Board[5][2] + Board[6][3] + Board[7][4] + Board[8][5] + Board[9][6] == 5:
         Winner = 1
         Game_Over = True
-
-    
     if Board[4][0] + Board[5][1] + Board[6][2] + Board[7][3] + Board[8][4] == 5:
         Winner = 1
         Game_Over = True
     if Board[5][1] + Board[6][2] + Board[7][3] + Board[8][4] + Board[9][5] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[5][0] + Board[6][1] + Board[7][2] + Board[8][3] + Board[9][4] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[9][0] + Board[8][1] + Board[7][2] + Board[6][3] + Board[5][4] == 5:
         Winner = 1
         Game_Over = True
@@ -616,8 +578,6 @@ def player_1_diagonal_win():
     if Board[4][5] + Board[3][6] + Board[2][7] + Board[1][8] + Board[0][9] == 5:
         Winner = 1
         Game_Over = True
-
-
     if Board[9][1] + Board[8][2] + Board[7][3] + Board[6][4] + Board[5][5] == 5:
         Winner = 1
         Game_Over = True
@@ -633,7 +593,6 @@ def player_1_diagonal_win():
     if Board[5][5] + Board[4][6] + Board[3][7] + Board[2][8] + Board[1][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[9][2] + Board[8][3] + Board[7][4] + Board[6][5] + Board[5][6] == 5:
         Winner = 1
         Game_Over = True
@@ -646,8 +605,6 @@ def player_1_diagonal_win():
     if Board[6][5] + Board[5][6] + Board[4][7] + Board[3][8] + Board[2][9] == 5:
         Winner = 1
         Game_Over = True
-
-    
     if Board[9][3] + Board[8][4] + Board[7][5] + Board[6][6] + Board[5][7] == 5:
         Winner = 1
         Game_Over = True
@@ -657,18 +614,15 @@ def player_1_diagonal_win():
     if Board[7][5] + Board[6][6] + Board[5][7] + Board[4][8] + Board[3][9] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[9][4] + Board[8][5] + Board[7][6] + Board[6][7] + Board[5][8] == 5:
         Winner = 1
         Game_Over = True
     if Board[8][5] + Board[7][6] + Board[6][7] + Board[5][8] + Board[4][9] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[9][5] + Board[8][6] + Board[7][7] + Board[6][8] + Board[5][9] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[8][0] + Board[7][1] + Board[6][2] + Board[5][3] + Board[4][4] == 5:
         Winner = 1
         Game_Over = True
@@ -684,7 +638,6 @@ def player_1_diagonal_win():
     if Board[4][4] + Board[3][5] + Board[2][6] + Board[1][7] + Board[0][8] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[7][0] + Board[6][1] + Board[5][2] + Board[4][3] + Board[3][4] == 5:
         Winner = 1
         Game_Over = True
@@ -697,8 +650,6 @@ def player_1_diagonal_win():
     if Board[4][3] + Board[3][4] + Board[2][5] + Board[1][6] + Board[0][7] == 5:
         Winner = 1
         Game_Over = True
-
-
     if Board[6][0] + Board[5][1] + Board[4][2] + Board[3][3] + Board[2][4] == 5:
         Winner = 1
         Game_Over = True
@@ -708,22 +659,18 @@ def player_1_diagonal_win():
     if Board[4][2] + Board[3][3] + Board[2][4] + Board[1][5] + Board[0][6] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[5][0] + Board[4][1] + Board[3][2] + Board[2][3] + Board[1][4] == 5:
         Winner = 1
         Game_Over = True
     if Board[4][1] + Board[3][2] + Board[2][3] + Board[1][4] + Board[0][5] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == 5:
         Winner = 1
         Game_Over = True
 
 
-
 def player_2_diagonal_win():
-
     global Winner
     global Game_Over
 
@@ -745,8 +692,6 @@ def player_2_diagonal_win():
     if Board[5][5] + Board[6][6] + Board[7][7] + Board[8][8] + Board[9][9] == -5:
         Winner = 2
         Game_Over = True
-
-
     if Board[0][1] + Board[1][2] + Board[2][3] + Board[3][4] + Board[4][5] == -5:
         Winner = 2
         Game_Over = True
@@ -762,7 +707,6 @@ def player_2_diagonal_win():
     if Board[4][5] + Board[5][6] + Board[6][7] + Board[7][8] + Board[8][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[0][2] + Board[1][3] + Board[2][4] + Board[3][5] + Board[4][6] == -5:
         Winner = 2
         Game_Over = True
@@ -775,7 +719,6 @@ def player_2_diagonal_win():
     if Board[3][5] + Board[4][6] + Board[5][7] + Board[6][8] + Board[7][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[0][3] + Board[1][4] + Board[2][5] + Board[3][6] + Board[4][7] == -5:
         Winner = 2
         Game_Over = True
@@ -785,17 +728,15 @@ def player_2_diagonal_win():
     if Board[2][5] + Board[3][6] + Board[4][7] + Board[5][8] + Board[6][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[0][4] + Board[1][5] + Board[2][6] + Board[3][7] + Board[4][8] == -5:
         Winner = 2
         Game_Over = True
-    if Board[1][5] + Board[2][6] + Board[3][7] + Board[4][8] + Board[5][9]== -5:
+    if Board[1][5] + Board[2][6] + Board[3][7] + Board[4][8] + Board[5][9] == -5:
         Winner = 2
         Game_Over = True
     if Board[0][5] + Board[1][6] + Board[2][7] + Board[3][8] + Board[4][9] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[1][0] + Board[2][1] + Board[3][2] + Board[4][3] + Board[5][4] == -5:
         Winner = 2
         Game_Over = True
@@ -811,7 +752,6 @@ def player_2_diagonal_win():
     if Board[5][4] + Board[6][5] + Board[7][6] + Board[8][7] + Board[9][8] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[2][0] + Board[3][1] + Board[4][2] + Board[5][3] + Board[6][4] == -5:
         Winner = 2
         Game_Over = True
@@ -824,7 +764,6 @@ def player_2_diagonal_win():
     if Board[5][3] + Board[6][4] + Board[7][5] + Board[8][6] + Board[9][7] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[3][0] + Board[4][1] + Board[5][2] + Board[6][3] + Board[7][4] == -5:
         Winner = 2
         Game_Over = True
@@ -834,19 +773,15 @@ def player_2_diagonal_win():
     if Board[5][2] + Board[6][3] + Board[7][4] + Board[8][5] + Board[9][6] == -5:
         Winner = 2
         Game_Over = True
-
-    
     if Board[4][0] + Board[5][1] + Board[6][2] + Board[7][3] + Board[8][4] == -5:
         Winner = 2
         Game_Over = True
     if Board[5][1] + Board[6][2] + Board[7][3] + Board[8][4] + Board[9][5] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[5][0] + Board[6][1] + Board[7][2] + Board[8][3] + Board[9][4] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[9][0] + Board[8][1] + Board[7][2] + Board[6][3] + Board[5][4] == -5:
         Winner = 2
         Game_Over = True
@@ -865,8 +800,6 @@ def player_2_diagonal_win():
     if Board[4][5] + Board[3][6] + Board[2][7] + Board[1][8] + Board[0][9] == -5:
         Winner = 2
         Game_Over = True
-
-
     if Board[9][1] + Board[8][2] + Board[7][3] + Board[6][4] + Board[5][5] == -5:
         Winner = 2
         Game_Over = True
@@ -882,7 +815,6 @@ def player_2_diagonal_win():
     if Board[5][5] + Board[4][6] + Board[3][7] + Board[2][8] + Board[1][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[9][2] + Board[8][3] + Board[7][4] + Board[6][5] + Board[5][6] == -5:
         Winner = 2
         Game_Over = True
@@ -895,8 +827,6 @@ def player_2_diagonal_win():
     if Board[6][5] + Board[5][6] + Board[4][7] + Board[3][8] + Board[2][9] == -5:
         Winner = 2
         Game_Over = True
-
-    
     if Board[9][3] + Board[8][4] + Board[7][5] + Board[6][6] + Board[5][7] == -5:
         Winner = 2
         Game_Over = True
@@ -906,18 +836,15 @@ def player_2_diagonal_win():
     if Board[7][5] + Board[6][6] + Board[5][7] + Board[4][8] + Board[3][9] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[9][4] + Board[8][5] + Board[7][6] + Board[6][7] + Board[5][8] == -5:
         Winner = 2
         Game_Over = True
     if Board[8][5] + Board[7][6] + Board[6][7] + Board[5][8] + Board[4][9] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[9][5] + Board[8][6] + Board[7][7] + Board[6][8] + Board[5][9] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[8][0] + Board[7][1] + Board[6][2] + Board[5][3] + Board[4][4] == -5:
         Winner = 2
         Game_Over = True
@@ -933,7 +860,6 @@ def player_2_diagonal_win():
     if Board[4][4] + Board[3][5] + Board[2][6] + Board[1][7] + Board[0][8] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[7][0] + Board[6][1] + Board[5][2] + Board[4][3] + Board[3][4] == -5:
         Winner = 2
         Game_Over = True
@@ -946,8 +872,6 @@ def player_2_diagonal_win():
     if Board[4][3] + Board[3][4] + Board[2][5] + Board[1][6] + Board[0][7] == -5:
         Winner = 2
         Game_Over = True
-
-
     if Board[6][0] + Board[5][1] + Board[4][2] + Board[3][3] + Board[2][4] == -5:
         Winner = 2
         Game_Over = True
@@ -957,23 +881,18 @@ def player_2_diagonal_win():
     if Board[4][2] + Board[3][3] + Board[2][4] + Board[1][5] + Board[0][6] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[5][0] + Board[4][1] + Board[3][2] + Board[2][3] + Board[1][4] == -5:
         Winner = 2
         Game_Over = True
     if Board[4][1] + Board[3][2] + Board[2][3] + Board[1][4] + Board[0][5] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[4][0] + Board[3][1] + Board[2][2] + Board[1][3] + Board[0][4] == -5:
         Winner = 2
         Game_Over = True
 
 
-
-
 def is_the_game_over():
-
     global Game_Over
     global Winner
     Letter = 0
@@ -1064,7 +983,7 @@ def start_10X10_Board():
                         print(Board)
                         is_the_game_over()
         if Game_Over == True:
-            draw_game_over(Winner)
+            draw_game_over_text(Winner)
             if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
                 Mouse_Clicked = True
             if window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
