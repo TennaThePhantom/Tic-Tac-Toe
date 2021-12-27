@@ -180,7 +180,7 @@ def start_3by3_Board():
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 		# update display
 		pygame.display.update()
-	
+
 	pygame.quit()
 
 

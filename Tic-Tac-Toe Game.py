@@ -1,4 +1,6 @@
+from board3by3 import *
 from StartMenu import *
+
 
 def menu_loop(): 
     Game_State = Game.Main_Menu
@@ -31,6 +33,12 @@ def menu_loop():
 
         if Game_State == Game.QUIT:
             pygame.quit()
-            return
+            return Start_menu == False
+
+        if Game_State == Game.Board3by3:
+            Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
+            start_3by3_Board()
+    
+    pygame.quit()
 
 menu_loop()
