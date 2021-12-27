@@ -29,19 +29,14 @@ for Boxes in range(7):
     Rows = [0] * 7
     Board.append(Rows)
 
-""" Creates the [0, 0, 0, 0, 0, 0, 0] Instead of having me to hardcode it
-have to be print(Board) first
-doesn't work if you called emepty_board instead"""
 
-def Emepty_Board(Board):
+def emepty_board(Board):
     for Boxes in range(7):
         Rows = [0] * 7
         Board.append(Rows)
     print(Board)
 
-
 Play_Again_Box = Rect(Board7X7_Width // 2 - 200, Board7X7_Height // 2 - 30, 400, 85)
-
 
 def draw_board():
     Background = WHITE
@@ -81,9 +76,11 @@ def draw_game_over_text(winner):
     pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
     Board_Screen.blit(Play_Again_IMG, (Board7X7_Width // 2 - 175, Board7X7_Height // 2 - 20))
 
+
 def how_to_win_colum():
     global Game_Over
     global Winner
+
     if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == 5:
         Winner = 1
         Game_Over = True
@@ -93,7 +90,6 @@ def how_to_win_colum():
     if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == 5:
         Winner = 1
         Game_Over = True
@@ -103,7 +99,6 @@ def how_to_win_colum():
     if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == 5:
         Winner = 1
         Game_Over = True
@@ -113,7 +108,6 @@ def how_to_win_colum():
     if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == 5:
         Winner = 1
         Game_Over = True
@@ -123,7 +117,6 @@ def how_to_win_colum():
     if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == 5:
         Winner = 1
         Game_Over = True
-    
     if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == 5:
         Winner = 1
         Game_Over = True
@@ -133,7 +126,6 @@ def how_to_win_colum():
     if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == 5:
         Winner = 1
         Game_Over = True
@@ -143,7 +135,6 @@ def how_to_win_colum():
     if Board[5][2] + Board[5][3] + Board[5][4] + Board[5][5] + Board[5][6] == 5:
         Winner = 1
         Game_Over = True
-
     if Board[6][0] + Board[6][1] + Board[6][2] + Board[6][3] + Board[6][4] == 5:
         Winner = 1
         Game_Over = True
@@ -153,7 +144,7 @@ def how_to_win_colum():
     if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == 5:
         Winner = 1
         Game_Over = True
-    
+
     if Board[0][0] + Board[0][1] + Board[0][2] + Board[0][3] + Board[0][4] == -5:
         Winner = 2
         Game_Over = True
@@ -163,7 +154,6 @@ def how_to_win_colum():
     if Board[0][2] + Board[0][3] + Board[0][4] + Board[0][5] + Board[0][6] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[1][0] + Board[1][1] + Board[1][2] + Board[1][3] + Board[1][4] == -5:
         Winner = 2
         Game_Over = True
@@ -173,7 +163,6 @@ def how_to_win_colum():
     if Board[1][2] + Board[1][3] + Board[1][4] + Board[1][5] + Board[1][6] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[2][0] + Board[2][1] + Board[2][2] + Board[2][3] + Board[2][4] == -5:
         Winner = 2
         Game_Over = True
@@ -183,7 +172,6 @@ def how_to_win_colum():
     if Board[2][2] + Board[2][3] + Board[2][4] + Board[2][5] + Board[2][6] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[3][0] + Board[3][1] + Board[3][2] + Board[3][3] + Board[3][4] == -5:
         Winner = 2
         Game_Over = True
@@ -193,7 +181,6 @@ def how_to_win_colum():
     if Board[3][2] + Board[3][3] + Board[3][4] + Board[3][5] + Board[3][6] == -5:
         Winner = 2
         Game_Over = True
-    
     if Board[4][0] + Board[4][1] + Board[4][2] + Board[4][3] + Board[4][4] == -5:
         Winner = 2
         Game_Over = True
@@ -203,7 +190,6 @@ def how_to_win_colum():
     if Board[4][2] + Board[4][3] + Board[4][4] + Board[4][5] + Board[4][6] == -5:
         Winner = 2
         Game_Over = True
-
     if Board[5][0] + Board[5][1] + Board[5][2] + Board[5][3] + Board[5][4] == -5:
         Winner = 2
         Game_Over = True
@@ -222,7 +208,6 @@ def how_to_win_colum():
     if Board[6][2] + Board[6][3] + Board[6][4] + Board[6][5] + Board[6][6] == -5:
         Winner = 2
         Game_Over = True
-
 
 
 def how_to_win_diagonal():
@@ -340,12 +325,12 @@ def how_to_win_diagonal():
 
 
 def is_the_game_over():
-
     global Game_Over
     global Winner
 
     how_to_win_colum()
     how_to_win_diagonal()
+
     Letter = 0
     for row in Board: 
         if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == 5:
@@ -354,14 +339,12 @@ def is_the_game_over():
         if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == -5:
             Winner = 2
             Game_Over = True
-
         if Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] == 5:
             Winner = 1
             Game_Over = True
         if Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] == -5:
             Winner = 2
             Game_Over = True
-
         if Board[2][Letter] + Board[3][Letter] + Board[4][Letter] + Board[5][Letter] + Board[6][Letter] == 5:
             Winner = 1
             Game_Over = True
@@ -369,7 +352,7 @@ def is_the_game_over():
             Winner = 2
             Game_Over = True
         Letter += 1
-    
+
     if Game_Over == False:
         Tie = True
         for Row in Board:
@@ -406,10 +389,9 @@ def Start_7X7_Board():
                     The_Y_position = Position[1] // 100
                     if Board[The_X_position][The_Y_position] == 0:
                         Board[The_X_position][The_Y_position] = Player
-                        Player *= -1
-                        print(Board)
                         is_the_game_over()
-
+                        print(Board)
+                        Player *= -1
         if Game_Over == True:
             draw_game_over_text(Winner)
             if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
@@ -423,10 +405,10 @@ def Start_7X7_Board():
                     Position = (0, 0)
                     Board = []
                     Winner = 0
-                    Emepty_Board(Board)
-                    
+                    emepty_board(Board)
+
         pygame.display.update()
-    
+
     pygame.quit()
 
 Start_7X7_Board()
