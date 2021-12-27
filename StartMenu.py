@@ -122,6 +122,7 @@ class Game(Enum):
     How_to_play_3by3 = 4
     How_to_play_5by5_or_more = -4
     Board3by3 = 5
+    AiBoard_3by3 = -5
 
 
 """Text for menu screen"""
@@ -478,7 +479,7 @@ def Ai_Mode(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "3 By 3 Board",
-    Action = None
+    Action = Game.AiBoard_3by3
     )
     Board_size_4X4 = Recative_Text(
     Text_Center = (400, 360),

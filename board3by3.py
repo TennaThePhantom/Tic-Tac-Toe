@@ -184,6 +184,3 @@ def start_3by3_Board():
 	pygame.quit()
 
 
-start_3by3_Board()
-
-

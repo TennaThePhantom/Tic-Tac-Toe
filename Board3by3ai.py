@@ -263,9 +263,9 @@ def start_Ai_3by3_Board():
 					Ai_Board = []
 		# update display
 		pygame.display.update()
+		
 	pygame.quit()
 
 
-start_Ai_3by3_Board()
 
 
