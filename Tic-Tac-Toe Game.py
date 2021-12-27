@@ -3,11 +3,8 @@ from Board3by3ai import *
 from StartMenu import *
 
 
-
-
-def menu_loop(): 
+def tic_tac_toe_game_loop(): 
     Game_State = Game.Main_Menu
-
     Start_menu = True
     while Start_menu == True:
         if Game_State == Game.Main_Menu:
@@ -40,12 +37,16 @@ def menu_loop():
 
         if Game_State == Game.Board3by3:
             Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
+            Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
             start_3by3_Board()
     
         if Game_State == Game.AiBoard_3by3:
             Game_State = pygame.display.set_mode((Ai_Board3X3_Width, Ai_Board3X3_Width))
+            Game_State = pygame.display.set_caption('Ai Tic-Tac-Toe 3X3 Board')
             start_Ai_3by3_Board()
+
+        
     
     pygame.quit()
 
-menu_loop()
+tic_tac_toe_game_loop()
