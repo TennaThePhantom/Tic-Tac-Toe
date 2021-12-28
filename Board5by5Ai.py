@@ -5,10 +5,10 @@ import copy
 
 pygame.init()
 
-Board5X5_Width = 600
-Board5X5_Height = 600
+Ai_Board5X5_Width = 600
+Ai_Board5X5_Height = 600
 Lines_Width = 15
-Board_Screen = pygame.display.set_mode((Board5X5_Width, Board5X5_Height)) 
+Board_Screen = pygame.display.set_mode((Ai_Board5X5_Width, Ai_Board5X5_Height)) 
 pygame.display.set_caption("Ai Tic-Tac-Toe 5X5 Board")
 
 ROSE = (204, 0, 204)
@@ -26,7 +26,7 @@ Ai_Board = []
 Game_Over = False
 Winner = 0
 
-Play_Again_Box = Rect(Board5X5_Width // 2 - 130, Board5X5_Height // 2 + 25, 325, 75)
+Play_Again_Box = Rect(Ai_Board5X5_Width // 2 - 130, Ai_Board5X5_Height // 2 + 25, 325, 75)
 
 
 def draw_board():
@@ -34,8 +34,8 @@ def draw_board():
 	Grid_Lines = (0, 0, 0)
 	Board_Screen.fill(BackGround)
 	for Grid_Lines in range(1,5):
-		pygame.draw.line(Board_Screen, Grid_Lines , (0, 120 * Grid_Lines), (Board5X5_Width,120 * Grid_Lines), Lines_Width)
-		pygame.draw.line(Board_Screen, Grid_Lines, (120 * Grid_Lines, 0), (120 * Grid_Lines, Board5X5_Height), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines , (0, 120 * Grid_Lines), (Ai_Board5X5_Width,120 * Grid_Lines), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines, (120 * Grid_Lines, 0), (120 * Grid_Lines, Ai_Board5X5_Height), Lines_Width)
 
 
 def draw_letter():
@@ -99,13 +99,13 @@ def draw_game_over_text(winner):
 		End_Text = "You have tied!"
 
 	End_Img = Font.render(End_Text, True, DARK_BLUE) 
-	pygame.draw.rect(Board_Screen, ORANGE, (Board5X5_Width // 2 - 170, Board5X5_Height // 2 - 60, 390, 65))
-	Board_Screen.blit(End_Img, (Board5X5_Width // 2 - 150, Board5X5_Height // 2 - 50))
+	pygame.draw.rect(Board_Screen, ORANGE, (Ai_Board5X5_Width // 2 - 170, Ai_Board5X5_Height // 2 - 60, 390, 65))
+	Board_Screen.blit(End_Img, (Ai_Board5X5_Width // 2 - 150, Ai_Board5X5_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 40))
+	Board_Screen.blit(Play_Again_IMG, (Ai_Board5X5_Width // 2 - 120, Ai_Board5X5_Height // 2 + 40))
 
 
 def computerMove(AiTurn):
@@ -207,6 +207,4 @@ def start_ai_5by5_Board():
 		pygame.display.update()
 
 	pygame.quit()
-
-start_ai_5by5_Board()
 

@@ -104,7 +104,7 @@ def draw_game_over_text(winner):
 	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 40))
 
 
-def start_5_by_5_Board():
+def start_5by5_Board():
     global Winner
     global Game_Over
     global Position
@@ -153,4 +153,3 @@ def start_5_by_5_Board():
     pygame.quit()
 
 
-start_5_by_5_Board()
