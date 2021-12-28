@@ -1003,7 +1003,6 @@ def start_10X10_Board():
     pygame.quit()
 
 
-start_10X10_Board()
 
 
 
