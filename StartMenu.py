@@ -123,6 +123,13 @@ class Game(Enum):
     How_to_play_5by5_or_more = -4
     Board3by3 = 5
     AiBoard_3by3 = -5
+    Board4by4 = 6
+    AiBoard_4by4 = -6
+    Board5by5 = 7
+    Ai_Board5by5 = -7
+    Board6By6 = 8
+    Board7By7 = 9
+    Board10By10 = 10
 
 
 """Text for menu screen"""
