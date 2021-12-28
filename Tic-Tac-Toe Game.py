@@ -55,7 +55,7 @@ def tic_tac_toe_game_loop():
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 5X5 Board')
             start_5by5_Board()
 
-        if Game_State == Game.Board6by6:
+        if Game_State == Game.Board6X6:
             Game_State = pygame.display.set_mode((Board6X6_Width, Board6X6_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 6X6 Board')
             start_6X6_board()

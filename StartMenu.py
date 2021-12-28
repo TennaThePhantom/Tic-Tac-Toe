@@ -127,7 +127,7 @@ class Game(Enum):
     AiBoard_4by4 = -6
     Board5by5 = 7
     Ai_Board5by5 = -7
-    Board6By6 = 8
+    Board6X6 = 8
     Board7By7 = 9
     Board10By10 = 10
 
@@ -422,7 +422,7 @@ def Two_Player_Mode(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "6 By 6 Board",
-    Action = Game.Board6By6
+    Action = Game.Board6X6
     )
 
     Board_size_7X7 = Recative_Text(
