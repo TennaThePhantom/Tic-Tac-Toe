@@ -399,21 +399,39 @@ def Two_Player_Mode(Menu_Screen):
     text = "3 By 3 Board",
     Action = Game.Board3by3
     )
+    Board_size_4X4 = Recative_Text(
+    Text_Center = (400, 280),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "4 By 4 Board",
+    Action = Game.Board4by4
+    )
+
     Board_size_5X5 = Recative_Text(
     Text_Center = (400, 360),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board",
-    Action = None
+    Action = Game.Board5by5
     )
+    Board_size_6X6 = Recative_Text(
+    Text_Center = (400, 440),
+    Text_size = 35, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "6 By 6 Board",
+    Action = Game.Board6By6
+    )
+
     Board_size_7X7 = Recative_Text(
     Text_Center = (400, 520),
     Text_size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "7 By 7 Board",
-    Action = None
+    Action = Game.Board7By7
     )
     Board_size_10X10 = Recative_Text(
     Text_Center = (400, 600),
@@ -421,25 +439,9 @@ def Two_Player_Mode(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "10 By 10 Board",
-    Action = None
-    )
-    Board_size_4X4 = Recative_Text(
-    Text_Center = (400, 280),
-    Text_size = 35, 
-    Bg_rgb = DARK_PURPLE,
-    Text_color = LIGHT_BLUE,
-    text = "4 By 4 Board",
-    Action = None
+    Action = Game.Board10By10
     )
 
-    Board_size_6X6 = Recative_Text(
-    Text_Center = (400, 440),
-    Text_size = 35, 
-    Bg_rgb = DARK_PURPLE,
-    Text_color = LIGHT_BLUE,
-    text = "6 By 6 Board",
-    Action = None
-    )
 
     return_back_to_game_mode = Recative_Text(
     Text_Center = (190, 670),
@@ -494,7 +496,7 @@ def Ai_Mode(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "4 By 4 Board",
-    Action = None
+    Action = Game.AiBoard_4by4
     )
     Board_size_5X5 = Recative_Text(
     Text_Center = (400, 520),
@@ -502,7 +504,7 @@ def Ai_Mode(Menu_Screen):
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board",
-    Action = None
+    Action = Game.Ai_Board5by5
     )
 
     return_back_to_screen_game_mode = Recative_Text(
