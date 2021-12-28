@@ -4,6 +4,7 @@ from Board4by4 import *
 from Board4by4Ai import *
 from Board5By5 import *
 from Board5by5Ai import *
+from Board6by6 import *
 from StartMenu import *
 
 
@@ -46,7 +47,7 @@ def tic_tac_toe_game_loop():
         
         if Game_State == Game.Board4by4:
             Game_State = pygame.display.set_mode((Board4X4_Width, Board4X4_Height))
-            Game_State = pygame.display.set_caption('Tic-Tac-Toe 5X5 Board')
+            Game_State = pygame.display.set_caption('Tic-Tac-Toe 4X4 Board')
             start_4by4_Board()
 
         if Game_State == Game.Board5by5:
@@ -54,6 +55,10 @@ def tic_tac_toe_game_loop():
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 5X5 Board')
             start_5by5_Board()
 
+        if Game_State == Game.Board6by6:
+            Game_State = pygame.display.set_mode((Board6X6_Width, Board6X6_Height))
+            Game_State = pygame.display.set_caption('Tic-Tac-Toe 6X6 Board')
+            start_5by5_Board()
     
         if Game_State == Game.AiBoard_3by3:
             Game_State = pygame.display.set_mode((Ai_Board3X3_Width, Ai_Board3X3_Height))

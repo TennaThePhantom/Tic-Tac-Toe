@@ -311,6 +311,5 @@ def start_6X6_board():
     
     pygame.quit()
 
-start_6X6_board()
 
 
