@@ -168,6 +168,5 @@ def start_4by4_Board():
 	
 	pygame.quit()
 
-start_4by4_Board()
 
 
