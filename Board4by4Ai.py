@@ -8,10 +8,10 @@ pygame.init()
 
 
 # the board dimensions and title
-Board4X4_Width = 500
-Board4X4_Height = 500
+Ai_Board4X4_Width = 500
+Ai_Board4X4_Height = 500
 Lines_Width = 15
-Board_Screen = pygame.display.set_mode((Board4X4_Width, Board4X4_Height)) 
+Board_Screen = pygame.display.set_mode((Ai_Board4X4_Width, Ai_Board4X4_Height)) 
 pygame.display.set_caption("Ai Tic-Tac-Toe 4X4 Board")
 
 
@@ -36,7 +36,7 @@ Game_Over = False
 Winner = 0
 
 # the box for play again text
-Play_Again_Box = Rect(Board4X4_Width // 2 - 130, Board4X4_Height // 2, 265, 50)
+Play_Again_Box = Rect(Ai_Board4X4_Width // 2 - 130, Ai_Board4X4_Height // 2, 265, 50)
 
 
 def draw_board():
@@ -44,8 +44,8 @@ def draw_board():
 	Grid_Lines = (0, 0, 0) # color for the lines 
 	Board_Screen.fill(BackGround)
 	for Grid_Lines in range(1,4):
-		pygame.draw.line(Board_Screen, Grid_Lines , (0, 125 * Grid_Lines), (Board4X4_Width,125 * Grid_Lines), Lines_Width)
-		pygame.draw.line(Board_Screen, Grid_Lines, (125 * Grid_Lines, 0), (125 * Grid_Lines, Board4X4_Height), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines , (0, 125 * Grid_Lines), (Ai_Board4X4_Width,125 * Grid_Lines), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines, (125 * Grid_Lines, 0), (125 * Grid_Lines, Ai_Board4X4_Height), Lines_Width)
 
 
 # makes X and O
@@ -116,13 +116,13 @@ def draw_game_over_text(winner):
 
 	# draws end game text and player text below
 	End_Img = Font.render(End_Text, True, DARK_BLUE) 
-	pygame.draw.rect(Board_Screen, ORANGE, (Board4X4_Width // 2 - 150, Board4X4_Height // 2 - 60, 300, 50))
-	Board_Screen.blit(End_Img, (Board4X4_Width // 2 - 150, Board4X4_Height // 2 - 50))
+	pygame.draw.rect(Board_Screen, ORANGE, (Ai_Board4X4_Width // 2 - 150, Ai_Board4X4_Height // 2 - 60, 300, 50))
+	Board_Screen.blit(End_Img, (Ai_Board4X4_Width // 2 - 150, Ai_Board4X4_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
-	Board_Screen.blit(Play_Again_IMG, (Board4X4_Width // 2 - 120, Board4X4_Height // 2 + 10))
+	Board_Screen.blit(Play_Again_IMG, (Ai_Board4X4_Width // 2 - 120, Ai_Board4X4_Height // 2 + 10))
 
 
 def computerMove(AiTurn):
@@ -171,7 +171,7 @@ def is_the_box_open():
 
 
 """Starts the game"""
-def start_4by4_Board():
+def start_ai_4by4_Board():
 	# access variabes outside the function
 	global Winner
 	global Game_Over
@@ -237,6 +237,4 @@ def start_4by4_Board():
 		pygame.display.update()
 
 	pygame.quit()
-
-start_4by4_Board()
 
