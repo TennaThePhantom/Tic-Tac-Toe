@@ -364,7 +364,7 @@ def is_the_game_over():
             Winner = 0
 
 
-def Start_7X7_Board():
+def start_7X7_Board():
     global Winner
     global Game_Over
     global Position
@@ -411,6 +411,5 @@ def Start_7X7_Board():
 
     pygame.quit()
 
-Start_7X7_Board()
 
 
