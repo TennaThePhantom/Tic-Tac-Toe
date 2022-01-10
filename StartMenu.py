@@ -1,3 +1,4 @@
+import sys
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
@@ -178,14 +179,20 @@ def Title_screen(MenuScreen):
         MenuScreen.fill(DARK_PURPLE)
         display_regular_text("Tic-Tac-Toe", 45, 400, 50, LIGHT_BLUE,DARK_PURPLE)
     
-
         for texts in texts_for_menu:
             Menu_Action = texts.update(pygame.mouse.get_pos(), mouse_over_text)
             if Menu_Action is not None:
                 return Menu_Action
             texts.Place_Text(MenuScreen)
-
+        
+        for window in pygame.event.get():
+            if window.type == pygame.QUIT:
+                Menu = False
+        
         pygame.display.flip()
+    
+    pygame.quit()
+    sys.exit()
 
 """When you hit start game goes to next screen"""
 def start_menu(Menu_Screen):
