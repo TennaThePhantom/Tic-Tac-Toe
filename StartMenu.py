@@ -184,11 +184,7 @@ def Title_screen(MenuScreen):
             if Menu_Action is not None:
                 return Menu_Action
             texts.Place_Text(MenuScreen)
-        
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                Menu = False
-        
+
         pygame.display.flip()
     
     pygame.quit()
@@ -237,17 +233,11 @@ def start_menu(Menu_Screen):
             if second_screen is not None:
                 return second_screen
             every_text.Place_Text(Menu_Screen)
-        
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                menu_return = False
-
+            
         pygame.display.flip()
 
     pygame.quit()
     sys.exit()
-
-
 
 def Help_section(Menu_Screen):
     How_to_play_3By3 = Recative_Text(
@@ -293,15 +283,10 @@ def Help_section(Menu_Screen):
                 return Help_section_screen
             Every_text.Place_Text(Menu_Screen)
 
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                Help_section_display = False
-
         pygame.display.flip()
-
+    
     pygame.quit()
     sys.exit()
-
 
 
 def HowToPlay3X3Board(Menu_Screen):
@@ -338,14 +323,7 @@ def HowToPlay3X3Board(Menu_Screen):
                 return go_back
             texts.Place_Text(Menu_Screen)
 
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                display_Text = False
-
         pygame.display.flip()
-
-    pygame.quit()
-    sys.exit()
 
 
 def HowToPlay5X5BoardOrHigher(Menu_Screen):
@@ -383,15 +361,10 @@ def HowToPlay5X5BoardOrHigher(Menu_Screen):
                 return go_back_to_help_section
             text.Place_Text(Menu_Screen)
         
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                display_Text = False
-
         pygame.display.flip()
-
+    
     pygame.quit()
     sys.exit()
-
 
 
 
@@ -420,16 +393,11 @@ def credits_section(Menu_Screen):
             if return_back is not None:
                 return return_back
             text.Place_Text(Menu_Screen)
-        
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                credits_Display = False
 
         pygame.display.flip()
-
+    
     pygame.quit()
     sys.exit()
-
 
 
 """Two Player Mode """
@@ -520,16 +488,11 @@ def Two_Player_Mode(Menu_Screen):
             if Boards is not None:
                 return Boards
             Every_board_size.Place_Text(Menu_Screen)
-        
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                choose_board_size = False
 
         pygame.display.flip()
-
+    
     pygame.quit()
     sys.exit()
-
 
 
 def Ai_Mode(Menu_Screen):
@@ -593,15 +556,10 @@ def Ai_Mode(Menu_Screen):
                 return Boards
             Every_board_size.Place_Text(Menu_Screen)
 
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
-                choose_board_size = False
-
         pygame.display.flip()
-
+        
     pygame.quit()
     sys.exit()
-
 
 
 
