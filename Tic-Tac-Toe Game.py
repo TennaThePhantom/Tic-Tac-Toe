@@ -1,3 +1,6 @@
+import pygame
+from pygame.locals import * 
+import sys
 from board3by3 import *
 from Board3by3ai import *
 from Board4by4 import *
@@ -86,10 +89,7 @@ def tic_tac_toe_game_loop():
             Game_State = pygame.display.set_mode((Ai_Board5X5_Width, Ai_Board5X5_Height))
             Game_State = pygame.display.set_caption('Ai Tic-Tac-Toe 5X5 Board')
             start_ai_5by5_Board()
-        
 
-        
-    
     pygame.quit()
-
+    sys.exit()
 tic_tac_toe_game_loop()
