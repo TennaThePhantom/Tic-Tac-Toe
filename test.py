@@ -37,3 +37,7 @@
             Game_State = pygame.display.set_mode((Ai_Board5X5_Width, Ai_Board5X5_Height))
             Game_State = pygame.display.set_caption('Ai Tic-Tac-Toe 5X5 Board')
             start_ai_5by5_Board()
+         if Game_State == Game.Board3by3:
+            Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
+            Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
+            start_3by3_Board()
