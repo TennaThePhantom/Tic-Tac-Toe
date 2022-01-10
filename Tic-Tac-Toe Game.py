@@ -12,6 +12,7 @@ from Board7By7 import *
 from Board10By10 import *
 from StartMenu import *
 
+pygame.init()
 
 def tic_tac_toe_game_loop(): 
     Game_State = Game.Main_Menu
@@ -92,4 +93,5 @@ def tic_tac_toe_game_loop():
 
     pygame.quit()
     sys.exit()
+    
 tic_tac_toe_game_loop()
