@@ -6,7 +6,7 @@ from StartMenu import *
 
 pygame.init()
 
-def tic_tac_toe_game_loop(): 
+def Start_Menu():
     Game_State = Game.Main_Menu
     Start_menu = True
     while Start_menu == True:
@@ -38,6 +38,12 @@ def tic_tac_toe_game_loop():
             pygame.quit()
             return Start_menu == False
 
+def tic_tac_toe_game_loop(): 
+    Game_State = Game.Main_Menu
+    Start_Game = True
+    while Start_Game == True:
+        Start_Menu()
+        
         if Game_State == Game.Board3by3:
             Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
