@@ -1,5 +1,4 @@
 import pygame
-import sys
 from pygame.locals import *
 from StartMenu import *
 from board3by3 import *
@@ -47,13 +46,20 @@ def Start_Menu():
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
             start_3by3_Board()
 
-    pygame.quit()
-    sys.exit()
+
+def test():
+    Game_State = Game.Main_Menu
+    Start_menu = True
+    while Start_menu == True:
+        if Game_State == Game.Board3by3:
+            Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
+            Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
+            start_3by3_Board()
 
 
 def tic_tac_toe_game_loop():
-    Start_Menu()
+    pass
 
 
-
-tic_tac_toe_game_loop()
+Start_Menu()
+test()
