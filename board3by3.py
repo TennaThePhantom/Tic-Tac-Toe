@@ -1,4 +1,5 @@
 #import modules
+import sys
 import pygame
 from pygame.locals import *
 
@@ -182,5 +183,6 @@ def start_3by3_Board():
 		pygame.display.update()
 
 	pygame.quit()
+	sys.exit()
 
 

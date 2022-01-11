@@ -42,24 +42,18 @@ def Start_Menu():
             pygame.quit()
             return Start_menu == False
 
-
-def start_two_player_boards():
-    Game_State = Game.Main_Menu
-    Start_Two_Player = True
-    while Start_Two_Player == True:
         if Game_State == Game.Board3by3:
-            Game_State = pygame.display.set_mode(
-                (Board3X3_Width, Board3X3_Height))
+            Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
             start_3by3_Board()
+
+    pygame.quit()
+    sys.exit()
 
 
 def tic_tac_toe_game_loop():
     Start_Menu()
-    start_two_player_boards()
 
-    pygame.quit()
-    sys.exit()
 
 
 tic_tac_toe_game_loop()
