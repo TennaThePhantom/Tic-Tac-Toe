@@ -1,4 +1,5 @@
 import pygame
+import sys
 from pygame.locals import *
 
 
@@ -1001,8 +1002,6 @@ def start_10X10_Board():
         pygame.display.update()
     
     pygame.quit()
-
-
-
+    sys.exit()
 
 

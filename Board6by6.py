@@ -1,4 +1,5 @@
 import pygame
+import sys
 from pygame.locals import *
 
 
@@ -310,6 +311,6 @@ def start_6X6_board():
         pygame.display.update()
     
     pygame.quit()
-
+    sys.exit()
 
 

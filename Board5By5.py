@@ -1,4 +1,5 @@
 import pygame
+import sys
 from pygame.locals import *
 
 pygame.init()
@@ -151,5 +152,6 @@ def start_5by5_Board():
         pygame.display.update()
 
     pygame.quit()
+    sys.exit()
 
 

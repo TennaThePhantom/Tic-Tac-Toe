@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import sys
 
 
 pygame.init()
@@ -156,5 +157,6 @@ def start_4by4_Board():
 		pygame.display.update()
 	
 	pygame.quit()
+	sys.exit()
 
 

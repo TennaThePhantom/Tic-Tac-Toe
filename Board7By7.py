@@ -1,4 +1,5 @@
 import pygame
+import sys
 from pygame.locals import *
 
 
@@ -410,6 +411,7 @@ def start_7X7_Board():
         pygame.display.update()
 
     pygame.quit()
+    sys.exit()
 
 
 
