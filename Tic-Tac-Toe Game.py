@@ -1,7 +1,9 @@
 import pygame
 from pygame.locals import *
-from StartMenu import *
 from board3by3 import *
+from StartMenu import *
+import sys
+
 
 pygame.init()
 
@@ -9,10 +11,11 @@ window_size = pygame.display.set_mode((800, 700))
 pygame.display.update()
 
 
-def Start_Menu():
+
+def Tic_Tac_toe_game():
     Game_State = Game.Main_Menu
-    Start_menu = True
-    while Start_menu == True:
+    Start_Game = True
+    while Start_Game == True:
         if Game_State == Game.Main_Menu:
             Game_State = Title_screen(Menu_Screen)
 
@@ -39,17 +42,12 @@ def Start_Menu():
 
         if Game_State == Game.QUIT:
             pygame.quit()
-
-
-def start_two_player_boards():
-    Game_State = Game.Main_Menu
-    Two_Player = True
-    while Two_Player == True:
+        
         if Game_State == Game.Board3by3:
             Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
             pygame.display.update()
             start_3by3_Board()
+            
 
-def Tic_Tac_toe_game():
-    pass
+Tic_Tac_toe_game()
