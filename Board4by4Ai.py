@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import random
 import copy
+import sys
 
 pygame.init()
 
@@ -237,4 +238,5 @@ def start_ai_4by4_Board():
 		pygame.display.update()
 
 	pygame.quit()
+	sys.exit()
 

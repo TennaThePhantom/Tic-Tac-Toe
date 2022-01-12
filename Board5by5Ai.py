@@ -1,3 +1,4 @@
+import sys
 import pygame
 from pygame.locals import *
 import random
@@ -207,4 +208,5 @@ def start_ai_5by5_Board():
 		pygame.display.update()
 
 	pygame.quit()
+	sys.exit()
 

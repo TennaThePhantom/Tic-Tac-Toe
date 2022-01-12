@@ -1,6 +1,7 @@
 #import modules
 import pygame
 import random
+import sys
 import copy
 from pygame.locals import *
 
@@ -265,6 +266,7 @@ def start_Ai_3by3_Board():
 		pygame.display.update()
 		
 	pygame.quit()
+	sys.exit()
 
 
 
