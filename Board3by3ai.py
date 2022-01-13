@@ -1,4 +1,6 @@
 #import modules
+from glob import glob
+from pydoc import plain
 import pygame
 import random
 import sys
@@ -133,6 +135,14 @@ def draw_game_over_text(winner):
 	Board_Screen.blit(Play_Again_IMG, (Ai_Board3X3_Width // 2 - 80, Ai_Board3X3_Height // 2 + 10))
 
 
+def computerSmartMoves():
+	global Player
+	global Game_over
+	global Winner
+	Board_Copy = copy.deepcopy(Board)
+	if Player == -1:
+		if Board_Copy[0][0] and Board_Copy[1][1] == 1:
+			Ai_Board.append(draw_Letter()) == Board_Copy[2][2]
 
 def computerMove(AiTurn):
 	global Game_over 
@@ -156,6 +166,7 @@ def computerMove(AiTurn):
 	for Row in range(3): # three rows
 		for Colum in range(3): # three columns
 			Board_Copy = copy.deepcopy(Board) 
+			computerSmartMoves()
 			if Board_Copy[Random_row][Random_colum] == 0: # chooses any location on board if it's open
 				Board_Copy[Random_row][Random_colum] = AiTurn # Ai turn to go
 				if Is_the_game_over() in Board_Copy: # is the game over in the ai board
@@ -270,4 +281,4 @@ def start_Ai_3by3_Board():
 
 
 
-
+start_Ai_3by3_Board()
