@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-from StartMenu import *
 from board3by3 import *
 from Board4by4 import *
 from Board5By5 import *
@@ -10,6 +9,8 @@ from Board10By10 import *
 from Board3by3ai import *
 from Board4by4Ai import * 
 from Board5by5Ai import * 
+from StartMenu import *
+
 
 pygame.init()
 

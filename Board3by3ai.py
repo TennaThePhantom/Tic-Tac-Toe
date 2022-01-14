@@ -268,6 +268,3 @@ def start_Ai_3by3_Board():
 	pygame.quit()
 	sys.exit()
 
-
-
-start_Ai_3by3_Board()
