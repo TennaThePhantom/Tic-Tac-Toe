@@ -1,4 +1,4 @@
-#import modules
+# imported modules
 import sys
 import pygame
 from pygame.locals import *
@@ -18,22 +18,21 @@ DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-
 # define font
 Font = pygame.font.SysFont(None, 40)
 
 # variables for game
-Mouse_clicked = False
+Mouse_Clicked = False
 Player = 1
 Position = (0,0)
 Board = []
 Game_Over = False
 Winner = 0
 
+"""Creates [[0, 0, 0], [0, 0, 0], [0, 0, 0]]"""
 for Boxes in range(3):
     Rows = [0] * 3
     Board.append(Rows)
-
 
 # draws a rectangle around play again 
 Play_Again_Box = Rect(Board3X3_Width // 2 - 80, Board3X3_Height // 2, 160, 50)
@@ -47,6 +46,7 @@ def draw_board():
 		"""I got 150 from doing 450 / 3 since I'm having 3 rows and column"""
 		pygame.draw.line(Board_Screen, Grid_Lines_Color , (0, 150 * Grid_Lines), (Board3X3_Width,150 * Grid_Lines), Lines_Width)
 		pygame.draw.line(Board_Screen, Grid_Lines_Color, (150 * Grid_Lines, 0), (150 * Grid_Lines, Board3X3_Height), Lines_Width)
+
 
 # makes X and O
 def draw_Letter():
@@ -69,8 +69,9 @@ def draw_Letter():
 			Y_Position += 1
 		X_Position += 1	
 
+
 """Checks the board if player 1 or 2 have won or is it a tie game"""
-def Is_the_game_over():
+def is_the_game_over():
 	# acesss variables outside the function
 	global Game_Over
 	global Winner
@@ -84,11 +85,12 @@ def Is_the_game_over():
 		if sum(spots) == -3: # when player place a letter it's - 1
 			Winner = 2
 			Game_Over = True
+
 		# checks for 3 in a row 
-		if Board[0][Letter] + Board [1][Letter] + Board [2][Letter] == 3:
+		if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] == 3:
 			Winner = 1
 			Game_Over = True
-		if Board[0][Letter] + Board [1][Letter] + Board [2][Letter] == -3:
+		if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] == -3:
 			Winner = 2
 			Game_Over = True
 		Letter += 1
@@ -112,25 +114,26 @@ def Is_the_game_over():
 			Game_Over = True
 			Winner = 0
 
+
 """Makes the text when game is over or tie game"""
 def draw_game_over_text(winner):
 
 	if winner != 0:
-		end_text = "Player " + str(winner) + " wins!"
+		End_Text = "Player " + str(winner) + " wins!"
 	elif winner == 0:
-		end_text = "You have tied!"
+		End_Text = "You have tied!"
 
-	end_img = Font.render(end_text, True, DARK_BLUE)
+	End_Img = Font.render(End_Text, True, DARK_BLUE)
 	"""Either play around with draw.rect and blit for this part or do pin point calculations with your board"""
 	pygame.draw.rect(Board_Screen, ORANGE, (Board3X3_Width // 2 - 100, Board3X3_Height // 2 - 60, 205, 50))
-	Board_Screen.blit(end_img, (Board3X3_Width // 2 - 100, Board3X3_Height // 2 - 50))
+	Board_Screen.blit(End_Img, (Board3X3_Width // 2 - 100, Board3X3_Height // 2 - 50))
 
 	Play_Again = 'Play Again?'
 	Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
 	Board_Screen.blit(Play_Again_IMG, (Board3X3_Width // 2 - 80, Board3X3_Height // 2 + 10))
 
-"""Starts the game"""
+
 def start_3by3_Board():
 	"""Access the variables outside the functions.
 	Need this or it won't work the way it should"""
@@ -139,7 +142,7 @@ def start_3by3_Board():
 	global Position
 	global Board
 	global Player
-	global Mouse_clicked
+	global Mouse_Clicked
 
 	Start_Tic_Tac_Toe = True
 	while Start_Tic_Tac_Toe == True:
@@ -148,31 +151,32 @@ def start_3by3_Board():
 		draw_Letter()
 		"""Opens the window and close window
 		Closes the game when we press the X button in the window"""
-		for window in pygame.event.get():
-			if window.type == pygame.QUIT:
+		for Window in pygame.event.get():
+			if Window.type == pygame.QUIT:
 				Start_Tic_Tac_Toe = False
 			"""For player 1 and player2 mouse clicks to be register on the board"""
 			if Game_Over == False:
-				if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
-					Mouse_clicked = True
-				if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
-					Mouse_clicked = False
+				if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+					Mouse_Clicked = True
+				if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+					Mouse_Clicked = False
 					Position = pygame.mouse.get_pos()
 					the_X_position = Position[0] // 150
 					The_Y_position = Position[1] // 150
 					if Board[the_X_position][The_Y_position] == 0:
 						Board[the_X_position][The_Y_position] = Player
-						Is_the_game_over()
+						is_the_game_over()
 						print(Board)
 						Player *= -1 # swap turns
+
 		# if someone has won the game or tied
 		if Game_Over == True:
 			draw_game_over_text(Winner)
-			# check for if we clicked on Play Again
-			if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
-				Mouse_clicked = True
-			if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
-				Mouse_clicked = False
+			# check for if we clicked on play again
+			if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+				Mouse_Clicked = True
+			if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+				Mouse_Clicked = False
 				Position = pygame.mouse.get_pos()
 				"""If player press play again resets everything"""
 				if Play_Again_Box.collidepoint(Position):
@@ -183,9 +187,11 @@ def start_3by3_Board():
 					Winner = 0
 					# creates empty 3 x 3 board again
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-		# update display
+
+		# updates display
 		pygame.display.update()
 
 	pygame.quit()
 	sys.exit()
+
 

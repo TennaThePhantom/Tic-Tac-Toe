@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from StartMenu import *
-from board3by3 import *
+from Board3by3 import *
 from Board4by4 import *
 from Board5By5 import *
 from Board6by6 import *
