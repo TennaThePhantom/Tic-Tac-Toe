@@ -181,7 +181,7 @@ def is_the_box_open():
 		return None	# nothing available 
 
 
-def start_ai_3by3_Board():
+def start_ai_3x3_board():
 	"""access the variables outside the functions
 	if you don't do this it doesn't work the way it should"""
 	global Winner
