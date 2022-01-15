@@ -143,18 +143,18 @@ def computermove(AiTurn):
 
 
 def is_the_box_open():
-	validMoves = [] 
+	ValidMoves = [] 
 	for Row in range(4): 
 		for Colum in range(4): 
 			if Board[Row][Colum] == 0: 
-				validMoves.append((Colum, Row)) 
-	if len(validMoves) > 0:
-		return random.choice(validMoves)
+				ValidMoves.append((Colum, Row)) 
+	if len(ValidMoves) > 0:
+		return random.choice(ValidMoves)
 	else:
 		return None	 
 
 
-def start_ai_4by4_board():
+def start_ai_4x4_board():
 	global Winner
 	global Game_Over
 	global Position
