@@ -109,7 +109,7 @@ def draw_game_over_text(winner):
 	Board_Screen.blit(Play_Again_IMG, (Board5X5_Width // 2 - 120, Board5X5_Height // 2 + 40))
 
 
-def start_5by5_board():
+def start_5x5_board():
     global Winner
     global Game_Over
     global Position
