@@ -2,14 +2,12 @@ import pygame
 import sys
 from pygame.locals import *
 
-
 pygame.init()
 
 Board10X10_Height = 800
 Board10X10_Width = 800
 Lines_Width = 10
 Board_Screen = pygame.display.set_mode((Board10X10_Width, Board10X10_Height))
-pygame.display.set_caption("Tic-Tac-Toe 10X10 Board")
 
 ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
@@ -898,15 +896,13 @@ def is_the_game_over():
     global Game_Over
     global Winner
     Letter = 0
-    """How to wim in colum"""
     player_1_colum_win()
     player_2_colum_win()
 
-    """How to win diagonal"""
     player_1_diagonal_win()
     player_2_diagonal_win()
 
-    for row in Board:
+    for Spots in Board:
         if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == 5:
             Winner = 1
             Game_Over = True
@@ -957,24 +953,25 @@ def is_the_game_over():
             Winner = 0
 
 
-def start_10X10_Board():
+def start_10x10_board():
     global Winner
     global Game_Over
     global Position
     global Board
     global Player
     global Mouse_Clicked
+
     Start_Tic_Tac_Toe = True
     while Start_Tic_Tac_Toe == True:
         draw_board() 
         draw_letter()
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
+        for Window in pygame.event.get():
+            if Window.type == pygame.QUIT:
                 Start_Tic_Tac_Toe = False
             if Game_Over == False:
-                if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+                if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
                     Mouse_Clicked = True
-                if window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+                if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
                     Mouse_Clicked = False
                     Position = pygame.mouse.get_pos()
                     The_X_position = Position[0] // 80
@@ -986,9 +983,9 @@ def start_10X10_Board():
                         Player *= -1
         if Game_Over == True:
             draw_game_over_text(Winner)
-            if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+            if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
                 Mouse_Clicked = True
-            if window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+            if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
                 Mouse_Clicked = False
                 Position = pygame.mouse.get_pos()
                 if Play_Again_Box.collidepoint(Position):
@@ -998,9 +995,9 @@ def start_10X10_Board():
                     Board = []
                     Winner = 0
                     emepty_board(Board)
-                    
+
         pygame.display.update()
-    
+
     pygame.quit()
     sys.exit()
 
