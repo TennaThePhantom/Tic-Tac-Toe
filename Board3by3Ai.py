@@ -1,8 +1,8 @@
 # imported modules
 import pygame
 import random
-import sys
 import copy
+import sys
 from pygame.locals import *
 
 pygame.init()
@@ -49,7 +49,7 @@ def draw_board():
 
 
 # makes X and O
-def draw_Letter():
+def draw_letter():
 	X_Position = 0
 	for Spots in Board:
 		Y_Position = 0
@@ -150,11 +150,11 @@ def computermove(AiTurn):
 					Game_over = True
 					Winner = 2
 				else: # if not continue add a letter until game is tied, player 1 wins or the ai wins 
-					Ai_Board.append(draw_Letter())
+					Ai_Board.append(draw_letter())
 					Board_Copy[Random_Row][Random_Colum] = AiTurn
 					return Board_Copy
 
-	"""if the board is full there is no available moves 
+	"""If the board is full there is no available moves 
 	but the Ai needs to know that or else it will try to place a letter and crash the program
 	Also the Ai must know the player placed a letter in the box too if not it will try to place a letter 
 	in a box with a letter and crash the program"""
@@ -164,7 +164,7 @@ def computermove(AiTurn):
 		Board_Copy = copy.deepcopy(Board)
 		Board_Copy[y][x] = AiTurn
 		if AiTurn == -1:
-			Ai_Board.append(draw_Letter())
+			Ai_Board.append(draw_letter())
 		return Board_Copy
 	return Board
 
@@ -181,7 +181,7 @@ def is_the_box_open():
 		return None	# nothing available 
 
 
-def start_Ai_3by3_Board():
+def start_ai_3by3_Board():
 	"""access the variables outside the functions
 	if you don't do this it doesn't work the way it should"""
 	global Winner
@@ -197,7 +197,7 @@ def start_Ai_3by3_Board():
 
 		# draw board and ready for first click on board
 		draw_board()
-		draw_Letter()
+		draw_letter()
 		"""Opens the window and close window
 		Closes the game when we press the X button in the window"""
 		for Window in pygame.event.get():
