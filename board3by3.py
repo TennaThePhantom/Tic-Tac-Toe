@@ -134,7 +134,7 @@ def draw_game_over_text(winner):
 	Board_Screen.blit(Play_Again_IMG, (Board3X3_Width // 2 - 80, Board3X3_Height // 2 + 10))
 
 
-def start_3by3_Board():
+def start_3x3_Board():
 	"""Access the variables outside the functions.
 	Need this or it won't work the way it should"""
 	global Winner
