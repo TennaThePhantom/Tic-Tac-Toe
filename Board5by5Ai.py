@@ -1,8 +1,8 @@
-import sys
 import pygame
-from pygame.locals import *
 import random
 import copy
+import sys
+from pygame.locals import *
 
 pygame.init()
 
@@ -10,33 +10,37 @@ Ai_Board5X5_Width = 600
 Ai_Board5X5_Height = 600
 Lines_Width = 15
 Board_Screen = pygame.display.set_mode((Ai_Board5X5_Width, Ai_Board5X5_Height)) 
-pygame.display.set_caption("Ai Tic-Tac-Toe 5X5 Board")
 
 ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
 Font = pygame.font.SysFont(None,  75)
 
 Mouse_Clicked = False
 Player = 1
 Position = (0,0)
-Board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+Board = []
 Ai_Board = []
 Game_Over = False
 Winner = 0
+
+for Boxes in range(5):
+	Rows = [] * 5
+	Board.append(Rows)
 
 Play_Again_Box = Rect(Ai_Board5X5_Width // 2 - 130, Ai_Board5X5_Height // 2 + 25, 325, 75)
 
 
 def draw_board():
 	BackGround = WHITE
-	Grid_Lines = (0, 0, 0)
+	Grid_Lines_Color = BLACK
 	Board_Screen.fill(BackGround)
 	for Grid_Lines in range(1,5):
-		pygame.draw.line(Board_Screen, Grid_Lines , (0, 120 * Grid_Lines), (Ai_Board5X5_Width,120 * Grid_Lines), Lines_Width)
-		pygame.draw.line(Board_Screen, Grid_Lines, (120 * Grid_Lines, 0), (120 * Grid_Lines, Ai_Board5X5_Height), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines_Color , (0, 120 * Grid_Lines), (Ai_Board5X5_Width,120 * Grid_Lines), Lines_Width)
+		pygame.draw.line(Board_Screen, Grid_Lines_Color, (120 * Grid_Lines, 0), (120 * Grid_Lines, Ai_Board5X5_Height), Lines_Width)
 
 
 def draw_letter():
@@ -140,13 +144,13 @@ def computerMove(AiTurn):
 
 
 def is_the_box_open():
-	validMoves = [] 
+	ValidMoves = [] 
 	for Row in range(5): 
 		for Colum in range(5): 
 			if Board[Row][Colum] == 0: 
-				validMoves.append((Colum, Row)) 
-	if len(validMoves) > 0: 
-		return random.choice(validMoves)
+				ValidMoves.append((Colum, Row)) 
+	if len(ValidMoves) > 0: 
+		return random.choice(ValidMoves)
 	else:
 		return None
 
@@ -188,7 +192,6 @@ def start_ai_5by5_Board():
 							is_the_game_over()
 							print(Board)
 							Player *= -1 
-
 		if Game_Over == True:
 			draw_game_over_text(Winner)
 			if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
@@ -209,4 +212,5 @@ def start_ai_5by5_Board():
 
 	pygame.quit()
 	sys.exit()
+
 
