@@ -10,7 +10,6 @@ Board3X3_Height = 450
 Board3X3_Width = 450
 Lines_Width = 15
 Board_Screen = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
-pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
 
 # colors for board
 ROSE = (204, 0, 204)
@@ -27,9 +26,14 @@ Font = pygame.font.SysFont(None, 40)
 Mouse_clicked = False
 Player = 1
 Position = (0,0)
-Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+Board = []
 Game_Over = False
 Winner = 0
+
+for Boxes in range(3):
+    Rows = [0] * 3
+    Board.append(Rows)
+
 
 # draws a rectangle around play again 
 Play_Again_Box = Rect(Board3X3_Width // 2 - 80, Board3X3_Height // 2, 160, 50)
