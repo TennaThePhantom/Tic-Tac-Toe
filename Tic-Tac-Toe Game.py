@@ -49,6 +49,7 @@ def tic_tac_toe_game():
 
         if Game_State == Game.QUIT:
             pygame.quit()
+            sys.exit()
 
         """The boards for two player"""
         if Game_State == Game.Board3by3:
