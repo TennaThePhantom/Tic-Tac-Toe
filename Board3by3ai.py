@@ -1,4 +1,4 @@
-#import modules
+# imported modules
 import pygame
 import random
 import sys
@@ -13,7 +13,6 @@ Ai_Board3X3_Width = 450
 Lines_Width = 15
 
 Board_Screen = pygame.display.set_mode((Ai_Board3X3_Width, Ai_Board3X3_Height))
-pygame.display.set_caption('Ai Tic-Tac-Toe 3X3 Board')
 
 # colors for board
 ROSE = (204, 0, 204)
@@ -26,7 +25,7 @@ BLACK = (0, 0, 0)
 Font = pygame.font.SysFont(None, 40)
 
 # variables for game
-Mouse_clicked = False
+Mouse_Clicked = False
 Player = 1
 Position = (0,0)
 Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -51,40 +50,42 @@ def draw_board():
 
 # makes X and O
 def draw_Letter():
-	x_position = 0
-	for spots in Board:
-		y_position = 0
-		for player in spots:
-			if player == 1: # player 1 X
-				pygame.draw.line(Board_Screen, ROSE, (x_position * 150 + 25, y_position * 150 + 25), (x_position * 150 + 125, y_position * 150 + 125), Lines_Width)
-				pygame.draw.line(Board_Screen, ROSE, (x_position * 150 + 25, y_position * 150 + 125), (x_position * 150 + 125, y_position * 150 + 25), Lines_Width)
+	X_Position = 0
+	for Spots in Board:
+		Y_Position = 0
+		for Player in Spots:
+			if Player == 1: # player 1 X
+				pygame.draw.line(Board_Screen, ROSE, (X_Position * 150 + 25, Y_Position * 150 + 25), (X_Position * 150 + 125, Y_Position * 150 + 125), Lines_Width)
+				pygame.draw.line(Board_Screen, ROSE, (X_Position * 150 + 25, Y_Position * 150 + 125), (X_Position * 150 + 125, Y_Position * 150 + 25), Lines_Width)
 				"""The first number 25 is where the line starts and
 					the second number 125 is when the lines ends
 					both combine have to equal whatever your board is divide 
 					by the amount of rows you have"""
-			if player == -1: # ai = player 2 O
-				pygame.draw.circle(Board_Screen, ORANGE, (x_position * 150 + 75, y_position * 150 + 75), 50, Lines_Width)
+			if Player == -1: # ai = player 2 O
+				pygame.draw.circle(Board_Screen, ORANGE, (X_Position * 150 + 75, Y_Position * 150 + 75), 50, Lines_Width)
 			"""what's half of 150. 75 to place the circle in the middle of the box
 			and the other number is the size of the circle
 			you have to play around with that to get the circle size you want"""
-			y_position += 1
-		x_position += 1	
+			Y_Position += 1
+		X_Position += 1	
+
 
 """Checks the board if player 1 or ai have won or is it a tie game"""
-def Is_the_game_over():
+def is_the_game_over():
 	# acesss variables outside the function
 	global Game_over
 	global Winner
 
 	Letter = 0
-	for spots in Board:
+	for Spots in Board:
 		# checks column for 3 in a row
-		if sum(spots) == 3: # when player 1 place a letter it's + 1
+		if sum(Spots) == 3: # when player 1 place a letter it's + 1
 			Winner = 1
 			Game_over = True
-		if sum(spots) == -3: # when player place a letter it's - 1
+		if sum(Spots) == -3: # when player place a letter it's - 1
 			Winner = 2
 			Game_over = True
+		
 		# checks for 3 in a row 
 		if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] == 3:
 			Winner = 1
@@ -105,8 +106,8 @@ def Is_the_game_over():
 	# checks for tie game
 	if Game_over == False:
 		Tie = True
-		for row in Board:
-			for Zero in row:
+		for Row in Board:
+			for Zero in Row:
 				if Zero == 0:
 					Tie = False
 		if Tie == True:
@@ -133,37 +134,24 @@ def draw_game_over_text(winner):
 	Board_Screen.blit(Play_Again_IMG, (Ai_Board3X3_Width // 2 - 80, Ai_Board3X3_Height // 2 + 10))
 
 
-
-def computerMove(AiTurn):
+def computermove(AiTurn):
 	global Game_over 
 	global Winner
-	Random_row = random.randint(0, 2) # random move in rows
-	Random_colum = random.randint(0, 2) # random move in column
+	Random_Row = random.randint(0, 2) # random move in rows
+	Random_Colum = random.randint(0, 2) # random move in column
 
-	"""Makes sure that if player 1 or player 2 wins 
-	need this since after player 1 places doesn't matter if win or not ai will place a letter after
-	if player wins make the winning move first but the ai does it counts ai as the winner that's"""
-	for Row in range(3):
-		for Colum in range(3):
-			Board_Copy = copy.deepcopy(Board) 
-			if Board_Copy[Random_row][Random_colum] == 0: 
-				Board_Copy[Random_row][Random_colum] = AiTurn
-				if Is_the_game_over() in Board_Copy:
-					Ai_Board.append(draw_Letter())
-					return Board_Copy
-
-	"""Makes the Ai be able to move"""
+	"""Makes the Ai be able to pick randomly """
 	for Row in range(3): # three rows
 		for Colum in range(3): # three columns
 			Board_Copy = copy.deepcopy(Board) 
-			if Board_Copy[Random_row][Random_colum] == 0: # chooses any location on board if it's open
-				Board_Copy[Random_row][Random_colum] = AiTurn # Ai turn to go
-				if Is_the_game_over() in Board_Copy: # is the game over in the ai board
+			if Board_Copy[Random_Row][Random_Colum] == 0: # chooses any location on board if it's open
+				Board_Copy[Random_Row][Random_Colum] = AiTurn # Ai turn to go
+				if is_the_game_over() in Board_Copy: # is the game over in the ai board
 					Game_over = True
 					Winner = 2
 				else: # if not continue add a letter until game is tied, player 1 wins or the ai wins 
 					Ai_Board.append(draw_Letter())
-					Board_Copy[Random_row][Random_colum] = AiTurn
+					Board_Copy[Random_Row][Random_Colum] = AiTurn
 					return Board_Copy
 
 	"""if the board is full there is no available moves 
@@ -192,7 +180,7 @@ def is_the_box_open():
 	else:
 		return None	# nothing available 
 
-"""Starts the game"""
+
 def start_Ai_3by3_Board():
 	"""access the variables outside the functions
 	if you don't do this it doesn't work the way it should"""
@@ -202,7 +190,7 @@ def start_Ai_3by3_Board():
 	global Board
 	global Ai_Board
 	global Player
-	global Mouse_clicked
+	global Mouse_Clicked
 
 	Start_Tic_Tac_Toe = True
 	while Start_Tic_Tac_Toe == True:
@@ -212,15 +200,15 @@ def start_Ai_3by3_Board():
 		draw_Letter()
 		"""Opens the window and close window
 		Closes the game when we press the X button in the window"""
-		for window in pygame.event.get():
-			if window.type == pygame.QUIT:
+		for Window in pygame.event.get():
+			if Window.type == pygame.QUIT:
 				Start_Tic_Tac_Toe = False
-			"""for player 1 and player2 mouse clicks to be register on the board"""
+			"""For player 1 and player2 mouse clicks to be register on the board"""
 			if Game_over == False:
-				if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
-					Mouse_clicked = True
-				if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
-					Mouse_clicked = False
+				if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+					Mouse_Clicked = True
+				if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+					Mouse_Clicked = False
 					Position = pygame.mouse.get_pos()
 					"""Puts the letters on the board when mouse is clicked in a box"""
 					the_X_position = Position[0] // 150
@@ -228,31 +216,31 @@ def start_Ai_3by3_Board():
 					if Board[the_X_position][The_Y_position] == 0: # place any letter if the spot is open
 						Board[the_X_position][The_Y_position] = Player # switch between player 1 and player 2
 						if Player == 1: # for player 1 
-							Is_the_game_over() # checks game over
+							is_the_game_over() # checks game over
 							print(Board)
 							"""If the game is over for player 1 it tells the Ai it can't place a letter 
 							after player 1 wins take away the if else statement 
 							the Ai places a letter after player 1 wins """ 
 							if Game_over == True: 
-								Winner = 1
+								pass
 							else:
 								Player *= -1 # player 1 and player 2 swap
 						if Player == -1: # for the Ai
-							Board = computerMove(Player)
-							Is_the_game_over()
+							Board = computermove(Player)
+							is_the_game_over()
 							print(Board)
 							Player *= -1 # swap back to player 1
-	
+
 		# if someone has won the game or tied
 		if Game_over == True:
 			draw_game_over_text(Winner)
 			# check for if we clicked on Play Again
-			if window.type == pygame.MOUSEBUTTONDOWN and Mouse_clicked == False:
-				Mouse_clicked = True
-			if window.type == pygame.MOUSEBUTTONUP and Mouse_clicked == True:
-				Mouse_clicked = False
+			if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+				Mouse_Clicked = True
+			if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+				Mouse_Clicked = False
 				Position = pygame.mouse.get_pos()
-				"""if player press play again resets everything"""
+				"""If player press play again resets everything"""
 				if Play_Again_Box.collidepoint(Position):
 					Game_over = False
 					Player = 1
@@ -262,9 +250,11 @@ def start_Ai_3by3_Board():
 					# creates empty 3 x 3 board again and rests ai board
 					Board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 					Ai_Board = []
+
 		# update display
 		pygame.display.update()
-		
+
 	pygame.quit()
 	sys.exit()
+
 
