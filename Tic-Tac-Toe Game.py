@@ -1,15 +1,15 @@
 import pygame
 from pygame.locals import *
 from StartMenu import *
-from Board3by3 import *
-from Board4by4 import *
+from Board3By3 import *
+from Board4By4 import *
 from Board5By5 import *
-from Board6by6 import *
+from Board6By6 import *
 from Board7By7 import *
 from Board10By10 import *
-from Board3by3Ai import *
-from Board4by4Ai import * 
-from Board5by5Ai import * 
+from Board3By3Ai import *
+from Board4By4Ai import * 
+from Board5By5Ai import * 
 
 
 """Menu is connected to all boards"""
