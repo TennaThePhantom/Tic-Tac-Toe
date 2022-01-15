@@ -2,20 +2,18 @@ import pygame
 import sys
 from pygame.locals import *
 
-
 pygame.init()
-
 
 Board7X7_Height = 700
 Board7X7_Width = 700
 Lines_Width = 12
 Board_Screen = pygame.display.set_mode((Board7X7_Width, Board7X7_Height))
-pygame.display.set_caption("Tic-Tac-Toe 7X7 Board")
 
 ROSE = (204, 0, 204)
 ORANGE = (255, 153, 51)
 DARK_BLUE = (0, 0, 204)
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
 Font = pygame.font.SysFont(None, 90)
 
@@ -39,13 +37,14 @@ def emepty_board(Board):
 
 Play_Again_Box = Rect(Board7X7_Width // 2 - 200, Board7X7_Height // 2 - 30, 400, 85)
 
+
 def draw_board():
     Background = WHITE
-    Grid = (0, 0, 0)
+    Grid_Lines_Color = BLACK
     Board_Screen.fill(Background)
     for Grid_lines in range(1, 7):
-        pygame.draw.line(Board_Screen, Grid, (0, 100 * Grid_lines), (Board7X7_Width, 100 * Grid_lines), Lines_Width)
-        pygame.draw.line(Board_Screen, Grid, (100 * Grid_lines, 0), (100 * Grid_lines, Board7X7_Height), Lines_Width)
+        pygame.draw.line(Board_Screen, Grid_Lines_Color, (0, 100 * Grid_lines), (Board7X7_Width, 100 * Grid_lines), Lines_Width)
+        pygame.draw.line(Board_Screen, Grid_Lines_Color, (100 * Grid_lines, 0), (100 * Grid_lines, Board7X7_Height), Lines_Width)
 
 
 def draw_letter():
@@ -64,13 +63,13 @@ def draw_letter():
 
 def draw_game_over_text(winner):
     if winner != 0:
-        end_text = "Player " + str(winner) + " wins!"
+        End_Text = "Player " + str(winner) + " wins!"
     elif winner == 0:
-        end_text = "You have tied!"
+        End_Text = "You have tied!"
 
-    end_img = Font.render(end_text, True, DARK_BLUE)
+    End_Img = Font.render(End_Text, True, DARK_BLUE)
     pygame.draw.rect(Board_Screen, ORANGE, (Board7X7_Width // 2 - 225, Board7X7_Height // 2 - 150, 470, 80))
-    Board_Screen.blit(end_img, (Board7X7_Width // 2 - 195, Board7X7_Height // 2 - 140))
+    Board_Screen.blit(End_Img, (Board7X7_Width // 2 - 195, Board7X7_Height // 2 - 140))
 
     Play_Again = 'Play Again?'
     Play_Again_IMG = Font.render(Play_Again, True, DARK_BLUE)
@@ -328,12 +327,11 @@ def how_to_win_diagonal():
 def is_the_game_over():
     global Game_Over
     global Winner
-
     how_to_win_colum()
     how_to_win_diagonal()
 
     Letter = 0
-    for row in Board: 
+    for Spots in Board: 
         if Board[0][Letter] + Board[1][Letter] + Board[2][Letter] + Board[3][Letter] + Board[4][Letter] == 5:
             Winner = 1
             Game_Over = True
@@ -365,7 +363,7 @@ def is_the_game_over():
             Winner = 0
 
 
-def start_7X7_Board():
+def start_7x7_board():
     global Winner
     global Game_Over
     global Position
@@ -377,13 +375,13 @@ def start_7X7_Board():
     while Start_Tic_Tac_Toe == True:
         draw_board() 
         draw_letter()
-        for window in pygame.event.get():
-            if window.type == pygame.QUIT:
+        for Window in pygame.event.get():
+            if Window.type == pygame.QUIT:
                 Start_Tic_Tac_Toe = False
             if Game_Over == False:
-                if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+                if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
                     Mouse_Clicked = True
-                if window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+                if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
                     Mouse_Clicked = False
                     Position = pygame.mouse.get_pos()
                     The_X_position = Position[0] // 100
@@ -395,9 +393,9 @@ def start_7X7_Board():
                         Player *= -1
         if Game_Over == True:
             draw_game_over_text(Winner)
-            if window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
+            if Window.type == pygame.MOUSEBUTTONDOWN and Mouse_Clicked == False:
                 Mouse_Clicked = True
-            if window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
+            if Window.type == pygame.MOUSEBUTTONUP and Mouse_Clicked == True:
                 Mouse_Clicked = False
                 Position = pygame.mouse.get_pos()
                 if Play_Again_Box.collidepoint(Position):
@@ -412,6 +410,5 @@ def start_7X7_Board():
 
     pygame.quit()
     sys.exit()
-
 
 
