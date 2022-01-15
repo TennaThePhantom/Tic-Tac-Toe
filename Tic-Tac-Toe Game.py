@@ -68,7 +68,7 @@ def tic_tac_toe_game():
         if Game_State == Game.Board5By5:
             Game_State = pygame.display.set_mode((Ai_Board5X5_Height, Ai_Board5X5_Width))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 5X5 Board')
-            start_ai_5by5_board()
+            start_5x5_board()
 
         if Game_State == Game.Board6X6:
             Game_State = pygame.display.set_mode((Board6X6_Width, Board6X6_Height))
@@ -99,7 +99,7 @@ def tic_tac_toe_game():
         if Game_State == Game.Ai_Board5By5:
             Game_State = pygame.display.set_mode((Ai_Board5X5_Width, Ai_Board5X5_Height))
             Game_State = pygame.display.set_caption("Ai Tic-Tac-Toe 5X5 Board")
-            start_ai_5by5_board()
+            start_ai_5x5_board()
     
     pygame.display.update()
 
