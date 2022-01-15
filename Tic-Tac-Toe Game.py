@@ -7,7 +7,7 @@ from Board5By5 import *
 from Board6by6 import *
 from Board7By7 import *
 from Board10By10 import *
-from Board3by3ai import *
+from Board3by3Ai import *
 from Board4by4Ai import * 
 from Board5by5Ai import * 
 
