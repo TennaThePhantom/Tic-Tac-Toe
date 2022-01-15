@@ -1,6 +1,6 @@
-# imported modules
-import sys
+# imported module
 import pygame
+import sys
 from pygame.locals import *
 
 pygame.init()
@@ -49,7 +49,7 @@ def draw_board():
 
 
 # makes X and O
-def draw_Letter():
+def draw_letter():
 	X_Position = 0
 	for Spots in Board:
 		Y_Position = 0
@@ -77,12 +77,12 @@ def is_the_game_over():
 	global Winner
 
 	Letter = 0
-	for spots in Board:
+	for Spots in Board:
 		# checks column for 3 in a row
-		if sum(spots) == 3: # when player 1 place a letter it's + 1
+		if sum(Spots) == 3: # when player 1 place a letter it's + 1
 			Winner = 1
 			Game_Over = True
-		if sum(spots) == -3: # when player place a letter it's - 1
+		if sum(Spots) == -3: # when player place a letter it's - 1
 			Winner = 2
 			Game_Over = True
 
@@ -148,7 +148,7 @@ def start_3by3_Board():
 	while Start_Tic_Tac_Toe == True:
 		# draw board and ready for first click on board
 		draw_board()
-		draw_Letter()
+		draw_letter()
 		"""Opens the window and close window
 		Closes the game when we press the X button in the window"""
 		for Window in pygame.event.get():
