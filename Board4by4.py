@@ -109,7 +109,7 @@ def draw_game_over_text(winner):
 	pygame.draw.rect(Board_Screen, ORANGE, Play_Again_Box)
 	Board_Screen.blit(Play_Again_IMG, (Board4X4_Width // 2 - 120, Board4X4_Height // 2 + 30))
 
-def start_4by4_board():
+def start_4x4_board():
 	global Winner
 	global Game_Over
 	global Position
