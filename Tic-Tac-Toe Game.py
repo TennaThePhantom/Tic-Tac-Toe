@@ -24,27 +24,30 @@ def tic_tac_toe_game():
     while Start_Game == True:
         """Menu"""
         if Game_State == Game.Main_Menu:
-            Game_State = Title_screen(Menu_Screen)
+            Game_State = title_screen(Menu_Screen)
 
-        if Game_State == Game.Start_game_next_screen:
+        if Game_State == Game.Start_Game_Next_Screen:
             Game_State = start_menu(Menu_Screen)
 
-        if Game_State == Game.Help_screen:
-            Game_State = Help_section(Menu_Screen)
+        if Game_State == Game.Help_Screen:
+            Game_State = help_section(Menu_Screen)
 
-        if Game_State == Game.How_to_play_3by3:
-            Game_State = HowToPlay3X3Board(Menu_Screen)
+        if Game_State == Game.How_To_Play_3By3:
+            Game_State = how_to_play_3x3_board(Menu_Screen)
 
-        if Game_State == Game.How_to_play_5by5_or_more:
-            Game_State = HowToPlay5X5BoardOrHigher(Menu_Screen)
+        if Game_State == Game.How_To_Play_4By4:
+            Game_State = how_to_play_4x4_board(Menu_Screen)
 
-        if Game_State == Game.Credits_screen:
+        if Game_State == Game.How_To_Play_5By5_Or_More:
+            Game_State = how_to_play_5x5_board_or_higher(Menu_Screen)
+
+        if Game_State == Game.Credits_Screen:
             Game_State = credits_section(Menu_Screen)
 
-        if Game_State == Game.Two_Player_mode:
+        if Game_State == Game.Two_Player_Mode:
             Game_State = Two_Player_Mode(Menu_Screen)
 
-        if Game_State == Game.Ai_mode:
+        if Game_State == Game.Ai_Mode:
             Game_State = Ai_Mode(Menu_Screen)
 
         if Game_State == Game.QUIT:
@@ -52,17 +55,17 @@ def tic_tac_toe_game():
             sys.exit()
 
         """The boards for two player"""
-        if Game_State == Game.Board3by3:
+        if Game_State == Game.Board3By3:
             Game_State = pygame.display.set_mode((Board3X3_Width, Board3X3_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
             start_3by3_Board()
         
-        if Game_State == Game.Board4by4:
+        if Game_State == Game.Board4By4:
             Game_State = pygame.display.set_mode((Board4X4_Width, Board4X4_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 3X3 Board')
             start_4by4_board()
         
-        if Game_State == Game.Board5by5:
+        if Game_State == Game.Board5By5:
             Game_State = pygame.display.set_mode((Board5X5_Width, Board5X5_Height))
             Game_State = pygame.display.set_caption('Tic-Tac-Toe 5X5 Board')
             start_5by5_board()
@@ -83,22 +86,23 @@ def tic_tac_toe_game():
             start_10x10_board()
         
         """The boards for Ai"""
-        if Game_State == Game.AiBoard_3by3:
+        if Game_State == Game.AiBoard_3By3:
             Game_State = pygame.display.set_mode((Ai_Board3X3_Width, Ai_Board3X3_Height))
             Game_State = pygame.display.set_caption("Ai Tic-Tac-Toe 3X3 Board")
             start_Ai_3by3_Board()
 
-        if Game_State == Game.AiBoard_4by4:
+        if Game_State == Game.AiBoard_4By4:
             Game_State = pygame.display.set_mode((Ai_Board4X4_Width, Ai_Board4X4_Height))
             Game_State = pygame.display.set_caption("Ai Tic-Tac-Toe 4X4 Board")
             start_ai_4by4_board()
 
-        if Game_State == Game.Ai_Board5by5:
+        if Game_State == Game.Ai_Board5By5:
             Game_State = pygame.display.set_mode((Ai_Board5X5_Width, Ai_Board5X5_Height))
             Game_State = pygame.display.set_caption("Ai Tic-Tac-Toe 5X5 Board")
             start_ai_5by5_board()
     
     pygame.display.update()
 
-
 tic_tac_toe_game()
+
+

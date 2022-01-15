@@ -1,6 +1,6 @@
-import sys
 import pygame
 import pygame.freetype
+import sys
 from pygame.sprite import Sprite
 from enum import Enum
 
@@ -13,24 +13,22 @@ Menu_Screen = pygame.display.set_mode((800, 700))
 pygame.display.update()
 
 
-pygame.display.set_caption("Tic-Tac-Toe Menu")
-
-def Make_a_place_on_screen_for_text(text, Text_size, Text_Color, Bg_rgb):
+def make_a_place_on_screen_for_text(text, Text_Size, Text_Color, Bg_rgb):
     """ display's text on screen"""
-    font = pygame.freetype.SysFont("Verdana", Text_size, bold=True)
-    surface, _ = font.render(text=text, fgcolor=Text_Color, bgcolor=Bg_rgb)
-    return surface.convert_alpha()
+    Font = pygame.freetype.SysFont("Verdana", Text_Size, bold=True)
+    Surface, _ = Font.render(text=text, fgcolor=Text_Color, bgcolor=Bg_rgb)
+    return Surface.convert_alpha()
 
-def display_regular_text(Text,Text_size, Text_X, Text_Y,Text_color, Bg_Color):
+def display_regular_text(Text,Text_Size, Text_X, Text_Y,Text_color, Bg_Color):
     """Non Interactive text"""
-    font = pygame.font.SysFont("Verdana",Text_size, bold=True)
-    text = font.render(Text, True, Text_color, Bg_Color)
+    Font = pygame.font.SysFont("Verdana",Text_Size, bold=True)
+    text = Font.render(Text, True, Text_color, Bg_Color)
     Text_Box = text.get_rect() # makes box for text
     Text_Box.center = (Text_X, Text_Y) # X and Y location 
     Menu_Screen.blit(text, Text_Box) # displays text on screen
 
-def Help_with_3by3Board_text():
-    display_regular_text("How to play 3 by 3 board", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
+def help_with_3By3_board_text():
+    display_regular_text("How to play 3 By 3 board", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
     display_regular_text("Player 1 is always X ", 25, 400, 100, LIGHT_BLUE, DARK_PURPLE)
     display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
     display_regular_text("Your goal is to get 3 in a row", 30, 400, 200, LIGHT_BLUE, DARK_PURPLE)
@@ -44,8 +42,23 @@ def Help_with_3by3Board_text():
     display_regular_text("Have fun playing Tic-Tac-Toe ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
 
 
-def Help_with_5by5Board_Or_Higher_text():
-    display_regular_text("How to play 5 by 5 board or higher", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
+def help_with_4By4_board_text():
+    display_regular_text("How to play 4 By 4 board", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("Player 1 is always X ", 25, 400, 100, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("Your goal is to get 4 in a row", 30, 400, 200, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("If you get 4 in a row (Up, Down, Across, or Diagonally) ", 25, 400, 250, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("You win the game ", 25, 400, 280, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("If the person or the computer place a letter in a box", 25, 400, 330, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("You cannot place your letter in that box anymore", 25, 400, 360, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("If all 16 boxes have been fulled up", 25, 400, 410, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("The game ends in a tie", 25, 400, 440, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("Nobody wins the game ", 25, 400, 470, LIGHT_BLUE, DARK_PURPLE)
+    display_regular_text("Have fun playing Tic-Tac-Toe ", 25, 400, 520, LIGHT_BLUE, DARK_PURPLE)
+
+
+def help_with_5By5_board_or_higher_text():
+    display_regular_text("How to play 5 By 5 board or higher", 30, 400, 50, LIGHT_BLUE, DARK_PURPLE)
     display_regular_text("Player 1 is Always X", 30, 400, 100, LIGHT_BLUE, DARK_PURPLE)
     display_regular_text("Click on the box to place a letter", 30, 400, 150, LIGHT_BLUE, DARK_PURPLE)
     display_regular_text("Make sure you click the right box", 30, 400, 190, LIGHT_BLUE, DARK_PURPLE)
@@ -60,28 +73,25 @@ def Help_with_5by5Board_Or_Higher_text():
     display_regular_text("Have fun playing Tic-Tac-Toe", 25, 400, 550, LIGHT_BLUE, DARK_PURPLE)
 
 
-
-
-class Recative_Text(Sprite):
-    """Makes the text be able to react"""
-    def __init__(self, Text_Center, text, Text_size, Bg_rgb, Text_color, Action=None):
-        self.mouse_over = False  # Is the mouse over the text?
+class Reactive_Text(Sprite):
+    def __init__(self, Text_Center, text, Text_Size, Bg_rgb, Text_color, Action=None):
+        self.Mouse_Over = False  # Is the mouse over the text?
 
         # Creates the regular text
-        default_Text = Make_a_place_on_screen_for_text(
-            text=text, Text_size=Text_size, Text_Color=Text_color, Bg_rgb=Bg_rgb
+        Default_Text = make_a_place_on_screen_for_text(
+            text=text, Text_Size=Text_Size, Text_Color=Text_color, Bg_rgb=Bg_rgb
         )
 
         # creates the reactive text
-        highlighted_Text = Make_a_place_on_screen_for_text(
-            text=text, Text_size=Text_size * 1.2, Text_Color=Text_color, Bg_rgb=Bg_rgb
+        Highlighted_Text = make_a_place_on_screen_for_text(
+            text=text, Text_Size=Text_Size * 1.2, Text_Color=Text_color, Bg_rgb=Bg_rgb
         )
 
         # both the reactive and Regular text are now one
-        self.High_lights_text = [default_Text, highlighted_Text]
+        self.High_lights_text = [Default_Text, Highlighted_Text]
         self.Reactive = [
-            default_Text.get_rect(center=Text_Center),
-            highlighted_Text.get_rect(center=Text_Center),
+            Default_Text.get_rect(center=Text_Center),
+            Highlighted_Text.get_rect(center=Text_Center),
         ]
         # for text to do some type of command or action
         self.Action = Action
@@ -91,308 +101,357 @@ class Recative_Text(Sprite):
 
     """ is the mouse over text if yes does reactive if no goes to regular text """
     @property
-    def default(self):
-        return self.High_lights_text[1] if self.mouse_over else self.High_lights_text[0]
+    def Default(self):
+        return self.High_lights_text[1] if self.Mouse_Over else self.High_lights_text[0]
 
     @property
     def TextReactive(self):
-        return self.Reactive[1] if self.mouse_over else self.Reactive[0]
+        return self.Reactive[1] if self.Mouse_Over else self.Reactive[0]
 
     def update(self, mouse_postition, mouse_over):
 
         if self.TextReactive.collidepoint(mouse_postition):
-            self.mouse_over = True
+            self.Mouse_Over = True
             if mouse_over:
                 return self.Action
         else:
-            self.mouse_over = False
+            self.Mouse_Over = False
 
         """ Places the text onto menu """
-    def Place_Text(self, surface):
-        surface.blit(self.default, self.TextReactive)
+    def place_text(self, surface):
+        surface.blit(self.Default, self.TextReactive)
 
 
 class Game(Enum):
-    QUIT = -1
     Main_Menu = 0
-    Start_game_next_screen = 1
-    Help_screen = 2
-    Credits_screen = -2
-    Two_Player_mode = 3
-    Ai_mode = -3
-    How_to_play_3by3 = 4
-    How_to_play_5by5_or_more = -4
-    Board3by3 = 5
-    AiBoard_3by3 = -5
-    Board4by4 = 6
-    AiBoard_4by4 = -6
-    Board5by5 = 7
-    Ai_Board5by5 = -7
-    Board6X6 = 8
-    Board7By7 = 9
+    Start_Game_Next_Screen = 1
+    QUIT = -1
+    Help_Screen = 2
+    Credits_Screen = -2
+    Two_Player_Mode = 3
+    Ai_Mode = -3
+
+    How_To_Play_3By3 = 4
+    How_To_Play_4By4 = -4
+    How_To_Play_5By5_Or_More = 5
+
+    Board3By3 = 6
+    AiBoard_3By3 = -6
+    Board4By4 = 7
+    AiBoard_4By4 = -7
+    Board5By5 = 8
+    Ai_Board5By5 = -8
+    Board6X6 = 9
+    Board7By7 = -9
     Board10By10 = 10
 
 
 """Text for menu screen"""
-def Title_screen(MenuScreen):
+def title_screen(MenuScreen):
 
-    Start_Game_Text = Recative_Text(
+    Start_Game_Text = Reactive_Text(
     Text_Center = (400, 300),
-    Text_size = 45,
+    Text_Size = 45,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text ="Start Game",
-    Action = Game.Start_game_next_screen, 
+    Action = Game.Start_Game_Next_Screen, 
     )
-    Help_Text = Recative_Text(
+    Help_Text = Reactive_Text(
     Text_Center = (400, 400),
-    Text_size = 45,
+    Text_Size = 45,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Help",
-    Action = Game.Help_screen
+    Action = Game.Help_Screen
     )
-    credits_Text = Recative_Text(
+    Credits_Text = Reactive_Text(
     Text_Center = (400, 500),
-    Text_size = 45,
+    Text_Size = 45,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Credits",
-    Action = Game.Credits_screen
+    Action = Game.Credits_Screen
     )
-    quit_Text = Recative_Text(
+    Quit_Text = Reactive_Text(
     Text_Center = (400, 600),
-    Text_size = 45,
+    Text_Size = 45,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Quit",
     Action = Game.QUIT,
     )
 
-    texts_for_menu = [Start_Game_Text, Help_Text, credits_Text ,quit_Text]
+    Text_For_Menu = [Start_Game_Text, Help_Text, Credits_Text ,Quit_Text]
     Menu = True
     while Menu == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         MenuScreen.fill(DARK_PURPLE)
         display_regular_text("Tic-Tac-Toe", 45, 400, 50, LIGHT_BLUE,DARK_PURPLE)
-    
-        for texts in texts_for_menu:
-            Menu_Action = texts.update(pygame.mouse.get_pos(), mouse_over_text)
+
+        for Text in Text_For_Menu:
+            Menu_Action = Text.update(pygame.mouse.get_pos(), Mouse_Over_Text)
             if Menu_Action is not None:
                 return Menu_Action
-            texts.Place_Text(MenuScreen)
+            Text.place_text(MenuScreen)
 
         pygame.display.flip()
-    
+
     pygame.quit()
     sys.exit()
 
+
 """When you hit start game goes to next screen"""
 def start_menu(Menu_Screen):
-    menu_return = True
-    return_back_to_screen = Recative_Text(
+
+    Menu_Return = True
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
     )
-    Two_player_text = Recative_Text(
+    Two_player_Text = Reactive_Text(
     Text_Center = (400, 300),
-    Text_size = 50,
+    Text_Size = 50,
     Bg_rgb = DARK_PURPLE, 
     Text_color = LIGHT_BLUE, 
     text = "Two Player",
-    Action = Game.Two_Player_mode
+    Action = Game.Two_Player_Mode
     )
-
-    Vs_Ai_text = Recative_Text(
+    Vs_Ai_text = Reactive_Text(
     Text_Center = (400, 500),
-    Text_size = 50,
+    Text_Size = 50,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Ai",
-    Action = Game.Ai_mode
+    Action = Game.Ai_Mode
     )
 
-    texts = [Two_player_text, Vs_Ai_text, return_back_to_screen]
-    while menu_return == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+    Text = [Two_player_Text, Vs_Ai_text, Return_Back_To_Screen]
+    while Menu_Return == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
         display_regular_text("How do you want to play?", 40, 400, 50, LIGHT_BLUE, DARK_PURPLE)
         
-        for every_text in texts:
-            second_screen = every_text.update(pygame.mouse.get_pos(), mouse_over_text)
-            if second_screen is not None:
-                return second_screen
-            every_text.Place_Text(Menu_Screen)
+        for Every_Text in Text:
+            Second_Screen = Every_Text.update(pygame.mouse.get_pos(), Mouse_Over_Text)
+            if Second_Screen is not None:
+                return Second_Screen
+            Every_Text.place_text(Menu_Screen)
             
         pygame.display.flip()
 
     pygame.quit()
     sys.exit()
 
-def Help_section(Menu_Screen):
-    How_to_play_3By3 = Recative_Text(
-    Text_Center = (400, 300),
-    Text_size = 50,
+def help_section(Menu_Screen):
+
+    How_To_Play_3By3 = Reactive_Text(
+    Text_Center = (400, 200),
+    Text_Size = 50,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "3 By 3 Board",
-    Action = Game.How_to_play_3by3
+    Action = Game.How_To_Play_3By3
     )
-    How_to_play_5By5_or_More = Recative_Text(
-    Text_Center = (400, 500),
-    Text_size = 45,
+    How_To_Play_4By4 = Reactive_Text(
+    Text_Center = (400, 400),
+    Text_Size = 50,
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "4 By 4 Board",
+    Action = Game.How_To_Play_4By4
+    )
+    How_To_Play_5By5_Or_Higher = Reactive_Text(
+    Text_Center = (400, 600),
+    Text_Size = 45,
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board or Higher",
-    Action = Game.How_to_play_5by5_or_more
+    Action = Game.How_To_Play_5By5_Or_More
     )
-    return_back_to_screen = Recative_Text(
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
-
     )
 
-    Text_for_help_section = [How_to_play_3By3,  How_to_play_5By5_or_More, return_back_to_screen]
+    Text_for_help_section = [How_To_Play_3By3, How_To_Play_4By4 ,How_To_Play_5By5_Or_Higher, Return_Back_To_Screen]
     Help_section_display = True
     while Help_section_display == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
         display_regular_text("How to play?", 40, 400, 50, LIGHT_BLUE, DARK_PURPLE )
 
-
         for Every_text in Text_for_help_section:
-            Help_section_screen = Every_text.update(pygame.mouse.get_pos(), mouse_over_text)
+            Help_section_screen = Every_text.update(pygame.mouse.get_pos(), Mouse_Over_Text)
             if Help_section_screen is not None:
                 return Help_section_screen
-            Every_text.Place_Text(Menu_Screen)
+            Every_text.place_text(Menu_Screen)
 
         pygame.display.flip()
-    
+
     pygame.quit()
     sys.exit()
 
 
-def HowToPlay3X3Board(Menu_Screen):
-    return_back_to_screen = Recative_Text(
+def how_to_play_3x3_board(Menu_Screen):
+
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to help screen",
-    Action = Game.Help_screen
+    Action = Game.Help_Screen
     )
-    return_back_to_help_screen = Recative_Text(
+    Return_Back_To_Help_Screen = Reactive_Text(
     Text_Center = (615, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu
 )
 
-    return_back = [return_back_to_screen, return_back_to_help_screen]
-    display_Text = True
-    while display_Text == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+    Return_Back = [Return_Back_To_Screen, Return_Back_To_Help_Screen]
+    Display_Text = True
+    while Display_Text == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
-        Help_with_3by3Board_text()
+        help_with_3By3_board_text()
 
-        for texts in return_back:
-            go_back = texts.update(pygame.mouse.get_pos(), mouse_over_text)
-            if go_back is not None:
-                return go_back
-            texts.Place_Text(Menu_Screen)
+        for text in Return_Back:
+            Go_Back = text.update(pygame.mouse.get_pos(), Mouse_Over_Text)
+            if Go_Back is not None:
+                return Go_Back
+            text.place_text(Menu_Screen)
+
+        pygame.display.flip()
+
+def how_to_play_4x4_board(Menu_Screen):
+
+    Return_Back_To_Screen = Reactive_Text(
+    Text_Center = (190, 670),
+    Text_Size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to help screen",
+    Action = Game.Help_Screen
+    )
+    Return_Back_To_Help_Screen = Reactive_Text(
+    Text_Center = (615, 670),
+    Text_Size = 25, 
+    Bg_rgb = DARK_PURPLE,
+    Text_color = LIGHT_BLUE,
+    text = "Return to main menu",
+    Action = Game.Main_Menu
+)
+
+    Return_Back = [Return_Back_To_Screen, Return_Back_To_Help_Screen]
+    Display_Text = True
+    while Display_Text == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
+        Menu_Screen.fill(DARK_PURPLE)
+        help_with_4By4_board_text()
+
+        for text in Return_Back:
+            Go_Back = text.update(pygame.mouse.get_pos(), Mouse_Over_Text)
+            if Go_Back is not None:
+                return Go_Back
+            text.place_text(Menu_Screen)
 
         pygame.display.flip()
 
 
-def HowToPlay5X5BoardOrHigher(Menu_Screen):
-    return_back_to_screen_help_screen = Recative_Text(
+def how_to_play_5x5_board_or_higher(Menu_Screen):
+
+    Return_Back_To_Screen_Help_Screen = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to help screen",
-    Action = Game.Help_screen
+    Action = Game.Help_Screen
     )
 
-    return_back_to_screen = Recative_Text(
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (615, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu
     )
-    return_back = [return_back_to_screen_help_screen, return_back_to_screen]
-    display_Text = True
-    while display_Text == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+    Return_Back = [Return_Back_To_Screen_Help_Screen, Return_Back_To_Screen]
+    Display_Text = True
+    while Display_Text == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
-        Help_with_5by5Board_Or_Higher_text()
+        help_with_5By5_board_or_higher_text()
 
+        for Text in Return_Back:
+            Go_Back_To_Help_Section = Text.update(pygame.mouse.get_pos(), Mouse_Over_Text)
+            if Go_Back_To_Help_Section is not None:
+                return Go_Back_To_Help_Section
+            Text.place_text(Menu_Screen)
 
-        for text in return_back:
-            go_back_to_help_section = text.update(pygame.mouse.get_pos(), mouse_over_text)
-            if go_back_to_help_section is not None:
-                return go_back_to_help_section
-            text.Place_Text(Menu_Screen)
-        
         pygame.display.flip()
-    
+
     pygame.quit()
     sys.exit()
 
 
-
 def credits_section(Menu_Screen):
-    return_back_to_screen = Recative_Text(
+
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
     )
-    text_to_return = [return_back_to_screen]
-    credits_Display = True
-    while credits_Display == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+    Text_To_Return = [Return_Back_To_Screen]
+    Credits_Display = True
+    while Credits_Display == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
         display_regular_text("Credits", 50, 400, 300, LIGHT_BLUE, DARK_PURPLE)
-        display_regular_text("Made by Tennessee Foster", 45, 400, 350, LIGHT_BLUE, DARK_PURPLE)
+        display_regular_text("Made By Tennessee Foster", 45, 400, 350, LIGHT_BLUE, DARK_PURPLE)
 
-        for text in text_to_return:
-            return_back = return_back_to_screen.update(pygame.mouse.get_pos(), mouse_over_text)
-            if return_back is not None:
-                return return_back
-            text.Place_Text(Menu_Screen)
+        for Text in Text_To_Return:
+            Return_Back = Return_Back_To_Screen.update(pygame.mouse.get_pos(), Mouse_Over_Text)
+            if Return_Back is not None:
+                return Return_Back
+            Text.place_text(Menu_Screen)
 
         pygame.display.flip()
     
@@ -400,161 +459,157 @@ def credits_section(Menu_Screen):
     sys.exit()
 
 
-"""Two Player Mode """
 def Two_Player_Mode(Menu_Screen):
-    Board_size_3X3 = Recative_Text(
+
+    Board_Size_3X3 = Reactive_Text(
     Text_Center = (400, 200),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "3 By 3 Board",
-    Action = Game.Board3by3
+    Action = Game.Board3By3
     )
-    Board_size_4X4 = Recative_Text(
+    Board_Size_4X4 = Reactive_Text(
     Text_Center = (400, 280),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "4 By 4 Board",
-    Action = Game.Board4by4
+    Action = Game.Board4By4
     )
-
-    Board_size_5X5 = Recative_Text(
+    Board_Size_5X5 = Reactive_Text(
     Text_Center = (400, 360),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board",
-    Action = Game.Board5by5
+    Action = Game.Board5By5
     )
-    Board_size_6X6 = Recative_Text(
+    Board_Size_6X6 = Reactive_Text(
     Text_Center = (400, 440),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "6 By 6 Board",
     Action = Game.Board6X6
     )
-
-    Board_size_7X7 = Recative_Text(
+    Board_Size_7X7 = Reactive_Text(
     Text_Center = (400, 520),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "7 By 7 Board",
     Action = Game.Board7By7
     )
-    Board_size_10X10 = Recative_Text(
+    Board_Size_10X10 = Reactive_Text(
     Text_Center = (400, 600),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "10 By 10 Board",
     Action = Game.Board10By10
     )
-
-
-    return_back_to_game_mode = Recative_Text(
+    Return_Back_To_Game_Mode = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to game menu",
-    Action = Game.Start_game_next_screen,
+    Action = Game.Start_Game_Next_Screen,
     )
-    return_back_to_screen = Recative_Text(
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (615, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
     )
 
-    board_sizes = [Board_size_3X3,Board_size_5X5, Board_size_7X7,
-    Board_size_10X10, Board_size_4X4, Board_size_6X6, return_back_to_game_mode, return_back_to_screen ]
-    choose_board_size = True
+    Board_Sizes = [Board_Size_3X3,Board_Size_5X5, Board_Size_7X7,
+    Board_Size_10X10, Board_Size_4X4, Board_Size_6X6, Return_Back_To_Game_Mode, Return_Back_To_Screen ]
+    Choose_Board_Size = True
 
-    while choose_board_size == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+    while Choose_Board_Size == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
         display_regular_text("Choose Your Board", 40, 400, 50, LIGHT_BLUE,DARK_PURPLE)
 
-        for Every_board_size in board_sizes:
-            Boards = Every_board_size.update(pygame.mouse.get_pos(), mouse_over_text)
+        for Every_Board_Size in Board_Sizes:
+            Boards = Every_Board_Size.update(pygame.mouse.get_pos(), Mouse_Over_Text)
             if Boards is not None:
                 return Boards
-            Every_board_size.Place_Text(Menu_Screen)
+            Every_Board_Size.place_text(Menu_Screen)
 
         pygame.display.flip()
-    
+
     pygame.quit()
     sys.exit()
 
 
 def Ai_Mode(Menu_Screen):
-    Board_size_3X3 = Recative_Text(
+
+    Board_Size_3X3 = Reactive_Text(
     Text_Center = (400, 200),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "3 By 3 Board",
-    Action = Game.AiBoard_3by3
+    Action = Game.AiBoard_3By3
     )
-    Board_size_4X4 = Recative_Text(
+    Board_Size_4X4 = Reactive_Text(
     Text_Center = (400, 360),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "4 By 4 Board",
-    Action = Game.AiBoard_4by4
+    Action = Game.AiBoard_4By4
     )
-    Board_size_5X5 = Recative_Text(
+    Board_Size_5X5 = Reactive_Text(
     Text_Center = (400, 520),
-    Text_size = 35, 
+    Text_Size = 35, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "5 By 5 Board",
-    Action = Game.Ai_Board5by5
+    Action = Game.Ai_Board5By5
     )
-
-    return_back_to_screen_game_mode = Recative_Text(
+    Return_Back_To_Screen_Game_Mode = Reactive_Text(
     Text_Center = (190, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to game mode",
-    Action = Game.Start_game_next_screen,
+    Action = Game.Start_Game_Next_Screen,
     )
-    return_back_to_screen = Recative_Text(
+    Return_Back_To_Screen = Reactive_Text(
     Text_Center = (615, 670),
-    Text_size = 25, 
+    Text_Size = 25, 
     Bg_rgb = DARK_PURPLE,
     Text_color = LIGHT_BLUE,
     text = "Return to main menu",
     Action = Game.Main_Menu,
     )
 
-    board_sizes = [Board_size_3X3,Board_size_4X4, Board_size_5X5,
-    return_back_to_screen_game_mode, return_back_to_screen ]
-    choose_board_size = True
+    Board_Sizes = [Board_Size_3X3,Board_Size_4X4, Board_Size_5X5,
+    Return_Back_To_Screen_Game_Mode, Return_Back_To_Screen ]
+    Choose_Board_Size = True
 
-    while choose_board_size == True:
-        mouse_over_text = False
-        for window in pygame.event.get():
-            if window.type == pygame.MOUSEBUTTONUP and window.button == 1:
-                mouse_over_text = True
+    while Choose_Board_Size == True:
+        Mouse_Over_Text = False
+        for Window in pygame.event.get():
+            if Window.type == pygame.MOUSEBUTTONUP and Window.button == 1:
+                Mouse_Over_Text = True
         Menu_Screen.fill(DARK_PURPLE)
         display_regular_text("Choose Your Board", 40, 400, 50, LIGHT_BLUE,DARK_PURPLE)
 
-        for Every_board_size in board_sizes:
-            Boards = Every_board_size.update(pygame.mouse.get_pos(), mouse_over_text)
+        for Every_board_Size in Board_Sizes:
+            Boards = Every_board_Size.update(pygame.mouse.get_pos(), Mouse_Over_Text)
             if Boards is not None:
                 return Boards
-            Every_board_size.Place_Text(Menu_Screen)
+            Every_board_Size.place_text(Menu_Screen)
 
         pygame.display.flip()
         
