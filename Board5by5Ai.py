@@ -154,7 +154,7 @@ def is_the_box_open():
 	else:
 		return None
 
-def start_ai_5by5_Board():
+def start_ai_5by5_board():
 	global Winner
 	global Game_Over
 	global Position
