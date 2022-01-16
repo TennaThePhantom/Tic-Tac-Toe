@@ -212,4 +212,3 @@ def start_ai_5x5_board():
 	pygame.quit()
 	sys.exit()
 
-start_ai_5x5_board()
