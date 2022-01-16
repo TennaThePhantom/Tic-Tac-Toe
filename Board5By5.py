@@ -32,7 +32,7 @@ Play_Again_Box = Rect(Board5X5_Width // 2 - 130, Board5X5_Height // 2 + 25, 325,
 
 
 def draw_board():
-    Background = (255, 255, 255)
+    Background = WHITE
     Grid_Lines_Color = BLACK
     Board_Screen.fill(Background)
     for Grid_Lines in range(1, 5): 
