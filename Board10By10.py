@@ -39,11 +39,11 @@ Play_Again_Box = Rect(Board10X10_Width // 2 - 250, Board10X10_Height // 2 + 10, 
 
 def draw_board():
     Background = WHITE
-    Grid = BLACK
+    Grid_Lines_Color = BLACK
     Board_Screen.fill(Background)
     for Grid_lines in range(1, 10):
-        pygame.draw.line(Board_Screen, Grid, (0, 80 * Grid_lines), (Board10X10_Width, 80 * Grid_lines), Lines_Width)
-        pygame.draw.line(Board_Screen, Grid, (80 * Grid_lines, 0), (80 * Grid_lines, Board10X10_Height), Lines_Width)
+        pygame.draw.line(Board_Screen, Grid_Lines_Color, (0, 80 * Grid_lines), (Board10X10_Width, 80 * Grid_lines), Lines_Width)
+        pygame.draw.line(Board_Screen, Grid_Lines_Color, (80 * Grid_lines, 0), (80 * Grid_lines, Board10X10_Height), Lines_Width)
 
 
 def draw_letter():
